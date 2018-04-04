@@ -26,6 +26,7 @@
 #include "xwidgets/xwidget.hpp"
 
 #include "xleaflet_config.hpp"
+#include "xlayer.hpp"
 
 namespace xleaflet
 {
