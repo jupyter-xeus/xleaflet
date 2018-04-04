@@ -19,9 +19,9 @@
 
 namespace xleaflet
 {
-    /*******************
-     * tile_layer declaration *
-     *******************/
+    /****************************
+     * raster_layer declaration *
+     ****************************/
 
     template <class D>
     class xraster_layer : public xlayer<D>
@@ -53,9 +53,9 @@ namespace xleaflet
 
     using raster_layer_generator = xw::xgenerator<xlayer>;
 
-    /***********************
+    /********************************
      * xraster_layer implementation *
-     ***********************/
+     ********************************/
 
     template <class D>
     inline xeus::xjson xraster_layer<D>::get_state() const
@@ -89,10 +89,10 @@ namespace xleaflet
     template <class D>
     inline void xraster_layer<D>::setup_properties()
     {
-        //TODO: Create a class for bounded integer/float/double instead of
-        // having a validator when needed
+        //TODO: Create a class (in xproperty?) for bounded integer/float/double
+        // instead of having a validator when needed
         auto self = this->self();
-        self->template validate<decltype(self->opacity)>([](auto& owner, auto& proposal) {
+        self->template validate<decltype(self->opacity)>([](auto& /*owner*/, auto& proposal) {
             if (proposal > 1.0)
             {
                 proposal = 1.0;

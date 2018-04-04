@@ -19,9 +19,9 @@
 
 namespace xleaflet
 {
-    /*******************
+    /*********************
      * layer declaration *
-     *******************/
+     *********************/
 
     template <class D>
     class xlayer : public xw::xwidget<D>
@@ -53,9 +53,9 @@ namespace xleaflet
 
     using layer_generator = xw::xgenerator<xlayer>;
 
-    /***********************
+    /*************************
      * xlayer implementation *
-     ***********************/
+     *************************/
 
     template <class D>
     inline xeus::xjson xlayer<D>::get_state() const
