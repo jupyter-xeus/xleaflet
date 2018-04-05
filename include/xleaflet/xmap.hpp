@@ -70,16 +70,15 @@ namespace xleaflet
         template <class T>
         void add_layer(xlayer<T>&& l);
 
+        void handle_custom_message(const xeus::xjson&);
+
         XPROPERTY(xeus::xjson, derived_type, basemap);
         XPROPERTY(point_type, derived_type, center);
         XPROPERTY(int, derived_type, zoom, 12);
         XPROPERTY(int, derived_type, zoom_start, 12);
         XPROPERTY(bounds_type, derived_type, bounds)
         XPROPERTY(bounds_polygon_type, derived_type, bounds_polygon)
-        void handle_custom_message(const xeus::xjson&);
-
         XPROPERTY(std::vector<std::string>, derived_type, options);
-
         XPROPERTY(std::vector<xw::xholder<xlayer>>, derived_type, layers);
 
     protected:
