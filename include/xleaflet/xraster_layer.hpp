@@ -91,17 +91,8 @@ namespace xleaflet
     {
         //TODO: Create a class (in xproperty?) for bounded integer/float/double
         // instead of having a validator when needed
-        auto self = this->self();
-        self->template validate<decltype(self->opacity)>([](auto& /*owner*/, auto& proposal) {
-            if (proposal > 1.0)
-            {
-                proposal = 1.0;
-            }
-            if (proposal < 0.0)
-            {
-                proposal = 0.0;
-            }
-        });
+
+        // Opacity should be bounded between 0.0 and 1.0
     }
 
     template <class D>
