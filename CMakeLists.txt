@@ -69,6 +69,9 @@ find_package(xwidgets 0.8.2 REQUIRED)
 
 set(XLEAFLET_HEADERS
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xmap.hpp
+    ${XLEAFLET_INCLUDE_DIR}/xleaflet/xlayer.hpp
+    ${XLEAFLET_INCLUDE_DIR}/xleaflet/xraster_layer.hpp
+    ${XLEAFLET_INCLUDE_DIR}/xleaflet/xtile_layer.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xleaflet_config.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xleaflet_config_cling.hpp
 )

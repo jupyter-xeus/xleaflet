@@ -23,9 +23,12 @@
 #include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xstyle.hpp"
 #include "xwidgets/xobject.hpp"
+#include "xwidgets/xholder.hpp"
 #include "xwidgets/xwidget.hpp"
 
 #include "xleaflet_config.hpp"
+#include "xlayer.hpp"
+#include "xtile_layer.hpp"
 
 namespace xleaflet
 {
@@ -47,10 +50,27 @@ namespace xleaflet
         using base_type = xw::xwidget<D>;
         using derived_type = D;
 
+#ifdef _MSC_VER
+        template <class T>
+        using layer_type = xlayer<T>;
+
+        using layer_list_type = std::vector<xw::xholder<layer_type>>;
+#else
+        using layer_list_type = std::vector<xw::xholder<xlayer>>;
+#endif
+
         xeus::xjson get_state() const;
         void apply_patch(const xeus::xjson&);
 
         void on_click(click_callback_type);
+
+        template <class T>
+        void add_layer(const xlayer<T>& l);
+
+        template <class T>
+        void add_layer(xlayer<T>&& l);
+
+        void handle_custom_message(const xeus::xjson&);
 
         XPROPERTY(xeus::xjson, derived_type, basemap);
         XPROPERTY(point_type, derived_type, center);
@@ -58,9 +78,8 @@ namespace xleaflet
         XPROPERTY(int, derived_type, zoom_start, 12);
         XPROPERTY(bounds_type, derived_type, bounds)
         XPROPERTY(bounds_polygon_type, derived_type, bounds_polygon)
-        void handle_custom_message(const xeus::xjson&);
-
         XPROPERTY(std::vector<std::string>, derived_type, options);
+        XPROPERTY(std::vector<xw::xholder<xlayer>>, derived_type, layers);
 
     protected:
 
@@ -93,6 +112,7 @@ namespace xleaflet
         XOBJECT_SET_PATCH_FROM_PROPERTY(bounds, state);
         XOBJECT_SET_PATCH_FROM_PROPERTY(bounds_polygon, state);
         XOBJECT_SET_PATCH_FROM_PROPERTY(options, state);
+        XOBJECT_SET_PATCH_FROM_PROPERTY(layers, state);
 
         return state;
     }
@@ -108,12 +128,37 @@ namespace xleaflet
         XOBJECT_SET_PROPERTY_FROM_PATCH(bounds, patch);
         XOBJECT_SET_PROPERTY_FROM_PATCH(bounds_polygon, patch);
         XOBJECT_SET_PROPERTY_FROM_PATCH(options, patch);
+        XOBJECT_SET_PROPERTY_FROM_PATCH(layers, patch);
     }
 
     template <class D>
     inline void xmap<D>::on_click(click_callback_type cb)
     {
         m_click_callbacks.emplace_back(std::move(cb));
+    }
+
+    template <class D>
+    template <class T>
+    inline void xmap<D>::add_layer(const xlayer<T>& l)
+    {
+#ifdef _MSC_VER
+        this->layers().emplace_back(xw::make_id_holder<layer_type>(l.id()));
+#else
+        this->layers().emplace_back(xw::make_id_holder<xlayer>(l.id()));
+#endif
+        xeus::xjson state;
+        XOBJECT_SET_PATCH_FROM_PROPERTY(layers, state);
+        this->send_patch(std::move(state));
+    }
+
+    template <class D>
+    template <class T>
+    inline void xmap<D>::add_layer(xlayer<T>&& l)
+    {
+        this->layers().emplace_back(xw::make_owning_holder(std::move(l)));
+        xeus::xjson state;
+        XOBJECT_SET_PATCH_FROM_PROPERTY(layers, state);
+        this->send_patch(std::move(state));
     }
 
     template <class D>
@@ -168,6 +213,11 @@ namespace xleaflet
         this->center() = {0, 0};
         this->bounds() = {{{0, 0}, {0, 0}}};
         this->bounds_polygon() = {{{0, 0}, {0, 0}, {0, 0}, {0, 0}}};
+
+        // Set default layer
+        auto default_layer = xleaflet::tile_layer();
+        default_layer.send_patch(std::move(this->basemap()));
+        this->add_layer(std::move(default_layer));
     }
 
     template <class D>
