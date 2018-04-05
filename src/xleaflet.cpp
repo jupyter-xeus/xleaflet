@@ -6,6 +6,7 @@
 #include "xleaflet/xmarker.hpp"
 #include "xleaflet/ximage_overlay.hpp"
 #include "xleaflet/xvideo_overlay.hpp"
+#include "xleaflet/xvector_layer.hpp"
 
 template class XLEAFLET_API xw::xmaterialize<xleaflet::xmap>;
 template xw::xmaterialize<xleaflet::xmap>::xmaterialize();
