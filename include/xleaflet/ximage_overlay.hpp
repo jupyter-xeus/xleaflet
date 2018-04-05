@@ -10,6 +10,7 @@
 #ifndef XLEAFLET_IMAGE_OVERLAY_HPP
 #define XLEAFLET_IMAGE_OVERLAY_HPP
 
+#include <array>
 #include <string>
 
 #include "xwidgets/xmaterialize.hpp"

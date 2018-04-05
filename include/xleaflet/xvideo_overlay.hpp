@@ -10,6 +10,7 @@
 #ifndef XLEAFLET_VIDEO_OVERLAY_HPP
 #define XLEAFLET_VIDEO_OVERLAY_HPP
 
+#include <array>
 #include <string>
 
 #include "xwidgets/xmaterialize.hpp"
