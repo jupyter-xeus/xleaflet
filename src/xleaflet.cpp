@@ -2,6 +2,8 @@
 #include "xleaflet/xlayer.hpp"
 #include "xleaflet/xraster_layer.hpp"
 #include "xleaflet/xtile_layer.hpp"
+#include "xleaflet/xui_layer.hpp"
+#include "xleaflet/xmarker.hpp"
 
 template class XLEAFLET_API xw::xmaterialize<xleaflet::xmap>;
 template xw::xmaterialize<xleaflet::xmap>::xmaterialize();

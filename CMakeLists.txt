@@ -72,6 +72,8 @@ set(XLEAFLET_HEADERS
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xlayer.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xraster_layer.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xtile_layer.hpp
+    ${XLEAFLET_INCLUDE_DIR}/xleaflet/xui_layer.hpp
+    ${XLEAFLET_INCLUDE_DIR}/xleaflet/xmarker.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xleaflet_config.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xleaflet_config_cling.hpp
 )
