@@ -49,9 +49,9 @@ namespace xleaflet
         void setup_properties();
     };
 
-    using raster_layer = xw::xmaterialize<xlayer>;
+    using raster_layer = xw::xmaterialize<xraster_layer>;
 
-    using raster_layer_generator = xw::xgenerator<xlayer>;
+    using raster_layer_generator = xw::xgenerator<xraster_layer>;
 
     /********************************
      * xraster_layer implementation *
