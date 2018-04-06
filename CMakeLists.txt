@@ -99,8 +99,10 @@ add_library(xleaflet SHARED ${XLEAFLET_SOURCES} ${XLEAFLET_HEADERS})
 target_include_directories(xleaflet PUBLIC $<BUILD_INTERFACE:${XLEAFLET_INCLUDE_DIR}>
                                            $<INSTALL_INTERFACE:include>)
 
-target_link_libraries(xleaflet PUBLIC xtl)
-target_link_libraries(xleaflet PUBLIC xwidgets)
+target_link_libraries(xleaflet
+    PUBLIC xtl
+    PUBLIC xeus
+    PUBLIC xwidgets)
 
 set_target_properties(xleaflet PROPERTIES
                       PUBLIC_HEADER "${XLEAFLET_HEADERS}"
