@@ -6,6 +6,7 @@
 #include "xleaflet/xmarker_cluster.hpp"
 #include "xleaflet/xmarker.hpp"
 #include "xleaflet/xpath.hpp"
+#include "xleaflet/xpolygon.hpp"
 #include "xleaflet/xpolyline.hpp"
 #include "xleaflet/xraster_layer.hpp"
 #include "xleaflet/xtile_layer.hpp"
