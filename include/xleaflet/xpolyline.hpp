@@ -87,6 +87,14 @@ namespace xleaflet
         set_defaults();
 
         this->locations() = {};
+
+        this->options().insert(
+            this->options().end(),
+            {
+                "smooth_factor",
+                "no_clip"
+            }
+        );
     }
 
     template <class D>

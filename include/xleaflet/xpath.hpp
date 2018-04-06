@@ -114,6 +114,25 @@ namespace xleaflet
         : base_type()
     {
         set_defaults();
+
+        this->options().insert(
+            this->options().end(),
+            {
+                "stroke",
+                "color",
+                "weight",
+                "fill",
+                "fill_color",
+                "fill_opacity",
+                "dash_array",
+                "line_cap",
+                "line_join",
+                "clickable",
+                "pointer_events",
+                "class_name",
+                "opacity"
+            }
+        );
     }
 
     template <class D>
