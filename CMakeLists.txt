@@ -78,7 +78,10 @@ set(XLEAFLET_HEADERS
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xmarker_cluster.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xmarker.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xpath.hpp
+    ${XLEAFLET_INCLUDE_DIR}/xleaflet/xpolygon.hpp
+    ${XLEAFLET_INCLUDE_DIR}/xleaflet/xpolyline.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xraster_layer.hpp
+    ${XLEAFLET_INCLUDE_DIR}/xleaflet/xrectangle.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xtile_layer.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xui_layer.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xvector_layer.hpp
