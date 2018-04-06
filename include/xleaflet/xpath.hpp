@@ -114,6 +114,13 @@ namespace xleaflet
         : base_type()
     {
         set_defaults();
+    }
+
+    template <class D>
+    inline void xpath<D>::set_defaults()
+    {
+        this->_model_name() = "LeafletPathModel";
+        this->_view_name() = "LeafletPathView";
 
         this->options().insert(
             this->options().end(),
@@ -133,13 +140,6 @@ namespace xleaflet
                 "opacity"
             }
         );
-    }
-
-    template <class D>
-    inline void xpath<D>::set_defaults()
-    {
-        this->_model_name() = "LeafletPathModel";
-        this->_view_name() = "LeafletPathView";
     }
 }
 
