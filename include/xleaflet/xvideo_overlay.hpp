@@ -97,6 +97,13 @@ namespace xleaflet
         this->_view_name() = "LeafletVideoOverlayView";
 
         this->bounds() = {{{0, 0}, {0, 0}}};
+
+        this->options().insert(
+            this->options().end(),
+            {
+                "attribution"
+            }
+        );
     }
 }
 

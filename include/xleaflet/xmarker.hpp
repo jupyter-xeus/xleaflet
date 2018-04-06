@@ -118,6 +118,20 @@ namespace xleaflet
         this->_view_name() = "LeafletMarkerView";
 
         this->location() = {0, 0};
+
+        this->options().insert(
+            this->options().end(),
+            {
+                "z_index_offset",
+                "clickable",
+                "draggable",
+                "keyboard",
+                "title",
+                "alt",
+                "rise_on_hover",
+                "rise_offset"
+            }
+        );
     }
 }
 

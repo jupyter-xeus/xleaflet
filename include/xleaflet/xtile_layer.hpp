@@ -105,6 +105,17 @@ namespace xleaflet
         this->_view_name() = "LeafletTileLayerView";
 
         this->bottom() = true;
+
+        this->options().insert(
+            this->options().end(),
+            {
+                "min_zoom",
+                "max_zoom",
+                "tile_size",
+                "attribution",
+                "detect_retina"
+            }
+        );
     }
 }
 
