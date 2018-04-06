@@ -14,6 +14,7 @@
 #include "xleaflet/xui_layer.hpp"
 #include "xleaflet/xvector_layer.hpp"
 #include "xleaflet/xvideo_overlay.hpp"
+#include "xleaflet/xwms_layer.hpp"
 
 template class XLEAFLET_API xw::xmaterialize<xleaflet::xmap>;
 template xw::xmaterialize<xleaflet::xmap>::xmaterialize();

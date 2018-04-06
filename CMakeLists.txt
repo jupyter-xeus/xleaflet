@@ -86,6 +86,7 @@ set(XLEAFLET_HEADERS
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xui_layer.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xvector_layer.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xvideo_overlay.hpp
+    ${XLEAFLET_INCLUDE_DIR}/xleaflet/xwms_layer.hpp
 )
 
 set(XLEAFLET_SOURCES
