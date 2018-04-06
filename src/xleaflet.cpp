@@ -9,6 +9,7 @@
 #include "xleaflet/xpolygon.hpp"
 #include "xleaflet/xpolyline.hpp"
 #include "xleaflet/xraster_layer.hpp"
+#include "xleaflet/xrectangle.hpp"
 #include "xleaflet/xtile_layer.hpp"
 #include "xleaflet/xui_layer.hpp"
 #include "xleaflet/xvector_layer.hpp"
