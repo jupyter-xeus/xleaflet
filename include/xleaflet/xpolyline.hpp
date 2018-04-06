@@ -85,6 +85,13 @@ namespace xleaflet
         : base_type()
     {
         set_defaults();
+    }
+
+    template <class D>
+    inline void xpolyline<D>::set_defaults()
+    {
+        this->_model_name() = "LeafletPolylineModel";
+        this->_view_name() = "LeafletPolylineView";
 
         this->locations() = {};
 
@@ -95,13 +102,6 @@ namespace xleaflet
                 "no_clip"
             }
         );
-    }
-
-    template <class D>
-    inline void xpolyline<D>::set_defaults()
-    {
-        this->_model_name() = "LeafletPolylineModel";
-        this->_view_name() = "LeafletPolylineView";
     }
 }
 
