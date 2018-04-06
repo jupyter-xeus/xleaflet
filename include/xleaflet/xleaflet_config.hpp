@@ -9,7 +9,7 @@
 #ifndef XLEAFLET_CONFIG_HPP
 #define XLEAFLET_CONFIG_HPP
 
-// Visual C++ declspec macors
+// Visual C++ declspec macros
 #ifdef _WIN32
     #ifdef XLEAFLET_EXPORTS
         #define XLEAFLET_API __declspec(dllexport)
@@ -35,7 +35,7 @@
 #define XJUPYTER_LEAFLET_VERSION_MINOR 7
 #define XJUPYTER_LEAFLET_VERSION_PATCH 3
 
-// Composing the protocol version string from major, minor and patch
+// Composing the version strings from major, minor and patch
 #define XLEAFLET_CONCATENATE(A, B) XLEAFLET_CONCATENATE_IMPL(A, B)
 #define XLEAFLET_CONCATENATE_IMPL(A, B) A##B
 #define XLEAFLET_STRINGIFY(a) XLEAFLET_STRINGIFY_IMPL(a)
