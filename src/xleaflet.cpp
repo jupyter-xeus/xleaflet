@@ -2,6 +2,7 @@
 #include "xleaflet/ximage_overlay.hpp"
 #include "xleaflet/xlayer.hpp"
 #include "xleaflet/xmap.hpp"
+#include "xleaflet/xmarker_cluster.hpp"
 #include "xleaflet/xmarker.hpp"
 #include "xleaflet/xpath.hpp"
 #include "xleaflet/xraster_layer.hpp"
