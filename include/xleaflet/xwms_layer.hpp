@@ -101,6 +101,13 @@ namespace xleaflet
         : base_type()
     {
         set_defaults();
+    }
+
+    template <class D>
+    inline void xwms_layer<D>::set_defaults()
+    {
+        this->_model_name() = "LeafletWMSLayerModel";
+        this->_view_name() = "LeafletWMSLayerView";
 
         this->options().insert(
             this->options().end(),
@@ -113,13 +120,6 @@ namespace xleaflet
                 "uppercase"
             }
         );
-    }
-
-    template <class D>
-    inline void xwms_layer<D>::set_defaults()
-    {
-        this->_model_name() = "LeafletWMSLayerModel";
-        this->_view_name() = "LeafletWMSLayerView";
     }
 }
 
