@@ -68,6 +68,7 @@ find_package(xwidgets 0.8.2 REQUIRED)
 # ============
 
 set(XLEAFLET_HEADERS
+    ${XLEAFLET_INCLUDE_DIR}/xleaflet/xcircle.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/ximage_overlay.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xlayer.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xleaflet_config_cling.hpp

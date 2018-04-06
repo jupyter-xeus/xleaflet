@@ -1,3 +1,4 @@
+#include "xleaflet/xcircle.hpp"
 #include "xleaflet/ximage_overlay.hpp"
 #include "xleaflet/xlayer.hpp"
 #include "xleaflet/xmap.hpp"
