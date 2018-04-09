@@ -70,6 +70,11 @@ namespace xleaflet
         template <class T>
         void add_layer(xlayer<T>&& l);
 
+        template <class T>
+        void remove_layer(const xlayer<T>& l);
+
+        void clear_layers();
+
         void handle_custom_message(const xeus::xjson&);
 
         XPROPERTY(xeus::xjson, derived_type, basemap);
@@ -156,6 +161,44 @@ namespace xleaflet
     inline void xmap<D>::add_layer(xlayer<T>&& l)
     {
         this->layers().emplace_back(xw::make_owning_holder(std::move(l)));
+        xeus::xjson state;
+        XOBJECT_SET_PATCH_FROM_PROPERTY(layers, state);
+        this->send_patch(std::move(state));
+    }
+
+    template <class D>
+    template <class T>
+    inline void xmap<D>::remove_layer(const xlayer<T>& l)
+    {
+#ifdef _MSC_VER
+        template <class T>
+        using layer_type = xlayer<T>;
+
+        this->layers().erase(
+            std::remove_if(
+                this->layers().begin(), this->layers().end(),
+                [&l](xw::xholder<layer_type> _l){return _l.id() == l.id();}
+            ),
+            this->layers().end()
+        );
+#else
+        this->layers().erase(
+            std::remove_if(
+                this->layers().begin(), this->layers().end(),
+                [&l](xw::xholder<xlayer> _l){return _l.id() == l.id();}
+            ),
+            this->layers().end()
+        );
+#endif
+        xeus::xjson state;
+        XOBJECT_SET_PATCH_FROM_PROPERTY(layers, state);
+        this->send_patch(std::move(state));
+    }
+
+    template <class D>
+    inline void xmap<D>::clear_layers()
+    {
+        this->layers() = {};
         xeus::xjson state;
         XOBJECT_SET_PATCH_FROM_PROPERTY(layers, state);
         this->send_patch(std::move(state));
