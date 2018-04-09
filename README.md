@@ -6,6 +6,41 @@ C++ backend for the jupyter-leaflet map visualization library
 
 **xleaflet is an early developer preview, and is not suitable for general usage yet. Features and implementation are subject to change.**
 
+## Installation
+
+We provide a package for the conda package manager.
+
+- Installing `xleaflet` and the C++ kernel
+
+```bash
+conda install xeus-cling xleaflet -c QuantStack -c conda-forge
+```
+
+Then, the front-end extension must be installed for either the classic notebook or JupyterLab.
+
+- Installing the extensions for the classic notebook
+
+```
+conda install widgetsnbextension -c conda-forge
+conda install ipyleaflet -c conda-forge
+```
+
+- Installing the JupyterLab extension
+
+```
+jupyter labextension install @jupyter-widgets/jupyterlab-manager
+jupyter labextension install jupyter-leaflet
+```
+
+## Installation from sources
+
+Or you can directly install it from the sources if you have all the dependencies already installed:
+
+```bash
+cmake -D CMAKE_INSTALL_PREFIX=your_install_prefix
+make install
+```
+
 ## Dependencies
 
 All the dependencies of xleaflet are available for the conda package manager.
