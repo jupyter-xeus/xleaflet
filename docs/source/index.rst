@@ -37,5 +37,5 @@ This software is licensed under the BSD-3-Clause license. See the LICENSE file f
 
    releasing
 
-.. _ipyleaflet: https://github.com/ellisonbg/ipyleaflet.git
+.. _ipyleaflet: https://github.com/jupyter-widgets/ipyleaflet.git
 
