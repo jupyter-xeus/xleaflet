@@ -171,9 +171,6 @@ namespace xleaflet
     inline void xmap<D>::remove_layer(const xlayer<T>& l)
     {
 #ifdef _MSC_VER
-        template <class T>
-        using layer_type = xlayer<T>;
-
         this->layers().erase(
             std::remove_if(
                 this->layers().begin(), this->layers().end(),
