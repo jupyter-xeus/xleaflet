@@ -29,6 +29,7 @@
 #include "xleaflet_config.hpp"
 #include "xlayer.hpp"
 #include "xtile_layer.hpp"
+#include "xcontrol.hpp"
 
 namespace xleaflet
 {
@@ -55,8 +56,14 @@ namespace xleaflet
         using layer_type = xlayer<T>;
 
         using layer_list_type = std::vector<xw::xholder<layer_type>>;
+
+        template <class T>
+        using control_type = xcontrol<T>;
+
+        using control_list_type = std::vector<xw::xholder<control_type>>;
 #else
         using layer_list_type = std::vector<xw::xholder<xlayer>>;
+        using control_list_type = std::vector<xw::xholder<xcontrol>>;
 #endif
 
         xeus::xjson get_state() const;
@@ -75,6 +82,17 @@ namespace xleaflet
 
         void clear_layers();
 
+        template <class T>
+        void add_control(const xcontrol<T>& l);
+
+        template <class T>
+        void add_control(xcontrol<T>&& l);
+
+        template <class T>
+        void remove_control(const xcontrol<T>& l);
+
+        void clear_controls();
+
         void handle_custom_message(const xeus::xjson&);
 
         XPROPERTY(xeus::xjson, derived_type, basemap);
@@ -84,7 +102,8 @@ namespace xleaflet
         XPROPERTY(bounds_type, derived_type, bounds)
         XPROPERTY(bounds_polygon_type, derived_type, bounds_polygon)
         XPROPERTY(std::vector<std::string>, derived_type, options);
-        XPROPERTY(std::vector<xw::xholder<xlayer>>, derived_type, layers);
+        XPROPERTY(layer_list_type, derived_type, layers);
+        XPROPERTY(control_list_type, derived_type, controls);
 
     protected:
 
@@ -118,6 +137,7 @@ namespace xleaflet
         XOBJECT_SET_PATCH_FROM_PROPERTY(bounds_polygon, state);
         XOBJECT_SET_PATCH_FROM_PROPERTY(options, state);
         XOBJECT_SET_PATCH_FROM_PROPERTY(layers, state);
+        XOBJECT_SET_PATCH_FROM_PROPERTY(controls, state);
 
         return state;
     }
@@ -134,6 +154,7 @@ namespace xleaflet
         XOBJECT_SET_PROPERTY_FROM_PATCH(bounds_polygon, patch);
         XOBJECT_SET_PROPERTY_FROM_PATCH(options, patch);
         XOBJECT_SET_PROPERTY_FROM_PATCH(layers, patch);
+        XOBJECT_SET_PROPERTY_FROM_PATCH(controls, patch);
     }
 
     template <class D>
@@ -198,6 +219,65 @@ namespace xleaflet
         this->layers() = {};
         xeus::xjson state;
         XOBJECT_SET_PATCH_FROM_PROPERTY(layers, state);
+        this->send_patch(std::move(state));
+    }
+
+    template <class D>
+    template <class T>
+    inline void xmap<D>::add_control(const xcontrol<T>& c)
+    {
+#ifdef _MSC_VER
+        this->controls().emplace_back(xw::make_id_holder<control_type>(c.id()));
+#else
+        this->controls().emplace_back(xw::make_id_holder<xcontrol>(c.id()));
+#endif
+        xeus::xjson state;
+        XOBJECT_SET_PATCH_FROM_PROPERTY(controls, state);
+        this->send_patch(std::move(state));
+    }
+
+    template <class D>
+    template <class T>
+    inline void xmap<D>::add_control(xcontrol<T>&& c)
+    {
+        this->controls().emplace_back(xw::make_owning_holder(std::move(c)));
+        xeus::xjson state;
+        XOBJECT_SET_PATCH_FROM_PROPERTY(controls, state);
+        this->send_patch(std::move(state));
+    }
+
+    template <class D>
+    template <class T>
+    inline void xmap<D>::remove_control(const xcontrol<T>& c)
+    {
+#ifdef _MSC_VER
+        this->controls().erase(
+            std::remove_if(
+                this->controls().begin(), this->controls().end(),
+                [&c](xw::xholder<control_type> _c){return _c.id() == c.id();}
+            ),
+            this->controls().end()
+        );
+#else
+        this->controls().erase(
+            std::remove_if(
+                this->controls().begin(), this->controls().end(),
+                [&c](xw::xholder<xcontrol> _c){return _c.id() == c.id();}
+            ),
+            this->controls().end()
+        );
+#endif
+        xeus::xjson state;
+        XOBJECT_SET_PATCH_FROM_PROPERTY(controls, state);
+        this->send_patch(std::move(state));
+    }
+
+    template <class D>
+    inline void xmap<D>::clear_controls()
+    {
+        this->controls() = {};
+        xeus::xjson state;
+        XOBJECT_SET_PATCH_FROM_PROPERTY(controls, state);
         this->send_patch(std::move(state));
     }
 
