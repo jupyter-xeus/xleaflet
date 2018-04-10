@@ -68,8 +68,10 @@ find_package(xwidgets 0.8.2 REQUIRED)
 # ============
 
 set(XLEAFLET_HEADERS
-    ${XLEAFLET_INCLUDE_DIR}/xleaflet/xcircle.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xcircle_marker.hpp
+    ${XLEAFLET_INCLUDE_DIR}/xleaflet/xcircle.hpp
+    ${XLEAFLET_INCLUDE_DIR}/xleaflet/xfeature_group.hpp
+    ${XLEAFLET_INCLUDE_DIR}/xleaflet/xgeo_json.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/ximage_overlay.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xlayer_group.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xlayer.hpp
