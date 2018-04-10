@@ -1,5 +1,6 @@
-#include "xleaflet/xcircle.hpp"
 #include "xleaflet/xcircle_marker.hpp"
+#include "xleaflet/xcircle.hpp"
+#include "xleaflet/xfeature_group.hpp"
 #include "xleaflet/ximage_overlay.hpp"
 #include "xleaflet/xlayer_group.hpp"
 #include "xleaflet/xlayer.hpp"
