@@ -6,6 +6,7 @@
 #include "xleaflet/ximage_overlay.hpp"
 #include "xleaflet/xlayer_group.hpp"
 #include "xleaflet/xlayer.hpp"
+#include "xleaflet/xlayers_control.hpp"
 #include "xleaflet/xmap.hpp"
 #include "xleaflet/xmarker_cluster.hpp"
 #include "xleaflet/xmarker.hpp"
