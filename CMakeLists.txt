@@ -87,6 +87,7 @@ set(XLEAFLET_HEADERS
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xpolyline.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xraster_layer.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xrectangle.hpp
+    ${XLEAFLET_INCLUDE_DIR}/xleaflet/xsplit_map_control.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xtile_layer.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xui_layer.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xvector_layer.hpp
