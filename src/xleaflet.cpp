@@ -15,6 +15,7 @@
 #include "xleaflet/xpolyline.hpp"
 #include "xleaflet/xraster_layer.hpp"
 #include "xleaflet/xrectangle.hpp"
+#include "xleaflet/xsplit_map_control.hpp"
 #include "xleaflet/xtile_layer.hpp"
 #include "xleaflet/xui_layer.hpp"
 #include "xleaflet/xvector_layer.hpp"
