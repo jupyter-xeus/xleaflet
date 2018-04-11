@@ -28,11 +28,17 @@ namespace xleaflet
     {
     public:
 
+        using load_callback_type = std::function<void(const xeus::xjson&)>;
+
         using base_type = xraster_layer<D>;
         using derived_type = D;
 
         xeus::xjson get_state() const;
         void apply_patch(const xeus::xjson&);
+
+        void on_load(load_callback_type);
+
+        void handle_custom_message(const xeus::xjson&);
 
         XPROPERTY(
             std::string, derived_type, url,
@@ -53,6 +59,8 @@ namespace xleaflet
     private:
 
         void set_defaults();
+
+        std::list<load_callback_type> m_load_callbacks;
     };
 
     using tile_layer = xw::xmaterialize<xtile_layer>;
@@ -92,6 +100,12 @@ namespace xleaflet
     }
 
     template <class D>
+    inline void xtile_layer<D>::on_load(load_callback_type callback)
+    {
+        m_load_callbacks.emplace_back(std::move(callback));
+    }
+
+    template <class D>
     inline xtile_layer<D>::xtile_layer()
         : base_type()
     {
@@ -116,6 +130,19 @@ namespace xleaflet
                 "detect_retina"
             }
         );
+    }
+
+    template <class D>
+    inline void xtile_layer<D>::handle_custom_message(const xeus::xjson& content)
+    {
+        auto it = content.find("event");
+        if (it != content.end() && it.value() == "load")
+        {
+            for (auto it = m_load_callbacks.begin(); it != m_load_callbacks.end(); ++it)
+            {
+                it->operator()(content);
+            }
+        }
     }
 }
 
