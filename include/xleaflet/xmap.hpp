@@ -259,23 +259,15 @@ namespace xleaflet
     template <class T>
     inline void xmap<D>::remove_layer(const xlayer<T>& l)
     {
-#ifdef _MSC_VER
         this->layers().erase(
             std::remove_if(
                 this->layers().begin(), this->layers().end(),
-                [&l](xw::xholder<layer_type> _l){return _l.id() == l.id();}
+                [&l](const xw::xholder<xlayer>& element) {
+                    return element.id() == l.id();
+                }
             ),
             this->layers().end()
         );
-#else
-        this->layers().erase(
-            std::remove_if(
-                this->layers().begin(), this->layers().end(),
-                [&l](xw::xholder<xlayer> _l){return _l.id() == l.id();}
-            ),
-            this->layers().end()
-        );
-#endif
         xeus::xjson state;
         XOBJECT_SET_PATCH_FROM_PROPERTY(layers, state);
         this->send_patch(std::move(state));
@@ -318,23 +310,15 @@ namespace xleaflet
     template <class T>
     inline void xmap<D>::remove_control(const xcontrol<T>& c)
     {
-#ifdef _MSC_VER
         this->controls().erase(
             std::remove_if(
                 this->controls().begin(), this->controls().end(),
-                [&c](xw::xholder<control_type> _c){return _c.id() == c.id();}
+                [&c](const xw::xholder<xcontrol>& element) {
+                    return element.id() == c.id();
+                }
             ),
             this->controls().end()
         );
-#else
-        this->controls().erase(
-            std::remove_if(
-                this->controls().begin(), this->controls().end(),
-                [&c](xw::xholder<xcontrol> _c){return _c.id() == c.id();}
-            ),
-            this->controls().end()
-        );
-#endif
         xeus::xjson state;
         XOBJECT_SET_PATCH_FROM_PROPERTY(controls, state);
         this->send_patch(std::move(state));

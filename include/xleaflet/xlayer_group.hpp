@@ -122,23 +122,15 @@ namespace xleaflet
     template <class T>
     inline void xlayer_group<D>::remove_layer(const xlayer<T>& l)
     {
-#ifdef _MSC_VER
         this->layers().erase(
             std::remove_if(
                 this->layers().begin(), this->layers().end(),
-                [&l](xw::xholder<layer_type> _l){return _l.id() == l.id();}
+                [&l](const xw::xholder<xlayer>& element) {
+                    return element.id() == l.id();
+                }
             ),
             this->layers().end()
         );
-#else
-        this->layers().erase(
-            std::remove_if(
-                this->layers().begin(), this->layers().end(),
-                [&l](xw::xholder<xlayer> _l){return _l.id() == l.id();}
-            ),
-            this->layers().end()
-        );
-#endif
         xeus::xjson state;
         XOBJECT_SET_PATCH_FROM_PROPERTY(layers, state);
         this->send_patch(std::move(state));
