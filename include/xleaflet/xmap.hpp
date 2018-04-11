@@ -95,13 +95,37 @@ namespace xleaflet
 
         void handle_custom_message(const xeus::xjson&);
 
-        XPROPERTY(xeus::xjson, derived_type, basemap);
         XPROPERTY(point_type, derived_type, center);
-        XPROPERTY(int, derived_type, zoom, 12);
         XPROPERTY(int, derived_type, zoom_start, 12);
+        XPROPERTY(int, derived_type, zoom, 12);
+        XPROPERTY(int, derived_type, max_zoom, 18);
+        XPROPERTY(int, derived_type, min_zoom, 1);
+        XPROPERTY(xeus::xjson, derived_type, basemap);
+        XPROPERTY(std::string, derived_type, modistate, "yesterday");
+        XPROPERTY(bool, derived_type, dragging, true);
+        XPROPERTY(bool, derived_type, touch_zoom, true);
+        XPROPERTY(bool, derived_type, scroll_wheel_zoom, false);
+        XPROPERTY(bool, derived_type, double_click_zoom, true);
+        XPROPERTY(bool, derived_type, box_zoom, true);
+        XPROPERTY(bool, derived_type, tap, true);
+        XPROPERTY(int, derived_type, tap_tolerance, 15);
+        XPROPERTY(bool, derived_type, world_copy_jump, false);
+        XPROPERTY(bool, derived_type, close_popup_on_click, true);
+        XPROPERTY(bool, derived_type, bounce_at_zoom_limits, true);
+        XPROPERTY(bool, derived_type, keyboard, true);
+        XPROPERTY(int, derived_type, keyboard_pan_offset, 80);
+        XPROPERTY(int, derived_type, keyboard_zoom_offset, 1);
+        XPROPERTY(bool, derived_type, inertia, true);
+        XPROPERTY(int, derived_type, inertia_deceleration, 3000);
+        XPROPERTY(int, derived_type, inertia_max_speed, 1500);
+        XPROPERTY(bool, derived_type, zoom_control, true);
+        XPROPERTY(bool, derived_type, attribution_control, true);
+        XPROPERTY(int, derived_type, zoom_animation_threshold, 4);
+
+        XPROPERTY(std::vector<std::string>, derived_type, options);
+
         XPROPERTY(bounds_type, derived_type, bounds)
         XPROPERTY(bounds_polygon_type, derived_type, bounds_polygon)
-        XPROPERTY(std::vector<std::string>, derived_type, options);
         XPROPERTY(layer_list_type, derived_type, layers);
         XPROPERTY(control_list_type, derived_type, controls);
 
@@ -131,11 +155,33 @@ namespace xleaflet
         xeus::xjson state = base_type::get_state();
 
         XOBJECT_SET_PATCH_FROM_PROPERTY(center, state);
+        XOBJECT_SET_PATCH_FROM_PROPERTY(zoom_start, state);
         XOBJECT_SET_PATCH_FROM_PROPERTY(zoom, state);
+        XOBJECT_SET_PATCH_FROM_PROPERTY(max_zoom, state);
+        XOBJECT_SET_PATCH_FROM_PROPERTY(min_zoom, state);
         XOBJECT_SET_PATCH_FROM_PROPERTY(basemap, state);
+        XOBJECT_SET_PATCH_FROM_PROPERTY(modistate, state);
+        XOBJECT_SET_PATCH_FROM_PROPERTY(dragging, state);
+        XOBJECT_SET_PATCH_FROM_PROPERTY(touch_zoom, state);
+        XOBJECT_SET_PATCH_FROM_PROPERTY(scroll_wheel_zoom, state);
+        XOBJECT_SET_PATCH_FROM_PROPERTY(double_click_zoom, state);
+        XOBJECT_SET_PATCH_FROM_PROPERTY(box_zoom, state);
+        XOBJECT_SET_PATCH_FROM_PROPERTY(tap, state);
+        XOBJECT_SET_PATCH_FROM_PROPERTY(tap_tolerance, state);
+        XOBJECT_SET_PATCH_FROM_PROPERTY(world_copy_jump, state);
+        XOBJECT_SET_PATCH_FROM_PROPERTY(close_popup_on_click, state);
+        XOBJECT_SET_PATCH_FROM_PROPERTY(keyboard, state);
+        XOBJECT_SET_PATCH_FROM_PROPERTY(keyboard_pan_offset, state);
+        XOBJECT_SET_PATCH_FROM_PROPERTY(keyboard_zoom_offset, state);
+        XOBJECT_SET_PATCH_FROM_PROPERTY(inertia, state);
+        XOBJECT_SET_PATCH_FROM_PROPERTY(inertia_deceleration, state);
+        XOBJECT_SET_PATCH_FROM_PROPERTY(inertia_max_speed, state);
+        XOBJECT_SET_PATCH_FROM_PROPERTY(zoom_control, state);
+        XOBJECT_SET_PATCH_FROM_PROPERTY(attribution_control, state);
+        XOBJECT_SET_PATCH_FROM_PROPERTY(zoom_animation_threshold, state);
+        XOBJECT_SET_PATCH_FROM_PROPERTY(options, state);
         XOBJECT_SET_PATCH_FROM_PROPERTY(bounds, state);
         XOBJECT_SET_PATCH_FROM_PROPERTY(bounds_polygon, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(options, state);
         XOBJECT_SET_PATCH_FROM_PROPERTY(layers, state);
         XOBJECT_SET_PATCH_FROM_PROPERTY(controls, state);
 
@@ -148,11 +194,33 @@ namespace xleaflet
         base_type::apply_patch(patch);
 
         XOBJECT_SET_PROPERTY_FROM_PATCH(center, patch);
+        XOBJECT_SET_PROPERTY_FROM_PATCH(zoom_start, patch);
         XOBJECT_SET_PROPERTY_FROM_PATCH(zoom, patch);
+        XOBJECT_SET_PROPERTY_FROM_PATCH(max_zoom, patch);
+        XOBJECT_SET_PROPERTY_FROM_PATCH(min_zoom, patch);
         XOBJECT_SET_PROPERTY_FROM_PATCH(basemap, patch);
+        XOBJECT_SET_PROPERTY_FROM_PATCH(modistate, patch);
+        XOBJECT_SET_PROPERTY_FROM_PATCH(dragging, patch);
+        XOBJECT_SET_PROPERTY_FROM_PATCH(touch_zoom, patch);
+        XOBJECT_SET_PROPERTY_FROM_PATCH(scroll_wheel_zoom, patch);
+        XOBJECT_SET_PROPERTY_FROM_PATCH(double_click_zoom, patch);
+        XOBJECT_SET_PROPERTY_FROM_PATCH(box_zoom, patch);
+        XOBJECT_SET_PROPERTY_FROM_PATCH(tap, patch);
+        XOBJECT_SET_PROPERTY_FROM_PATCH(tap_tolerance, patch);
+        XOBJECT_SET_PROPERTY_FROM_PATCH(world_copy_jump, patch);
+        XOBJECT_SET_PROPERTY_FROM_PATCH(close_popup_on_click, patch);
+        XOBJECT_SET_PROPERTY_FROM_PATCH(keyboard, patch);
+        XOBJECT_SET_PROPERTY_FROM_PATCH(keyboard_pan_offset, patch);
+        XOBJECT_SET_PROPERTY_FROM_PATCH(keyboard_zoom_offset, patch);
+        XOBJECT_SET_PROPERTY_FROM_PATCH(inertia, patch);
+        XOBJECT_SET_PROPERTY_FROM_PATCH(inertia_deceleration, patch);
+        XOBJECT_SET_PROPERTY_FROM_PATCH(inertia_max_speed, patch);
+        XOBJECT_SET_PROPERTY_FROM_PATCH(zoom_control, patch);
+        XOBJECT_SET_PROPERTY_FROM_PATCH(attribution_control, patch);
+        XOBJECT_SET_PROPERTY_FROM_PATCH(zoom_animation_threshold, patch);
+        XOBJECT_SET_PROPERTY_FROM_PATCH(options, patch);
         XOBJECT_SET_PROPERTY_FROM_PATCH(bounds, patch);
         XOBJECT_SET_PROPERTY_FROM_PATCH(bounds_polygon, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(options, patch);
         XOBJECT_SET_PROPERTY_FROM_PATCH(layers, patch);
         XOBJECT_SET_PROPERTY_FROM_PATCH(controls, patch);
     }
@@ -299,31 +367,31 @@ namespace xleaflet
         this->_view_module_version() = XJUPYTER_LEAFLET_VERSION;
 
         this->options() = std::vector<std::string>({
-            "attribution_control",
-            "basemap",
-            "bounce_at_zoom_limits",
-            "box_zoom",
             "center",
-            "close_popup_on_click",
-            "double_click_zoom",
+            "zoom_start",
+            "zoom",
+            "max_zoom",
+            "min_zoom",
+            "basemap",
             "dragging",
-            "inertia",
-            "inertia_deceleration",
-            "inertia_max_speed",
+            "touch_zoom",
+            "scroll_wheel_zoom",
+            "double_click_zoom",
+            "box_zoom",
+            "tap",
+            "tap_tolerance",
+            "world_copy_jump",
+            "close_popup_on_click",
+            "bounce_at_zoom_limits",
             "keyboard",
             "keyboard_pan_offset",
             "keyboard_zoom_offset",
-            "max_zoom",
-            "min_zoom",
-            "scroll_wheel_zoom",
-            "tap",
-            "tap_tolerance",
-            "touch_zoom",
-            "world_copy_jump",
-            "zoom",
-            "zoom_animation_threshold",
+            "inertia",
+            "inertia_deceleration",
+            "inertia_max_speed",
             "zoom_control",
-            "zoom_start"
+            "attribution_control",
+            "zoom_animation_threshold",
         });
         this->basemap() = {
             {"url", "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"},
