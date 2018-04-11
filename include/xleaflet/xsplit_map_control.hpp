@@ -35,12 +35,7 @@ namespace xleaflet
         using base_type = xcontrol<D>;
         using derived_type = D;
 
-#ifdef _MSC_VER
-        template <class T>
-        using tile_layer_type = xw::xholder<xtile_layer<T>>;
-#else
         using tile_layer_type = xw::xholder<xtile_layer>;
-#endif
 
         xeus::xjson get_state() const;
         void apply_patch(const xeus::xjson&);

@@ -51,20 +51,8 @@ namespace xleaflet
         using base_type = xw::xwidget<D>;
         using derived_type = D;
 
-#ifdef _MSC_VER
-        template <class T>
-        using layer_type = xlayer<T>;
-
-        using layer_list_type = std::vector<xw::xholder<layer_type>>;
-
-        template <class T>
-        using control_type = xcontrol<T>;
-
-        using control_list_type = std::vector<xw::xholder<control_type>>;
-#else
         using layer_list_type = std::vector<xw::xholder<xlayer>>;
         using control_list_type = std::vector<xw::xholder<xcontrol>>;
-#endif
 
         xeus::xjson get_state() const;
         void apply_patch(const xeus::xjson&);
@@ -235,11 +223,7 @@ namespace xleaflet
     template <class T>
     inline void xmap<D>::add_layer(const xlayer<T>& l)
     {
-#ifdef _MSC_VER
-        this->layers().emplace_back(xw::make_id_holder<layer_type>(l.id()));
-#else
         this->layers().emplace_back(xw::make_id_holder<xlayer>(l.id()));
-#endif
         xeus::xjson state;
         XOBJECT_SET_PATCH_FROM_PROPERTY(layers, state);
         this->send_patch(std::move(state));
@@ -286,11 +270,7 @@ namespace xleaflet
     template <class T>
     inline void xmap<D>::add_control(const xcontrol<T>& c)
     {
-#ifdef _MSC_VER
-        this->controls().emplace_back(xw::make_id_holder<control_type>(c.id()));
-#else
         this->controls().emplace_back(xw::make_id_holder<xcontrol>(c.id()));
-#endif
         xeus::xjson state;
         XOBJECT_SET_PATCH_FROM_PROPERTY(controls, state);
         this->send_patch(std::move(state));

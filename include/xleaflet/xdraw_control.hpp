@@ -35,12 +35,7 @@ namespace xleaflet
         using base_type = xcontrol<D>;
         using derived_type = D;
 
-#ifdef _MSC_VER
-        template <class T>
-        using feature_group_type = xw::xholder<xfeature_group<T>>;
-#else
         using feature_group_type = xw::xholder<xfeature_group>;
-#endif
 
         xeus::xjson get_state() const;
         void apply_patch(const xeus::xjson&);
