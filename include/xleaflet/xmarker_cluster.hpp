@@ -34,14 +34,7 @@ namespace xleaflet
         using base_type = xlayer<D>;
         using derived_type = D;
 
-#ifdef _MSC_VER
-        template <class T>
-        using marker_type = xmarker<T>;
-
-        using marker_list_type = std::vector<xw::xholder<marker_type>>;
-#else
         using marker_list_type = std::vector<xw::xholder<xmarker>>;
-#endif
 
         xeus::xjson get_state() const;
         void apply_patch(const xeus::xjson&);
