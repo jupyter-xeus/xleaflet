@@ -71,6 +71,7 @@ set(XLEAFLET_HEADERS
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xcircle_marker.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xcircle.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xcontrol.hpp
+    ${XLEAFLET_INCLUDE_DIR}/xleaflet/xdraw_control.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xfeature_group.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xgeo_json.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/ximage_overlay.hpp
