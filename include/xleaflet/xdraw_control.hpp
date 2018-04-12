@@ -32,6 +32,8 @@ namespace xleaflet
     {
     public:
 
+        using draw_callback_type = std::function<void(const std::string&, const xeus::xjson&)>;
+
         using base_type = xcontrol<D>;
         using derived_type = D;
 
@@ -39,6 +41,10 @@ namespace xleaflet
 
         xeus::xjson get_state() const;
         void apply_patch(const xeus::xjson&);
+
+        void on_draw(draw_callback_type);
+
+        void handle_custom_message(const xeus::xjson&);
 
         XPROPERTY(feature_group_type, derived_type, layer);
         XPROPERTY(xeus::xjson, derived_type, polyline);
@@ -48,6 +54,8 @@ namespace xleaflet
         XPROPERTY(xeus::xjson, derived_type, marker);
         XPROPERTY(bool, derived_type, edit, true);
         XPROPERTY(bool, derived_type, remove, true);
+        XPROPERTY(xeus::xjson, derived_type, last_draw, {});
+        XPROPERTY(std::string, derived_type, last_action, "");
 
     protected:
 
@@ -57,6 +65,8 @@ namespace xleaflet
     private:
 
         void set_defaults();
+
+        std::list<draw_callback_type> m_draw_callbacks;
     };
 
     using draw_control = xw::xmaterialize<xdraw_control>;
@@ -80,6 +90,8 @@ namespace xleaflet
          XOBJECT_SET_PATCH_FROM_PROPERTY(marker, state);
          XOBJECT_SET_PATCH_FROM_PROPERTY(edit, state);
          XOBJECT_SET_PATCH_FROM_PROPERTY(remove, state);
+         XOBJECT_SET_PATCH_FROM_PROPERTY(last_draw, state);
+         XOBJECT_SET_PATCH_FROM_PROPERTY(last_action, state);
 
          return state;
      }
@@ -91,6 +103,12 @@ namespace xleaflet
 
          XOBJECT_SET_PROPERTY_FROM_PATCH(layer, patch);
      }
+
+    template <class D>
+    inline void xdraw_control<D>::on_draw(draw_callback_type callback)
+    {
+        m_draw_callbacks.emplace_back(std::move(callback));
+    }
 
     template <class D>
     inline xdraw_control<D>::xdraw_control()
@@ -110,6 +128,25 @@ namespace xleaflet
         this->polygon() = {"shapeOptions", {}};
     }
 
+    template <class D>
+    inline void xdraw_control<D>::handle_custom_message(const xeus::xjson& content)
+    {
+        auto it = content.find("event");
+        if (it != content.end() && it.value().get<std::string>().find("draw") == 0)
+        {
+            std::string value = it.value().get<std::string>();
+            std::string action = value.substr(
+                value.find(":") + 1,
+                std::string::npos
+            );
+            xeus::xjson geo_json_content = content["geo_json"];
+
+            for (auto it = m_draw_callbacks.begin(); it != m_draw_callbacks.end(); ++it)
+            {
+                it->operator()(std::move(action), std::move(geo_json_content));
+            }
+        }
+    }
 }
 
 #endif
