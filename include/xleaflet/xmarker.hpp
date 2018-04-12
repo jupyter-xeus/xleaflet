@@ -27,6 +27,8 @@ namespace xleaflet
     {
     public:
 
+        using move_callback_type = std::function<void(const xeus::xjson&)>;
+
         using point_type = std::array<double, 2>;
 
         using base_type = xui_layer<D>;
@@ -34,6 +36,10 @@ namespace xleaflet
 
         xeus::xjson get_state() const;
         void apply_patch(const xeus::xjson&);
+
+        void on_move(move_callback_type);
+
+        void handle_custom_message(const xeus::xjson&);
 
         XPROPERTY(point_type, derived_type, location);
         XPROPERTY(int, derived_type, z_index_offset, 0.0);
@@ -56,6 +62,8 @@ namespace xleaflet
     private:
 
         void set_defaults();
+
+        std::list<move_callback_type> m_move_callbacks;
     };
 
     using marker = xw::xmaterialize<xmarker>;
@@ -105,6 +113,12 @@ namespace xleaflet
     }
 
     template <class D>
+    inline void xmarker<D>::on_move(move_callback_type callback)
+    {
+        m_move_callbacks.emplace_back(std::move(callback));
+    }
+
+    template <class D>
     inline xmarker<D>::xmarker()
         : base_type()
     {
@@ -132,6 +146,19 @@ namespace xleaflet
                 "rise_offset"
             }
         );
+    }
+
+    template <class D>
+    inline void xmarker<D>::handle_custom_message(const xeus::xjson& content)
+    {
+        auto it = content.find("event");
+        if (it != content.end() && it.value() == "move")
+        {
+            for (auto it = m_move_callbacks.begin(); it != m_move_callbacks.end(); ++it)
+            {
+                it->operator()(content);
+            }
+        }
     }
 }
 
