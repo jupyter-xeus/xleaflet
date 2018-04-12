@@ -27,11 +27,18 @@ namespace xleaflet
     {
     public:
 
+        using callback_type = std::function<void(const xeus::xjson&)>;
+
         using base_type = xfeature_group<D>;
         using derived_type = D;
 
         xeus::xjson get_state() const;
         void apply_patch(const xeus::xjson&);
+
+        void on_click(callback_type);
+        void on_hover(callback_type);
+
+        void handle_custom_message(const xeus::xjson&);
 
         XPROPERTY(xeus::xjson, derived_type, data);
         XPROPERTY(xeus::xjson, derived_type, style);
@@ -45,6 +52,8 @@ namespace xleaflet
     private:
 
         void set_defaults();
+        std::list<callback_type> m_click_callbacks;
+        std::list<callback_type> m_hover_callbacks;
     };
 
     using geo_json = xw::xmaterialize<xgeo_json>;
@@ -77,6 +86,18 @@ namespace xleaflet
          XOBJECT_SET_PROPERTY_FROM_PATCH(hover_style, patch);
      }
 
+     template <class D>
+     inline void xgeo_json<D>::on_click(callback_type callback)
+     {
+         m_click_callbacks.emplace_back(std::move(callback));
+     }
+
+     template <class D>
+     inline void xgeo_json<D>::on_hover(callback_type callback)
+     {
+         m_hover_callbacks.emplace_back(std::move(callback));
+     }
+
     template <class D>
     inline xgeo_json<D>::xgeo_json()
         : base_type()
@@ -89,6 +110,27 @@ namespace xleaflet
     {
         this->_model_name() = "LeafletGeoJSONModel";
         this->_view_name() = "LeafletGeoJSONView";
+    }
+
+    template <class D>
+    inline void xgeo_json<D>::handle_custom_message(const xeus::xjson& content)
+    {
+        auto it = content.find("event");
+        if (it != content.end() && it.value() == "click")
+        {
+            for (auto it = m_click_callbacks.begin(); it != m_click_callbacks.end(); ++it)
+            {
+                it->operator()(content);
+            }
+        }
+
+        if (it != content.end() && it.value() == "mouseover")
+        {
+            for (auto it = m_hover_callbacks.begin(); it != m_hover_callbacks.end(); ++it)
+            {
+                it->operator()(content);
+            }
+        }
     }
 }
 
