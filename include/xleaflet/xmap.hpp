@@ -11,7 +11,6 @@
 
 #include <array>
 #include <functional>
-#include <list>
 #include <string>
 #include <utility>
 #include <vector>
@@ -42,7 +41,7 @@ namespace xleaflet
     {
     public:
 
-        using click_callback_type = std::function<void()>;
+        using callback_type = std::function<void(const xeus::xjson&)>;
 
         using point_type = std::array<double, 2>;
         using bounds_type = std::array<point_type, 2>;
@@ -57,7 +56,9 @@ namespace xleaflet
         xeus::xjson get_state() const;
         void apply_patch(const xeus::xjson&);
 
-        void on_click(click_callback_type);
+        void on_moveend(callback_type);
+
+        void on_interaction(callback_type);
 
         template <class T>
         void add_layer(const xlayer<T>& l);
@@ -126,7 +127,8 @@ namespace xleaflet
 
         void set_defaults();
 
-        std::list<click_callback_type> m_click_callbacks;
+        std::list<callback_type> m_moveend_callbacks;
+        std::list<callback_type> m_interaction_callbacks;
     };
 
     using map = xw::xmaterialize<xmap>;
@@ -214,9 +216,15 @@ namespace xleaflet
     }
 
     template <class D>
-    inline void xmap<D>::on_click(click_callback_type cb)
+    inline void xmap<D>::on_moveend(callback_type cb)
     {
-        m_click_callbacks.emplace_back(std::move(cb));
+        m_moveend_callbacks.emplace_back(std::move(cb));
+    }
+
+    template <class D>
+    inline void xmap<D>::on_interaction(callback_type cb)
+    {
+        m_interaction_callbacks.emplace_back(std::move(cb));
     }
 
     template <class D>
@@ -376,11 +384,19 @@ namespace xleaflet
     inline void xmap<D>::handle_custom_message(const xeus::xjson& content)
     {
         auto it = content.find("event");
-        if (it != content.end() && it.value() == "click")
+        if (it != content.end() && it.value() == "moveend")
         {
-            for (auto it = m_click_callbacks.begin(); it != m_click_callbacks.end(); ++it)
+            for (auto it = m_moveend_callbacks.begin(); it != m_moveend_callbacks.end(); ++it)
             {
-                it->operator()();
+                it->operator()(content);
+            }
+        }
+
+        if (it != content.end() && it.value() == "interaction")
+        {
+            for (auto it = m_interaction_callbacks.begin(); it != m_interaction_callbacks.end(); ++it)
+            {
+                it->operator()(content);
             }
         }
     }
