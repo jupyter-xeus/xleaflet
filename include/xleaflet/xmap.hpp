@@ -56,8 +56,6 @@ namespace xleaflet
         xeus::xjson get_state() const;
         void apply_patch(const xeus::xjson&);
 
-        void on_moveend(callback_type);
-
         void on_interaction(callback_type);
 
         template <class T>
@@ -127,7 +125,6 @@ namespace xleaflet
 
         void set_defaults();
 
-        std::list<callback_type> m_moveend_callbacks;
         std::list<callback_type> m_interaction_callbacks;
     };
 
@@ -213,12 +210,6 @@ namespace xleaflet
         XOBJECT_SET_PROPERTY_FROM_PATCH(bounds_polygon, patch);
         XOBJECT_SET_PROPERTY_FROM_PATCH(layers, patch);
         XOBJECT_SET_PROPERTY_FROM_PATCH(controls, patch);
-    }
-
-    template <class D>
-    inline void xmap<D>::on_moveend(callback_type cb)
-    {
-        m_moveend_callbacks.emplace_back(std::move(cb));
     }
 
     template <class D>
@@ -384,14 +375,6 @@ namespace xleaflet
     inline void xmap<D>::handle_custom_message(const xeus::xjson& content)
     {
         auto it = content.find("event");
-        if (it != content.end() && it.value() == "moveend")
-        {
-            for (auto it = m_moveend_callbacks.begin(); it != m_moveend_callbacks.end(); ++it)
-            {
-                it->operator()(content);
-            }
-        }
-
         if (it != content.end() && it.value() == "interaction")
         {
             for (auto it = m_interaction_callbacks.begin(); it != m_interaction_callbacks.end(); ++it)
