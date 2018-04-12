@@ -141,6 +141,9 @@ namespace xleaflet
             );
             xeus::xjson geo_json_content = content["geo_json"];
 
+            this->last_action() = action;
+            this->last_draw() = geo_json_content;
+
             for (auto it = m_draw_callbacks.begin(); it != m_draw_callbacks.end(); ++it)
             {
                 it->operator()(std::move(action), std::move(geo_json_content));
