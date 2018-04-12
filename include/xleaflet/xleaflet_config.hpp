@@ -32,8 +32,8 @@
 
 // Semver requirement for jupyter-leaflet
 #define XJUPYTER_LEAFLET_VERSION_MAJOR 0
-#define XJUPYTER_LEAFLET_VERSION_MINOR 7
-#define XJUPYTER_LEAFLET_VERSION_PATCH 3
+#define XJUPYTER_LEAFLET_VERSION_MINOR 8
+#define XJUPYTER_LEAFLET_VERSION_PATCH 0
 
 // Composing the version strings from major, minor and patch
 #define XLEAFLET_CONCATENATE(A, B) XLEAFLET_CONCATENATE_IMPL(A, B)
