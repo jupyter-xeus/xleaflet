@@ -143,4 +143,17 @@ namespace xleaflet
     }
 }
 
+/*********************
+ * precompiled types *
+ *********************/
+
+#ifndef _WIN32
+    extern template class xw::xmaterialize<xleaflet::xpath>;
+    extern template xw::xmaterialize<xleaflet::xpath>::xmaterialize();
+    extern template class xw::xtransport<xw::xmaterialize<xleaflet::xpath>>;
+    extern template class xw::xgenerator<xleaflet::xpath>;
+    extern template xw::xgenerator<xleaflet::xpath>::xgenerator();
+    extern template class xw::xtransport<xw::xgenerator<xleaflet::xpath>>;
+#endif
+
 #endif

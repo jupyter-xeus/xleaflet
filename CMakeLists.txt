@@ -97,7 +97,30 @@ set(XLEAFLET_HEADERS
 )
 
 set(XLEAFLET_SOURCES
-    ${XLEAFLET_SOURCE_DIR}/xleaflet.cpp
+    ${XLEAFLET_SOURCE_DIR}/xcircle_marker.cpp
+    ${XLEAFLET_SOURCE_DIR}/xcircle.cpp
+    ${XLEAFLET_SOURCE_DIR}/xcontrol.cpp
+    ${XLEAFLET_SOURCE_DIR}/xdraw_control.cpp
+    ${XLEAFLET_SOURCE_DIR}/xfeature_group.cpp
+    ${XLEAFLET_SOURCE_DIR}/xgeo_json.cpp
+    ${XLEAFLET_SOURCE_DIR}/ximage_overlay.cpp
+    ${XLEAFLET_SOURCE_DIR}/xlayer_group.cpp
+    ${XLEAFLET_SOURCE_DIR}/xlayer.cpp
+    ${XLEAFLET_SOURCE_DIR}/xlayers_control.cpp
+    ${XLEAFLET_SOURCE_DIR}/xmap.cpp
+    ${XLEAFLET_SOURCE_DIR}/xmarker_cluster.cpp
+    ${XLEAFLET_SOURCE_DIR}/xmarker.cpp
+    ${XLEAFLET_SOURCE_DIR}/xpath.cpp
+    ${XLEAFLET_SOURCE_DIR}/xpolygon.cpp
+    ${XLEAFLET_SOURCE_DIR}/xpolyline.cpp
+    ${XLEAFLET_SOURCE_DIR}/xraster_layer.cpp
+    ${XLEAFLET_SOURCE_DIR}/xrectangle.cpp
+    ${XLEAFLET_SOURCE_DIR}/xsplit_map_control.cpp
+    ${XLEAFLET_SOURCE_DIR}/xtile_layer.cpp
+    ${XLEAFLET_SOURCE_DIR}/xui_layer.cpp
+    ${XLEAFLET_SOURCE_DIR}/xvector_layer.cpp
+    ${XLEAFLET_SOURCE_DIR}/xvideo_overlay.cpp
+    ${XLEAFLET_SOURCE_DIR}/xwms_layer.cpp
 )
 
 # Output
