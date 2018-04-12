@@ -107,4 +107,17 @@ namespace xleaflet
     }
 }
 
+/*********************
+ * precompiled types *
+ *********************/
+
+#ifndef _WIN32
+    extern template class xw::xmaterialize<xleaflet::xvideo_overlay>;
+    extern template xw::xmaterialize<xleaflet::xvideo_overlay>::xmaterialize();
+    extern template class xw::xtransport<xw::xmaterialize<xleaflet::xvideo_overlay>>;
+    extern template class xw::xgenerator<xleaflet::xvideo_overlay>;
+    extern template xw::xgenerator<xleaflet::xvideo_overlay>::xgenerator();
+    extern template class xw::xtransport<xw::xgenerator<xleaflet::xvideo_overlay>>;
+#endif
+
 #endif

@@ -134,4 +134,17 @@ namespace xleaflet
     }
 }
 
+/*********************
+ * precompiled types *
+ *********************/
+
+#ifndef _WIN32
+    extern template class xw::xmaterialize<xleaflet::xgeo_json>;
+    extern template xw::xmaterialize<xleaflet::xgeo_json>::xmaterialize();
+    extern template class xw::xtransport<xw::xmaterialize<xleaflet::xgeo_json>>;
+    extern template class xw::xgenerator<xleaflet::xgeo_json>;
+    extern template xw::xgenerator<xleaflet::xgeo_json>::xgenerator();
+    extern template class xw::xtransport<xw::xgenerator<xleaflet::xgeo_json>>;
+#endif
+
 #endif

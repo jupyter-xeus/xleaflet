@@ -100,4 +100,17 @@ namespace xleaflet
 
 }
 
+/*********************
+ * precompiled types *
+ *********************/
+
+#ifndef _WIN32
+    extern template class xw::xmaterialize<xleaflet::xsplit_map_control>;
+    extern template xw::xmaterialize<xleaflet::xsplit_map_control>::xmaterialize();
+    extern template class xw::xtransport<xw::xmaterialize<xleaflet::xsplit_map_control>>;
+    extern template class xw::xgenerator<xleaflet::xsplit_map_control>;
+    extern template xw::xgenerator<xleaflet::xsplit_map_control>::xgenerator();
+    extern template class xw::xtransport<xw::xgenerator<xleaflet::xsplit_map_control>>;
+#endif
+
 #endif
