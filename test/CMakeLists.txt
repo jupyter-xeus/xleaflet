@@ -85,7 +85,7 @@ if(DOWNLOAD_GTEST OR GTEST_SRC_DIR)
     add_dependencies(${XLEAFLET_TEST_TARGET} gtest_main)
 endif()
 
-target_compile_features(${XPLOT_TEST_TARGET} PRIVATE cxx_std_14)
+target_compile_features(${XLEAFLET_TEST_TARGET} PRIVATE cxx_std_14)
 
 target_link_libraries(${XLEAFLET_TEST_TARGET}
                         PUBLIC xtl

@@ -1,5 +1,6 @@
 # ![xleaflet](http://quantstack.net/assets/images/xleaflet.svg)
 
+[![Travis](https://travis-ci.org/QuantStack/xleaflet.svg?branch=master)](https://travis-ci.org/QuantStack/xleaflet)
 [![Join the Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/QuantStack/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 C++ backend for the jupyter-leaflet map visualization library
