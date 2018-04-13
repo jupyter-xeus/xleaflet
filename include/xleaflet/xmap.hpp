@@ -30,7 +30,7 @@
 #include "xtile_layer.hpp"
 #include "xcontrol.hpp"
 
-namespace xleaflet
+namespace xlf
 {
     /*******************
      * map declaration *
@@ -366,7 +366,7 @@ namespace xleaflet
         this->bounds_polygon() = {{{0, 0}, {0, 0}, {0, 0}, {0, 0}}};
 
         // Set default layer
-        auto default_layer = xleaflet::tile_layer();
+        auto default_layer = xlf::tile_layer();
         default_layer.send_patch(std::move(this->basemap()));
         this->add_layer(std::move(default_layer));
     }
@@ -390,12 +390,12 @@ namespace xleaflet
  *********************/
 
 #ifndef _WIN32
-    extern template class xw::xmaterialize<xleaflet::xmap>;
-    extern template xw::xmaterialize<xleaflet::xmap>::xmaterialize();
-    extern template class xw::xtransport<xw::xmaterialize<xleaflet::xmap>>;
-    extern template class xw::xgenerator<xleaflet::xmap>;
-    extern template xw::xgenerator<xleaflet::xmap>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xleaflet::xmap>>;
+    extern template class xw::xmaterialize<xlf::xmap>;
+    extern template xw::xmaterialize<xlf::xmap>::xmaterialize();
+    extern template class xw::xtransport<xw::xmaterialize<xlf::xmap>>;
+    extern template class xw::xgenerator<xlf::xmap>;
+    extern template xw::xgenerator<xlf::xmap>::xgenerator();
+    extern template class xw::xtransport<xw::xgenerator<xlf::xmap>>;
 #endif
 
 #endif

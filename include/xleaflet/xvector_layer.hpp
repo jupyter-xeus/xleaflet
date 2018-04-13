@@ -17,7 +17,7 @@
 
 #include "xlayer.hpp"
 
-namespace xleaflet
+namespace xlf
 {
     /****************************
      * vector_layer declaration *
@@ -86,12 +86,12 @@ namespace xleaflet
  *********************/
 
 #ifndef _WIN32
-    extern template class xw::xmaterialize<xleaflet::xvector_layer>;
-    extern template xw::xmaterialize<xleaflet::xvector_layer>::xmaterialize();
-    extern template class xw::xtransport<xw::xmaterialize<xleaflet::xvector_layer>>;
-    extern template class xw::xgenerator<xleaflet::xvector_layer>;
-    extern template xw::xgenerator<xleaflet::xvector_layer>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xleaflet::xvector_layer>>;
+    extern template class xw::xmaterialize<xlf::xvector_layer>;
+    extern template xw::xmaterialize<xlf::xvector_layer>::xmaterialize();
+    extern template class xw::xtransport<xw::xmaterialize<xlf::xvector_layer>>;
+    extern template class xw::xgenerator<xlf::xvector_layer>;
+    extern template xw::xgenerator<xlf::xvector_layer>::xgenerator();
+    extern template class xw::xtransport<xw::xgenerator<xlf::xvector_layer>>;
 #endif
 
 #endif

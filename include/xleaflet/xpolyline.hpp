@@ -17,7 +17,7 @@
 
 #include "xpath.hpp"
 
-namespace xleaflet
+namespace xlf
 {
     /************************
      * polyline declaration *
@@ -110,12 +110,12 @@ namespace xleaflet
  *********************/
 
 #ifndef _WIN32
-    extern template class xw::xmaterialize<xleaflet::xpolyline>;
-    extern template xw::xmaterialize<xleaflet::xpolyline>::xmaterialize();
-    extern template class xw::xtransport<xw::xmaterialize<xleaflet::xpolyline>>;
-    extern template class xw::xgenerator<xleaflet::xpolyline>;
-    extern template xw::xgenerator<xleaflet::xpolyline>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xleaflet::xpolyline>>;
+    extern template class xw::xmaterialize<xlf::xpolyline>;
+    extern template xw::xmaterialize<xlf::xpolyline>::xmaterialize();
+    extern template class xw::xtransport<xw::xmaterialize<xlf::xpolyline>>;
+    extern template class xw::xgenerator<xlf::xpolyline>;
+    extern template xw::xgenerator<xlf::xpolyline>::xgenerator();
+    extern template class xw::xtransport<xw::xgenerator<xlf::xpolyline>>;
 #endif
 
 #endif

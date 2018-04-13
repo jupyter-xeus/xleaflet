@@ -17,7 +17,7 @@
 
 #include "xpolygon.hpp"
 
-namespace xleaflet
+namespace xlf
 {
     /*************************
      * rectangle declaration *
@@ -95,12 +95,12 @@ namespace xleaflet
  *********************/
 
 #ifndef _WIN32
-    extern template class xw::xmaterialize<xleaflet::xrectangle>;
-    extern template xw::xmaterialize<xleaflet::xrectangle>::xmaterialize();
-    extern template class xw::xtransport<xw::xmaterialize<xleaflet::xrectangle>>;
-    extern template class xw::xgenerator<xleaflet::xrectangle>;
-    extern template xw::xgenerator<xleaflet::xrectangle>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xleaflet::xrectangle>>;
+    extern template class xw::xmaterialize<xlf::xrectangle>;
+    extern template xw::xmaterialize<xlf::xrectangle>::xmaterialize();
+    extern template class xw::xtransport<xw::xmaterialize<xlf::xrectangle>>;
+    extern template class xw::xgenerator<xlf::xrectangle>;
+    extern template xw::xgenerator<xlf::xrectangle>::xgenerator();
+    extern template class xw::xtransport<xw::xgenerator<xlf::xrectangle>>;
 #endif
 
 #endif

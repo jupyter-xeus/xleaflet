@@ -16,7 +16,7 @@
 
 #include "xui_layer.hpp"
 
-namespace xleaflet
+namespace xlf
 {
     /**********************
      * marker declaration *
@@ -167,12 +167,12 @@ namespace xleaflet
  *********************/
 
 #ifndef _WIN32
-    extern template class xw::xmaterialize<xleaflet::xmarker>;
-    extern template xw::xmaterialize<xleaflet::xmarker>::xmaterialize();
-    extern template class xw::xtransport<xw::xmaterialize<xleaflet::xmarker>>;
-    extern template class xw::xgenerator<xleaflet::xmarker>;
-    extern template xw::xgenerator<xleaflet::xmarker>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xleaflet::xmarker>>;
+    extern template class xw::xmaterialize<xlf::xmarker>;
+    extern template xw::xmaterialize<xlf::xmarker>::xmaterialize();
+    extern template class xw::xtransport<xw::xmaterialize<xlf::xmarker>>;
+    extern template class xw::xgenerator<xlf::xmarker>;
+    extern template xw::xgenerator<xlf::xmarker>::xgenerator();
+    extern template class xw::xtransport<xw::xgenerator<xlf::xmarker>>;
 #endif
 
 #endif

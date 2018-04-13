@@ -23,7 +23,7 @@ namespace detail
 {
     inline xeus::xjson load_basemaps()
     {
-        std::ifstream maps_json(xleaflet::get_basemaps_path());
+        std::ifstream maps_json(xlf::get_basemaps_path());
 
         xeus::xjson maps;
         maps_json >> maps;
@@ -32,7 +32,7 @@ namespace detail
     }
 }
 
-namespace xleaflet
+namespace xlf
 {
     inline const xeus::xjson& basemaps()
     {

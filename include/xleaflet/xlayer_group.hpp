@@ -19,7 +19,7 @@
 #include "xleaflet_config.hpp"
 #include "xlayer.hpp"
 
-namespace xleaflet
+namespace xlf
 {
     /***************************
      * layer_group declaration *
@@ -154,12 +154,12 @@ namespace xleaflet
  *********************/
 
 #ifndef _WIN32
-    extern template class xw::xmaterialize<xleaflet::xlayer_group>;
-    extern template xw::xmaterialize<xleaflet::xlayer_group>::xmaterialize();
-    extern template class xw::xtransport<xw::xmaterialize<xleaflet::xlayer_group>>;
-    extern template class xw::xgenerator<xleaflet::xlayer_group>;
-    extern template xw::xgenerator<xleaflet::xlayer_group>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xleaflet::xlayer_group>>;
+    extern template class xw::xmaterialize<xlf::xlayer_group>;
+    extern template xw::xmaterialize<xlf::xlayer_group>::xmaterialize();
+    extern template class xw::xtransport<xw::xmaterialize<xlf::xlayer_group>>;
+    extern template class xw::xgenerator<xlf::xlayer_group>;
+    extern template xw::xgenerator<xlf::xlayer_group>::xgenerator();
+    extern template class xw::xtransport<xw::xgenerator<xlf::xlayer_group>>;
 #endif
 
 #endif

@@ -15,7 +15,7 @@
 
 #include "xcircle.hpp"
 
-namespace xleaflet
+namespace xlf
 {
     /*****************************
      * circle_marker declaration *
@@ -90,12 +90,12 @@ namespace xleaflet
  *********************/
 
 #ifndef _WIN32
-    extern template class xw::xmaterialize<xleaflet::xcircle_marker>;
-    extern template xw::xmaterialize<xleaflet::xcircle_marker>::xmaterialize();
-    extern template class xw::xtransport<xw::xmaterialize<xleaflet::xcircle_marker>>;
-    extern template class xw::xgenerator<xleaflet::xcircle_marker>;
-    extern template xw::xgenerator<xleaflet::xcircle_marker>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xleaflet::xcircle_marker>>;
+    extern template class xw::xmaterialize<xlf::xcircle_marker>;
+    extern template xw::xmaterialize<xlf::xcircle_marker>::xmaterialize();
+    extern template class xw::xtransport<xw::xmaterialize<xlf::xcircle_marker>>;
+    extern template class xw::xgenerator<xlf::xcircle_marker>;
+    extern template xw::xgenerator<xlf::xcircle_marker>::xgenerator();
+    extern template class xw::xtransport<xw::xgenerator<xlf::xcircle_marker>>;
 #endif
 
 #endif

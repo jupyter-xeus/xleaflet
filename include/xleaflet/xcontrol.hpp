@@ -18,7 +18,7 @@
 
 #include "xleaflet_config.hpp"
 
-namespace xleaflet
+namespace xlf
 {
     /*********************
      * control declaration *
@@ -100,12 +100,12 @@ namespace xleaflet
  *********************/
 
 #ifndef _WIN32
-    extern template class xw::xmaterialize<xleaflet::xcontrol>;
-    extern template xw::xmaterialize<xleaflet::xcontrol>::xmaterialize();
-    extern template class xw::xtransport<xw::xmaterialize<xleaflet::xcontrol>>;
-    extern template class xw::xgenerator<xleaflet::xcontrol>;
-    extern template xw::xgenerator<xleaflet::xcontrol>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xleaflet::xcontrol>>;
+    extern template class xw::xmaterialize<xlf::xcontrol>;
+    extern template xw::xmaterialize<xlf::xcontrol>::xmaterialize();
+    extern template class xw::xtransport<xw::xmaterialize<xlf::xcontrol>>;
+    extern template class xw::xgenerator<xlf::xcontrol>;
+    extern template xw::xgenerator<xlf::xcontrol>::xgenerator();
+    extern template class xw::xtransport<xw::xgenerator<xlf::xcontrol>>;
 #endif
 
 #endif

@@ -21,7 +21,7 @@
 #include "xtile_layer.hpp"
 #include "xcontrol.hpp"
 
-namespace xleaflet
+namespace xlf
 {
     /*********************************
      * split_map_control declaration *
@@ -105,12 +105,12 @@ namespace xleaflet
  *********************/
 
 #ifndef _WIN32
-    extern template class xw::xmaterialize<xleaflet::xsplit_map_control>;
-    extern template xw::xmaterialize<xleaflet::xsplit_map_control>::xmaterialize();
-    extern template class xw::xtransport<xw::xmaterialize<xleaflet::xsplit_map_control>>;
-    extern template class xw::xgenerator<xleaflet::xsplit_map_control>;
-    extern template xw::xgenerator<xleaflet::xsplit_map_control>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xleaflet::xsplit_map_control>>;
+    extern template class xw::xmaterialize<xlf::xsplit_map_control>;
+    extern template xw::xmaterialize<xlf::xsplit_map_control>::xmaterialize();
+    extern template class xw::xtransport<xw::xmaterialize<xlf::xsplit_map_control>>;
+    extern template class xw::xgenerator<xlf::xsplit_map_control>;
+    extern template xw::xgenerator<xlf::xsplit_map_control>::xgenerator();
+    extern template class xw::xtransport<xw::xgenerator<xlf::xsplit_map_control>>;
 #endif
 
 #endif

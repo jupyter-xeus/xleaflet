@@ -16,7 +16,7 @@
 #include "xleaflet_config.hpp"
 #include "xfeature_group.hpp"
 
-namespace xleaflet
+namespace xlf
 {
     /************************
      * geo_json declaration *
@@ -139,12 +139,12 @@ namespace xleaflet
  *********************/
 
 #ifndef _WIN32
-    extern template class xw::xmaterialize<xleaflet::xgeo_json>;
-    extern template xw::xmaterialize<xleaflet::xgeo_json>::xmaterialize();
-    extern template class xw::xtransport<xw::xmaterialize<xleaflet::xgeo_json>>;
-    extern template class xw::xgenerator<xleaflet::xgeo_json>;
-    extern template xw::xgenerator<xleaflet::xgeo_json>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xleaflet::xgeo_json>>;
+    extern template class xw::xmaterialize<xlf::xgeo_json>;
+    extern template xw::xmaterialize<xlf::xgeo_json>::xmaterialize();
+    extern template class xw::xtransport<xw::xmaterialize<xlf::xgeo_json>>;
+    extern template class xw::xgenerator<xlf::xgeo_json>;
+    extern template xw::xgenerator<xlf::xgeo_json>::xgenerator();
+    extern template class xw::xtransport<xw::xgenerator<xlf::xgeo_json>>;
 #endif
 
 #endif
