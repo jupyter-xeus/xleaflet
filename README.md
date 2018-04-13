@@ -6,6 +6,10 @@ C++ backend for the jupyter-leaflet map visualization library
 
 **xleaflet is an early developer preview, and is not suitable for general usage yet. Features and implementation are subject to change.**
 
+## Usage
+
+![xleaflet screencast](xleaflet.gif)
+
 ## Installation
 
 We provide a package for the conda package manager.
