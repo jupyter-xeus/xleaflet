@@ -14,6 +14,7 @@ set(CMAKE_BUILD_TYPE Release CACHE STRING "Choose the type of build." FORCE)
 
 set(XLEAFLET_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(XLEAFLET_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
+set(XLEAFLET_SHARE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/share)
 
 # Configuration
 # =============
@@ -26,6 +27,13 @@ set(XLEAFLET_INSTALL_LIBRARY_DIR "\"${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBD
 configure_file (
     "${XLEAFLET_INCLUDE_DIR}/xleaflet/xleaflet_config_cling.hpp.in"
     "${XLEAFLET_INCLUDE_DIR}/xleaflet/xleaflet_config_cling.hpp"
+)
+
+set(XLEAFLET_BASEMAPS_PATH "\"${CMAKE_INSTALL_PREFIX}/share/xleaflet/basemaps.json\"")
+
+configure_file (
+    "${XLEAFLET_INCLUDE_DIR}/xleaflet/xget_basemaps_path.hpp.in"
+    "${XLEAFLET_INCLUDE_DIR}/xleaflet/xget_basemaps_path.hpp"
 )
 
 # Versionning
@@ -68,6 +76,8 @@ find_package(xwidgets 0.8.2 REQUIRED)
 # ============
 
 set(XLEAFLET_HEADERS
+    ${XLEAFLET_INCLUDE_DIR}/xleaflet/xbasemaps.hpp
+    ${XLEAFLET_INCLUDE_DIR}/xleaflet/xget_basemaps_path.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xcircle_marker.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xcircle.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xcontrol.hpp
@@ -213,6 +223,9 @@ endif()
 
 # Installation
 # ============
+
+install(DIRECTORY "${XLEAFLET_SHARE_DIR}/xleaflet"
+        DESTINATION "share")
 
 set(XLEAFLET_CMAKECONFIG_INSTALL_DIR "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}" CACHE STRING "install path for xleafletConfig.cmake")
 
