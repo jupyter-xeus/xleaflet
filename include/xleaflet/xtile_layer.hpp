@@ -17,7 +17,7 @@
 #include "xleaflet_config.hpp"
 #include "xraster_layer.hpp"
 
-namespace xleaflet
+namespace xlf
 {
     /**************************
      * tile_layer declaration *
@@ -151,12 +151,12 @@ namespace xleaflet
  *********************/
 
 #ifndef _WIN32
-    extern template class xw::xmaterialize<xleaflet::xtile_layer>;
-    extern template xw::xmaterialize<xleaflet::xtile_layer>::xmaterialize();
-    extern template class xw::xtransport<xw::xmaterialize<xleaflet::xtile_layer>>;
-    extern template class xw::xgenerator<xleaflet::xtile_layer>;
-    extern template xw::xgenerator<xleaflet::xtile_layer>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xleaflet::xtile_layer>>;
+    extern template class xw::xmaterialize<xlf::xtile_layer>;
+    extern template xw::xmaterialize<xlf::xtile_layer>::xmaterialize();
+    extern template class xw::xtransport<xw::xmaterialize<xlf::xtile_layer>>;
+    extern template class xw::xgenerator<xlf::xtile_layer>;
+    extern template xw::xgenerator<xlf::xtile_layer>::xgenerator();
+    extern template class xw::xtransport<xw::xgenerator<xlf::xtile_layer>>;
 #endif
 
 #endif

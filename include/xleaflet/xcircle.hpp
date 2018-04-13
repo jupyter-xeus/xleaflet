@@ -18,7 +18,7 @@
 
 #include "xpath.hpp"
 
-namespace xleaflet
+namespace xlf
 {
     /**********************
      * circle declaration *
@@ -98,12 +98,12 @@ namespace xleaflet
  *********************/
 
 #ifndef _WIN32
-    extern template class xw::xmaterialize<xleaflet::xcircle>;
-    extern template xw::xmaterialize<xleaflet::xcircle>::xmaterialize();
-    extern template class xw::xtransport<xw::xmaterialize<xleaflet::xcircle>>;
-    extern template class xw::xgenerator<xleaflet::xcircle>;
-    extern template xw::xgenerator<xleaflet::xcircle>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xleaflet::xcircle>>;
+    extern template class xw::xmaterialize<xlf::xcircle>;
+    extern template xw::xmaterialize<xlf::xcircle>::xmaterialize();
+    extern template class xw::xtransport<xw::xmaterialize<xlf::xcircle>>;
+    extern template class xw::xgenerator<xlf::xcircle>;
+    extern template xw::xgenerator<xlf::xcircle>::xgenerator();
+    extern template class xw::xtransport<xw::xgenerator<xlf::xcircle>>;
 #endif
 
 #endif

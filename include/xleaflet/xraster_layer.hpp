@@ -17,7 +17,7 @@
 #include "xleaflet_config.hpp"
 #include "xlayer.hpp"
 
-namespace xleaflet
+namespace xlf
 {
     /****************************
      * raster_layer declaration *
@@ -108,12 +108,12 @@ namespace xleaflet
  *********************/
 
 #ifndef _WIN32
-    extern template class xw::xmaterialize<xleaflet::xraster_layer>;
-    extern template xw::xmaterialize<xleaflet::xraster_layer>::xmaterialize();
-    extern template class xw::xtransport<xw::xmaterialize<xleaflet::xraster_layer>>;
-    extern template class xw::xgenerator<xleaflet::xraster_layer>;
-    extern template xw::xgenerator<xleaflet::xraster_layer>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xleaflet::xraster_layer>>;
+    extern template class xw::xmaterialize<xlf::xraster_layer>;
+    extern template xw::xmaterialize<xlf::xraster_layer>::xmaterialize();
+    extern template class xw::xtransport<xw::xmaterialize<xlf::xraster_layer>>;
+    extern template class xw::xgenerator<xlf::xraster_layer>;
+    extern template xw::xgenerator<xlf::xraster_layer>::xgenerator();
+    extern template class xw::xtransport<xw::xgenerator<xlf::xraster_layer>>;
 #endif
 
 #endif

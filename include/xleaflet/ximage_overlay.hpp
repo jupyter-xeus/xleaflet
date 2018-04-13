@@ -19,7 +19,7 @@
 #include "xleaflet_config.hpp"
 #include "xraster_layer.hpp"
 
-namespace xleaflet
+namespace xlf
 {
     /*****************************
      * image_overlay declaration *
@@ -112,12 +112,12 @@ namespace xleaflet
  *********************/
 
 #ifndef _WIN32
-    extern template class xw::xmaterialize<xleaflet::ximage_overlay>;
-    extern template xw::xmaterialize<xleaflet::ximage_overlay>::xmaterialize();
-    extern template class xw::xtransport<xw::xmaterialize<xleaflet::ximage_overlay>>;
-    extern template class xw::xgenerator<xleaflet::ximage_overlay>;
-    extern template xw::xgenerator<xleaflet::ximage_overlay>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xleaflet::ximage_overlay>>;
+    extern template class xw::xmaterialize<xlf::ximage_overlay>;
+    extern template xw::xmaterialize<xlf::ximage_overlay>::xmaterialize();
+    extern template class xw::xtransport<xw::xmaterialize<xlf::ximage_overlay>>;
+    extern template class xw::xgenerator<xlf::ximage_overlay>;
+    extern template xw::xgenerator<xlf::ximage_overlay>::xgenerator();
+    extern template class xw::xtransport<xw::xgenerator<xlf::ximage_overlay>>;
 #endif
 
 #endif

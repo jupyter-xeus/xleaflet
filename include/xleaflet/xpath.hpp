@@ -18,7 +18,7 @@
 
 #include "xvector_layer.hpp"
 
-namespace xleaflet
+namespace xlf
 {
     /********************
      * path declaration *
@@ -148,12 +148,12 @@ namespace xleaflet
  *********************/
 
 #ifndef _WIN32
-    extern template class xw::xmaterialize<xleaflet::xpath>;
-    extern template xw::xmaterialize<xleaflet::xpath>::xmaterialize();
-    extern template class xw::xtransport<xw::xmaterialize<xleaflet::xpath>>;
-    extern template class xw::xgenerator<xleaflet::xpath>;
-    extern template xw::xgenerator<xleaflet::xpath>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xleaflet::xpath>>;
+    extern template class xw::xmaterialize<xlf::xpath>;
+    extern template xw::xmaterialize<xlf::xpath>::xmaterialize();
+    extern template class xw::xtransport<xw::xmaterialize<xlf::xpath>>;
+    extern template class xw::xgenerator<xlf::xpath>;
+    extern template xw::xgenerator<xlf::xpath>::xgenerator();
+    extern template class xw::xtransport<xw::xgenerator<xlf::xpath>>;
 #endif
 
 #endif

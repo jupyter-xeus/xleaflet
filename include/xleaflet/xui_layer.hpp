@@ -15,7 +15,7 @@
 
 #include "xlayer.hpp"
 
-namespace xleaflet
+namespace xlf
 {
     /************************
      * ui_layer declaration *
@@ -84,12 +84,12 @@ namespace xleaflet
  *********************/
 
 #ifndef _WIN32
-    extern template class xw::xmaterialize<xleaflet::xui_layer>;
-    extern template xw::xmaterialize<xleaflet::xui_layer>::xmaterialize();
-    extern template class xw::xtransport<xw::xmaterialize<xleaflet::xui_layer>>;
-    extern template class xw::xgenerator<xleaflet::xui_layer>;
-    extern template xw::xgenerator<xleaflet::xui_layer>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xleaflet::xui_layer>>;
+    extern template class xw::xmaterialize<xlf::xui_layer>;
+    extern template xw::xmaterialize<xlf::xui_layer>::xmaterialize();
+    extern template class xw::xtransport<xw::xmaterialize<xlf::xui_layer>>;
+    extern template class xw::xgenerator<xlf::xui_layer>;
+    extern template xw::xgenerator<xlf::xui_layer>::xgenerator();
+    extern template class xw::xtransport<xw::xgenerator<xlf::xui_layer>>;
 #endif
 
 #endif

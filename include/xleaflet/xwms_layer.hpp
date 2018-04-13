@@ -17,7 +17,7 @@
 
 #include "xtile_layer.hpp"
 
-namespace xleaflet
+namespace xlf
 {
     /*************************
      * wms_layer declaration *
@@ -128,12 +128,12 @@ namespace xleaflet
  *********************/
 
 #ifndef _WIN32
-    extern template class xw::xmaterialize<xleaflet::xwms_layer>;
-    extern template xw::xmaterialize<xleaflet::xwms_layer>::xmaterialize();
-    extern template class xw::xtransport<xw::xmaterialize<xleaflet::xwms_layer>>;
-    extern template class xw::xgenerator<xleaflet::xwms_layer>;
-    extern template xw::xgenerator<xleaflet::xwms_layer>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xleaflet::xwms_layer>>;
+    extern template class xw::xmaterialize<xlf::xwms_layer>;
+    extern template xw::xmaterialize<xlf::xwms_layer>::xmaterialize();
+    extern template class xw::xtransport<xw::xmaterialize<xlf::xwms_layer>>;
+    extern template class xw::xgenerator<xlf::xwms_layer>;
+    extern template xw::xgenerator<xlf::xwms_layer>::xgenerator();
+    extern template class xw::xtransport<xw::xgenerator<xlf::xwms_layer>>;
 #endif
 
 #endif

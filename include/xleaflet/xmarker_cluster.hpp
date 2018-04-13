@@ -20,7 +20,7 @@
 #include "xlayer.hpp"
 #include "xmarker.hpp"
 
-namespace xleaflet
+namespace xlf
 {
     /******************************
      * marker_cluster declaration *
@@ -97,12 +97,12 @@ namespace xleaflet
  *********************/
 
 #ifndef _WIN32
-    extern template class xw::xmaterialize<xleaflet::xmarker_cluster>;
-    extern template xw::xmaterialize<xleaflet::xmarker_cluster>::xmaterialize();
-    extern template class xw::xtransport<xw::xmaterialize<xleaflet::xmarker_cluster>>;
-    extern template class xw::xgenerator<xleaflet::xmarker_cluster>;
-    extern template xw::xgenerator<xleaflet::xmarker_cluster>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xleaflet::xmarker_cluster>>;
+    extern template class xw::xmaterialize<xlf::xmarker_cluster>;
+    extern template xw::xmaterialize<xlf::xmarker_cluster>::xmaterialize();
+    extern template class xw::xtransport<xw::xmaterialize<xlf::xmarker_cluster>>;
+    extern template class xw::xgenerator<xlf::xmarker_cluster>;
+    extern template xw::xgenerator<xlf::xmarker_cluster>::xgenerator();
+    extern template class xw::xtransport<xw::xgenerator<xlf::xmarker_cluster>>;
 #endif
 
 #endif

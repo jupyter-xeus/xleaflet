@@ -21,7 +21,7 @@
 #include "xfeature_group.hpp"
 #include "xcontrol.hpp"
 
-namespace xleaflet
+namespace xlf
 {
     /****************************
      * draw_control declaration *
@@ -157,12 +157,12 @@ namespace xleaflet
  *********************/
 
 #ifndef _WIN32
-    extern template class xw::xmaterialize<xleaflet::xdraw_control>;
-    extern template xw::xmaterialize<xleaflet::xdraw_control>::xmaterialize();
-    extern template class xw::xtransport<xw::xmaterialize<xleaflet::xdraw_control>>;
-    extern template class xw::xgenerator<xleaflet::xdraw_control>;
-    extern template xw::xgenerator<xleaflet::xdraw_control>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xleaflet::xdraw_control>>;
+    extern template class xw::xmaterialize<xlf::xdraw_control>;
+    extern template xw::xmaterialize<xlf::xdraw_control>::xmaterialize();
+    extern template class xw::xtransport<xw::xmaterialize<xlf::xdraw_control>>;
+    extern template class xw::xgenerator<xlf::xdraw_control>;
+    extern template xw::xgenerator<xlf::xdraw_control>::xgenerator();
+    extern template class xw::xtransport<xw::xgenerator<xlf::xdraw_control>>;
 #endif
 
 #endif

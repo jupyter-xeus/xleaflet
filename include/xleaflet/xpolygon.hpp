@@ -15,7 +15,7 @@
 
 #include "xpolyline.hpp"
 
-namespace xleaflet
+namespace xlf
 {
     /***********************
      * polygon declaration *
@@ -84,12 +84,12 @@ namespace xleaflet
  *********************/
 
 #ifndef _WIN32
-    extern template class xw::xmaterialize<xleaflet::xpolygon>;
-    extern template xw::xmaterialize<xleaflet::xpolygon>::xmaterialize();
-    extern template class xw::xtransport<xw::xmaterialize<xleaflet::xpolygon>>;
-    extern template class xw::xgenerator<xleaflet::xpolygon>;
-    extern template xw::xgenerator<xleaflet::xpolygon>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xleaflet::xpolygon>>;
+    extern template class xw::xmaterialize<xlf::xpolygon>;
+    extern template xw::xmaterialize<xlf::xpolygon>::xmaterialize();
+    extern template class xw::xtransport<xw::xmaterialize<xlf::xpolygon>>;
+    extern template class xw::xgenerator<xlf::xpolygon>;
+    extern template xw::xgenerator<xlf::xpolygon>::xgenerator();
+    extern template class xw::xtransport<xw::xgenerator<xlf::xpolygon>>;
 #endif
 
 #endif
