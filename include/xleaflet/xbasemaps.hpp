@@ -72,7 +72,11 @@ namespace xlf
         int max_zoom = 19;
         int min_zoom = 1;
 
-        url.replace(url.find("%s"), 2, day);
+        std::size_t date = url.find("%s");
+        if(date != std::string::npos)
+        {
+            url.replace(date, 2, day);
+        }
 
         if (mapspec.find("attribution") != mapspec.end())
         {
