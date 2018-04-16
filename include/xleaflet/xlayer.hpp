@@ -31,12 +31,15 @@ namespace xlf
         using base_type = xw::xwidget<D>;
         using derived_type = D;
 
+        using widget_type = xw::xholder<xw::xwidget>;
+
         xeus::xjson get_state() const;
         void apply_patch(const xeus::xjson&);
 
         XPROPERTY(std::string, derived_type, name, "");
         XPROPERTY(bool, derived_type, base, true);
         XPROPERTY(bool, derived_type, bottom, true);
+        XPROPERTY(xtl::xoptional<widget_type>, derived_type, popup);
         XPROPERTY(std::vector<std::string>, derived_type, options);
 
     protected:
@@ -65,6 +68,7 @@ namespace xlf
         XOBJECT_SET_PATCH_FROM_PROPERTY(name, state);
         XOBJECT_SET_PATCH_FROM_PROPERTY(base, state);
         XOBJECT_SET_PATCH_FROM_PROPERTY(bottom, state);
+        XOBJECT_SET_PATCH_FROM_PROPERTY(popup, state);
         XOBJECT_SET_PATCH_FROM_PROPERTY(options, state);
 
         return state;
@@ -78,6 +82,7 @@ namespace xlf
         XOBJECT_SET_PROPERTY_FROM_PATCH(name, patch);
         XOBJECT_SET_PROPERTY_FROM_PATCH(base, patch);
         XOBJECT_SET_PROPERTY_FROM_PATCH(bottom, patch);
+        XOBJECT_SET_PROPERTY_FROM_PATCH(popup, patch);
         XOBJECT_SET_PROPERTY_FROM_PATCH(options, patch);
     }
 
