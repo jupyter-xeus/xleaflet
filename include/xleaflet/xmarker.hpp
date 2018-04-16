@@ -43,7 +43,6 @@ namespace xlf
 
         XPROPERTY(point_type, derived_type, location);
         XPROPERTY(int, derived_type, z_index_offset, 0.0);
-        XPROPERTY(bool, derived_type, clickable, true);
         XPROPERTY(bool, derived_type, draggable, true);
         XPROPERTY(bool, derived_type, keyboard, true);
         XPROPERTY(std::string, derived_type, title, "");
@@ -81,7 +80,6 @@ namespace xlf
 
         XOBJECT_SET_PATCH_FROM_PROPERTY(location, state);
         XOBJECT_SET_PATCH_FROM_PROPERTY(z_index_offset, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(clickable, state);
         XOBJECT_SET_PATCH_FROM_PROPERTY(draggable, state);
         XOBJECT_SET_PATCH_FROM_PROPERTY(keyboard, state);
         XOBJECT_SET_PATCH_FROM_PROPERTY(title, state);
@@ -101,7 +99,6 @@ namespace xlf
 
         XOBJECT_SET_PROPERTY_FROM_PATCH(location, patch);
         XOBJECT_SET_PROPERTY_FROM_PATCH(z_index_offset, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(clickable, patch);
         XOBJECT_SET_PROPERTY_FROM_PATCH(draggable, patch);
         XOBJECT_SET_PROPERTY_FROM_PATCH(keyboard, patch);
         XOBJECT_SET_PROPERTY_FROM_PATCH(title, patch);
@@ -137,7 +134,6 @@ namespace xlf
             this->options().end(),
             {
                 "z_index_offset",
-                "clickable",
                 "draggable",
                 "keyboard",
                 "title",
