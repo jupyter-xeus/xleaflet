@@ -27,15 +27,26 @@ copyright on their contributions.
 This software is licensed under the BSD-3-Clause license. See the LICENSE file for details.
 
 .. toctree::
-   :caption: INSTALLATION
+   :caption: Installation
    :maxdepth: 2
 
    installation
 
 .. toctree::
-   :caption: DEVELOPER ZONE
+   :caption: Usage
+   :maxdepth: 2
+
+   usage
+
+.. toctree::
+   :caption: Api Reference
+   :maxdepth: 2
+
+   api_reference
+
+.. toctree::
+   :caption: Developer Zone
 
    releasing
 
 .. _ipyleaflet: https://github.com/jupyter-widgets/ipyleaflet.git
-
