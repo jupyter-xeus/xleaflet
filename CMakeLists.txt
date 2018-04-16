@@ -96,6 +96,7 @@ set(XLEAFLET_HEADERS
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xpath.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xpolygon.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xpolyline.hpp
+    ${XLEAFLET_INCLUDE_DIR}/xleaflet/xpopup.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xraster_layer.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xrectangle.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xsplit_map_control.hpp
@@ -123,6 +124,7 @@ set(XLEAFLET_SOURCES
     ${XLEAFLET_SOURCE_DIR}/xpath.cpp
     ${XLEAFLET_SOURCE_DIR}/xpolygon.cpp
     ${XLEAFLET_SOURCE_DIR}/xpolyline.cpp
+    ${XLEAFLET_SOURCE_DIR}/xpopup.cpp
     ${XLEAFLET_SOURCE_DIR}/xraster_layer.cpp
     ${XLEAFLET_SOURCE_DIR}/xrectangle.cpp
     ${XLEAFLET_SOURCE_DIR}/xsplit_map_control.cpp
