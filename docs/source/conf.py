@@ -21,8 +21,8 @@ templates_path = ['_templates']
 source_suffix = '.rst'
 master_doc = 'index'
 project = 'xwidgets'
-copyright = '2018, Johan Mabille, Sylvain Corlay, and Wolf Vollprecht'
-author = 'Johan Mabille, Sylvain Corlay, and Wolf Vollprecht'
+copyright = '2018, Johan Mabille, Sylvain Corlay, Wolf Vollprecht and Martin Renou'
+author = 'Johan Mabille, Sylvain Corlay, Wolf Vollprecht and Martin Renou'
 
 html_logo = 'quantstack-white.svg'
 
@@ -31,4 +31,3 @@ highlight_language = 'c++'
 pygments_style = 'sphinx'
 todo_include_todos = False
 htmlhelp_basename = 'xwidgetsdoc'
-
