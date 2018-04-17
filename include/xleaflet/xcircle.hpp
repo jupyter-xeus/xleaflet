@@ -90,6 +90,13 @@ namespace xlf
     {
         this->_model_name() = "LeafletCircleModel";
         this->_view_name() = "LeafletCircleView";
+
+        this->options().insert(
+            this->options().end(),
+            {
+                "radius"
+            }
+        );
     }
 }
 
