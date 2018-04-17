@@ -55,6 +55,7 @@ All the dependencies of xleaflet are available for the conda package manager.
 | `xleaflet` | `xwidgets`  |  `xeus`         |
 |------------|-------------|-----------------|
 |  master    |   ~0.9.0    |  >=0.12.0,<0.13 |
+|  0.0.1     |   ~0.9.0    |  >=0.12.0,<0.13 |
 
 ## License
 

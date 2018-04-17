@@ -4,8 +4,8 @@ channels:
   - conda-forge
 dependencies:
   - xwidgets=0.9.0
-  - xleaflet=0.1.0
-  - xeus-cling=0.4.0
+  - xleaflet=0.0.1
+  - xeus-cling=0.4.2
   - ipyleaflet=0.8.1
   - notebook >=5.4
   - widgetsnbextension >=3.0.0
