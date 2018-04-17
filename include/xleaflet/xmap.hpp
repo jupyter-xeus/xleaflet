@@ -29,6 +29,7 @@
 #include "xlayer.hpp"
 #include "xtile_layer.hpp"
 #include "xcontrol.hpp"
+#include "xbasemaps.hpp"
 
 namespace xlf
 {
@@ -87,8 +88,6 @@ namespace xlf
         XPROPERTY(int, derived_type, zoom, 12);
         XPROPERTY(int, derived_type, max_zoom, 18);
         XPROPERTY(int, derived_type, min_zoom, 1);
-        XPROPERTY(xeus::xjson, derived_type, basemap);
-        XPROPERTY(std::string, derived_type, modistate, "yesterday");
         XPROPERTY(bool, derived_type, dragging, true);
         XPROPERTY(bool, derived_type, touch_zoom, true);
         XPROPERTY(bool, derived_type, scroll_wheel_zoom, false);
@@ -146,8 +145,6 @@ namespace xlf
         XOBJECT_SET_PATCH_FROM_PROPERTY(zoom, state);
         XOBJECT_SET_PATCH_FROM_PROPERTY(max_zoom, state);
         XOBJECT_SET_PATCH_FROM_PROPERTY(min_zoom, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(basemap, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(modistate, state);
         XOBJECT_SET_PATCH_FROM_PROPERTY(dragging, state);
         XOBJECT_SET_PATCH_FROM_PROPERTY(touch_zoom, state);
         XOBJECT_SET_PATCH_FROM_PROPERTY(scroll_wheel_zoom, state);
@@ -185,8 +182,6 @@ namespace xlf
         XOBJECT_SET_PROPERTY_FROM_PATCH(zoom, patch);
         XOBJECT_SET_PROPERTY_FROM_PATCH(max_zoom, patch);
         XOBJECT_SET_PROPERTY_FROM_PATCH(min_zoom, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(basemap, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(modistate, patch);
         XOBJECT_SET_PROPERTY_FROM_PATCH(dragging, patch);
         XOBJECT_SET_PROPERTY_FROM_PATCH(touch_zoom, patch);
         XOBJECT_SET_PROPERTY_FROM_PATCH(scroll_wheel_zoom, patch);
@@ -335,7 +330,6 @@ namespace xlf
             "zoom",
             "max_zoom",
             "min_zoom",
-            "basemap",
             "dragging",
             "touch_zoom",
             "scroll_wheel_zoom",
@@ -356,18 +350,12 @@ namespace xlf
             "attribution_control",
             "zoom_animation_threshold",
         });
-        this->basemap() = {
-            {"url", "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"},
-            {"max_zoom", 19},
-            {"attribution", "BLA"}
-        };
         this->center() = {0, 0};
         this->bounds() = {{{0, 0}, {0, 0}}};
         this->bounds_polygon() = {{{0, 0}, {0, 0}, {0, 0}, {0, 0}}};
 
         // Set default layer
-        auto default_layer = xlf::tile_layer();
-        default_layer.send_patch(std::move(this->basemap()));
+        auto default_layer = xlf::basemap({"OpenStreetMap", "Mapnik"});
         this->add_layer(std::move(default_layer));
     }
 
