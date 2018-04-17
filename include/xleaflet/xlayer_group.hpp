@@ -33,7 +33,14 @@ namespace xlf
         using base_type = xlayer<D>;
         using derived_type = D;
 
+#ifdef _MSC_VER
+        template <class T>
+        using layer_type = xlayer<T>;
+
+        using layer_list_type = std::vector<xw::xholder<layer_type>>;
+#else
         using layer_list_type = std::vector<xw::xholder<xlayer>>;
+#endif
 
         xeus::xjson get_state() const;
         void apply_patch(const xeus::xjson&);
