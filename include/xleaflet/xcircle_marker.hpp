@@ -82,6 +82,13 @@ namespace xlf
     {
         this->_model_name() = "LeafletCircleMarkerModel";
         this->_view_name() = "LeafletCircleMarkerView";
+
+        this->options().insert(
+            this->options().end(),
+            {
+                "radius"
+            }
+        );
     }
 }
 
