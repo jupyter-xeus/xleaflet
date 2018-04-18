@@ -16,11 +16,11 @@ html_theme = "sphinx_rtd_theme"
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 extensions = ['breathe']
-breathe_projects = { 'xwidgets': '../xml' }
+breathe_projects = { 'xleaflet': '../xml' }
 templates_path = ['_templates']
 source_suffix = '.rst'
 master_doc = 'index'
-project = 'xwidgets'
+project = 'xleaflet'
 copyright = '2018, Johan Mabille, Sylvain Corlay, Wolf Vollprecht and Martin Renou'
 author = 'Johan Mabille, Sylvain Corlay, Wolf Vollprecht and Martin Renou'
 
@@ -30,4 +30,4 @@ exclude_patterns = []
 highlight_language = 'c++'
 pygments_style = 'sphinx'
 todo_include_todos = False
-htmlhelp_basename = 'xwidgetsdoc'
+htmlhelp_basename = 'xleafletdoc'
