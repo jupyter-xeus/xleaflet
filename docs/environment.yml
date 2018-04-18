@@ -1,4 +1,4 @@
-name: xplot-docs
+name: xleaflet-docs
 
 channels:
   - conda-forge
