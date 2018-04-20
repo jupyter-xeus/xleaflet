@@ -42,7 +42,22 @@ This software is licensed under the BSD-3-Clause license. See the LICENSE file f
    :caption: Api Reference
    :maxdepth: 2
 
-   api_reference
+   api_reference/map
+   api_reference/tile_layer
+   api_reference/marker
+   api_reference/popup
+   api_reference/wms_layer
+   api_reference/image_video_overlay
+   api_reference/polygon
+   api_reference/rectangle
+   api_reference/circle
+   api_reference/circle_marker
+   api_reference/marker_cluster
+   api_reference/layer_group
+   api_reference/geo_json
+   api_reference/layers_control
+   api_reference/split_map_control
+   api_reference/draw_control
 
 .. toctree::
    :caption: Developer Zone
