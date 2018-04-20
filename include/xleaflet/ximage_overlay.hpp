@@ -36,8 +36,8 @@ namespace xlf
         using base_type = xraster_layer<D>;
         using derived_type = D;
 
-        xeus::xjson get_state() const;
-        void apply_patch(const xeus::xjson&);
+        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
+        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
 
         XPROPERTY(std::string, derived_type, url, "");
         XPROPERTY(bounds_type, derived_type, bounds);
@@ -62,25 +62,23 @@ namespace xlf
      ********************************/
 
     template <class D>
-    inline xeus::xjson ximage_overlay<D>::get_state() const
+    inline void ximage_overlay<D>::serialize_state(xeus::xjson& state, xeus::buffer_sequence& buffers) const
     {
-        xeus::xjson state = base_type::get_state();
+        base_type::serialize_state(state, buffers);
 
-        XOBJECT_SET_PATCH_FROM_PROPERTY(url, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(bounds, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(attribution, state);
-
-        return state;
+        xw::set_patch_from_property(url, state, buffers);
+        xw::set_patch_from_property(bounds, state, buffers);
+        xw::set_patch_from_property(attribution, state, buffers);
     }
 
     template <class D>
-    inline void ximage_overlay<D>::apply_patch(const xeus::xjson& patch)
+    inline void ximage_overlay<D>::apply_patch(const xeus::xjson& patch, const xeus::buffer_sequence& buffers)
     {
-        base_type::apply_patch(patch);
+        base_type::apply_patch(patch, buffers);
 
-        XOBJECT_SET_PROPERTY_FROM_PATCH(url, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(bounds, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(attribution, patch);
+        xw::set_property_from_patch(url, patch, buffers);
+        xw::set_property_from_patch(bounds, patch, buffers);
+        xw::set_property_from_patch(attribution, patch, buffers);
     }
 
     template <class D>

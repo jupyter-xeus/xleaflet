@@ -36,8 +36,8 @@ namespace xlf
 
         using marker_list_type = std::vector<xw::xholder<xmarker>>;
 
-        xeus::xjson get_state() const;
-        void apply_patch(const xeus::xjson&);
+        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
+        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
 
         XPROPERTY(std::vector<xw::xholder<xmarker>>, derived_type, markers);
 
@@ -60,21 +60,19 @@ namespace xlf
      **********************************/
 
     template <class D>
-    inline xeus::xjson xmarker_cluster<D>::get_state() const
+    inline void xmarker_cluster<D>::serialize_state(xeus::xjson& state, xeus::buffer_sequence& buffers) const
     {
-        xeus::xjson state = base_type::get_state();
+        base_type::serialize_state(state, buffers);
 
-        XOBJECT_SET_PATCH_FROM_PROPERTY(markers, state);
-
-        return state;
+        xw::set_patch_from_property(markers, state, buffers);
     }
 
     template <class D>
-    inline void xmarker_cluster<D>::apply_patch(const xeus::xjson& patch)
+    inline void xmarker_cluster<D>::apply_patch(const xeus::xjson& patch, const xeus::buffer_sequence& buffers)
     {
-        base_type::apply_patch(patch);
+        base_type::apply_patch(patch, buffers);
 
-        XOBJECT_SET_PROPERTY_FROM_PATCH(markers, patch);
+        xw::set_property_from_patch(markers, patch, buffers);
     }
 
     template <class D>

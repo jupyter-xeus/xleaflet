@@ -39,8 +39,8 @@ namespace xlf
 
         using feature_group_type = xw::xholder<xfeature_group>;
 
-        xeus::xjson get_state() const;
-        void apply_patch(const xeus::xjson&);
+        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
+        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
 
         void on_draw(draw_callback_type);
 
@@ -78,30 +78,28 @@ namespace xlf
      ********************************/
 
      template <class D>
-     inline xeus::xjson xdraw_control<D>::get_state() const
+     inline void xdraw_control<D>::serialize_state(xeus::xjson& state, xeus::buffer_sequence& buffers) const
      {
-         xeus::xjson state = base_type::get_state();
+         base_type::serialize_state(state, buffers);
 
-         XOBJECT_SET_PATCH_FROM_PROPERTY(layer, state);
-         XOBJECT_SET_PATCH_FROM_PROPERTY(polyline, state);
-         XOBJECT_SET_PATCH_FROM_PROPERTY(polygon, state);
-         XOBJECT_SET_PATCH_FROM_PROPERTY(circle, state);
-         XOBJECT_SET_PATCH_FROM_PROPERTY(rectangle, state);
-         XOBJECT_SET_PATCH_FROM_PROPERTY(marker, state);
-         XOBJECT_SET_PATCH_FROM_PROPERTY(edit, state);
-         XOBJECT_SET_PATCH_FROM_PROPERTY(remove, state);
-         XOBJECT_SET_PATCH_FROM_PROPERTY(last_draw, state);
-         XOBJECT_SET_PATCH_FROM_PROPERTY(last_action, state);
-
-         return state;
+         xw::set_patch_from_property(layer, state, buffers);
+         xw::set_patch_from_property(polyline, state, buffers);
+         xw::set_patch_from_property(polygon, state, buffers);
+         xw::set_patch_from_property(circle, state, buffers);
+         xw::set_patch_from_property(rectangle, state, buffers);
+         xw::set_patch_from_property(marker, state, buffers);
+         xw::set_patch_from_property(edit, state, buffers);
+         xw::set_patch_from_property(remove, state, buffers);
+         xw::set_patch_from_property(last_draw, state, buffers);
+         xw::set_patch_from_property(last_action, state, buffers);
      }
 
      template <class D>
-     inline void xdraw_control<D>::apply_patch(const xeus::xjson& patch)
+     inline void xdraw_control<D>::apply_patch(const xeus::xjson& patch, const xeus::buffer_sequence& buffers)
      {
-         base_type::apply_patch(patch);
+         base_type::apply_patch(patch, buffers);
 
-         XOBJECT_SET_PROPERTY_FROM_PATCH(layer, patch);
+         xw::set_property_from_patch(layer, patch, buffers);
      }
 
     template <class D>

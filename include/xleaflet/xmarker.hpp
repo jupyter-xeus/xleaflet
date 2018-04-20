@@ -34,8 +34,8 @@ namespace xlf
         using base_type = xui_layer<D>;
         using derived_type = D;
 
-        xeus::xjson get_state() const;
-        void apply_patch(const xeus::xjson&);
+        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
+        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
 
         void on_move(move_callback_type);
 
@@ -74,39 +74,37 @@ namespace xlf
      ******************************/
 
     template <class D>
-    inline xeus::xjson xmarker<D>::get_state() const
+    inline void xmarker<D>::serialize_state(xeus::xjson& state, xeus::buffer_sequence& buffers) const
     {
-        xeus::xjson state = base_type::get_state();
+        base_type::serialize_state(state, buffers);
 
-        XOBJECT_SET_PATCH_FROM_PROPERTY(location, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(z_index_offset, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(draggable, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(keyboard, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(title, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(alt, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(rise_on_hover, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(opacity, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(visible, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(rise_offset, state);
-
-        return state;
+        xw::set_patch_from_property(location, state, buffers);
+        xw::set_patch_from_property(z_index_offset, state, buffers);
+        xw::set_patch_from_property(draggable, state, buffers);
+        xw::set_patch_from_property(keyboard, state, buffers);
+        xw::set_patch_from_property(title, state, buffers);
+        xw::set_patch_from_property(alt, state, buffers);
+        xw::set_patch_from_property(rise_on_hover, state, buffers);
+        xw::set_patch_from_property(opacity, state, buffers);
+        xw::set_patch_from_property(visible, state, buffers);
+        xw::set_patch_from_property(rise_offset, state, buffers);
     }
 
     template <class D>
-    inline void xmarker<D>::apply_patch(const xeus::xjson& patch)
+    inline void xmarker<D>::apply_patch(const xeus::xjson& patch, const xeus::buffer_sequence& buffers)
     {
-        base_type::apply_patch(patch);
+        base_type::apply_patch(patch, buffers);
 
-        XOBJECT_SET_PROPERTY_FROM_PATCH(location, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(z_index_offset, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(draggable, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(keyboard, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(title, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(alt, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(rise_on_hover, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(opacity, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(visible, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(rise_offset, patch);
+        xw::set_property_from_patch(location, patch, buffers);
+        xw::set_property_from_patch(z_index_offset, patch, buffers);
+        xw::set_property_from_patch(draggable, patch, buffers);
+        xw::set_property_from_patch(keyboard, patch, buffers);
+        xw::set_property_from_patch(title, patch, buffers);
+        xw::set_property_from_patch(alt, patch, buffers);
+        xw::set_property_from_patch(rise_on_hover, patch, buffers);
+        xw::set_property_from_patch(opacity, patch, buffers);
+        xw::set_property_from_patch(visible, patch, buffers);
+        xw::set_property_from_patch(rise_offset, patch, buffers);
     }
 
     template <class D>

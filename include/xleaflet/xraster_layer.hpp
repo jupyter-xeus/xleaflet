@@ -31,8 +31,8 @@ namespace xlf
         using base_type = xlayer<D>;
         using derived_type = D;
 
-        xeus::xjson get_state() const;
-        void apply_patch(const xeus::xjson&);
+        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
+        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
 
         XPROPERTY(float, derived_type, opacity, 1.0);
         XPROPERTY(bool, derived_type, visible, true);
@@ -58,23 +58,21 @@ namespace xlf
      ********************************/
 
     template <class D>
-    inline xeus::xjson xraster_layer<D>::get_state() const
+    inline void xraster_layer<D>::serialize_state(xeus::xjson& state, xeus::buffer_sequence& buffers) const
     {
-        xeus::xjson state = base_type::get_state();
+        base_type::serialize_state(state, buffers);
 
-        XOBJECT_SET_PATCH_FROM_PROPERTY(opacity, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(visible, state);
-
-        return state;
+        xw::set_patch_from_property(opacity, state, buffers);
+        xw::set_patch_from_property(visible, state, buffers);
     }
 
     template <class D>
-    inline void xraster_layer<D>::apply_patch(const xeus::xjson& patch)
+    inline void xraster_layer<D>::apply_patch(const xeus::xjson& patch, const xeus::buffer_sequence& buffers)
     {
-        base_type::apply_patch(patch);
+        base_type::apply_patch(patch, buffers);
 
-        XOBJECT_SET_PROPERTY_FROM_PATCH(opacity, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(visible, patch);
+        xw::set_property_from_patch(opacity, patch, buffers);
+        xw::set_property_from_patch(visible, patch, buffers);
     }
 
     template <class D>

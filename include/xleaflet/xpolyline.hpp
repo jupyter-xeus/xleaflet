@@ -33,8 +33,8 @@ namespace xlf
         using base_type = xpath<D>;
         using derived_type = D;
 
-        xeus::xjson get_state() const;
-        void apply_patch(const xeus::xjson&);
+        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
+        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
 
         XPROPERTY(std::vector<point_type>, derived_type, locations);
         XPROPERTY(float, derived_type, smooth_factor, 1.0);
@@ -59,25 +59,23 @@ namespace xlf
      ****************************/
 
     template <class D>
-    inline xeus::xjson xpolyline<D>::get_state() const
+    inline void xpolyline<D>::serialize_state(xeus::xjson& state, xeus::buffer_sequence& buffers) const
     {
-        xeus::xjson state = base_type::get_state();
+        base_type::serialize_state(state, buffers);
 
-        XOBJECT_SET_PATCH_FROM_PROPERTY(locations, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(smooth_factor, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(no_clip, state);
-
-        return state;
+        xw::set_patch_from_property(locations, state, buffers);
+        xw::set_patch_from_property(smooth_factor, state, buffers);
+        xw::set_patch_from_property(no_clip, state, buffers);
     }
 
     template <class D>
-    inline void xpolyline<D>::apply_patch(const xeus::xjson& patch)
+    inline void xpolyline<D>::apply_patch(const xeus::xjson& patch, const xeus::buffer_sequence& buffers)
     {
-        base_type::apply_patch(patch);
+        base_type::apply_patch(patch, buffers);
 
-        XOBJECT_SET_PROPERTY_FROM_PATCH(locations, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(smooth_factor, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(no_clip, patch);
+        xw::set_property_from_patch(locations, patch, buffers);
+        xw::set_property_from_patch(smooth_factor, patch, buffers);
+        xw::set_property_from_patch(no_clip, patch, buffers);
     }
 
     template <class D>
