@@ -32,8 +32,8 @@ namespace xlf
         using base_type = xfeature_group<D>;
         using derived_type = D;
 
-        xeus::xjson get_state() const;
-        void apply_patch(const xeus::xjson&);
+        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
+        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
 
         void on_click(callback_type);
         void on_hover(callback_type);
@@ -65,25 +65,23 @@ namespace xlf
      ****************************/
 
      template <class D>
-     inline xeus::xjson xgeo_json<D>::get_state() const
+     inline void xgeo_json<D>::serialize_state(xeus::xjson& state, xeus::buffer_sequence& buffers) const
      {
-         xeus::xjson state = base_type::get_state();
+         base_type::serialize_state(state, buffers);
 
-         XOBJECT_SET_PATCH_FROM_PROPERTY(data, state);
-         XOBJECT_SET_PATCH_FROM_PROPERTY(style, state);
-         XOBJECT_SET_PATCH_FROM_PROPERTY(hover_style, state);
-
-         return state;
+         xw::set_patch_from_property(data, state, buffers);
+         xw::set_patch_from_property(style, state, buffers);
+         xw::set_patch_from_property(hover_style, state, buffers);
      }
 
      template <class D>
-     inline void xgeo_json<D>::apply_patch(const xeus::xjson& patch)
+     inline void xgeo_json<D>::apply_patch(const xeus::xjson& patch, const xeus::buffer_sequence& buffers)
      {
-         base_type::apply_patch(patch);
+         base_type::apply_patch(patch, buffers);
 
-         XOBJECT_SET_PROPERTY_FROM_PATCH(data, patch);
-         XOBJECT_SET_PROPERTY_FROM_PATCH(style, patch);
-         XOBJECT_SET_PROPERTY_FROM_PATCH(hover_style, patch);
+         xw::set_property_from_patch(data, patch, buffers);
+         xw::set_property_from_patch(style, patch, buffers);
+         xw::set_property_from_patch(hover_style, patch, buffers);
      }
 
      template <class D>

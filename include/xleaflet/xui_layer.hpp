@@ -29,8 +29,8 @@ namespace xlf
         using base_type = xlayer<D>;
         using derived_type = D;
 
-        xeus::xjson get_state() const;
-        void apply_patch(const xeus::xjson&);
+        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
+        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
 
     protected:
 
@@ -51,17 +51,16 @@ namespace xlf
      ****************************/
 
     template <class D>
-    inline xeus::xjson xui_layer<D>::get_state() const
+    inline void xui_layer<D>::serialize_state(xeus::xjson& state, xeus::buffer_sequence& buffers) const
     {
-        xeus::xjson state = base_type::get_state();
+        base_type::serialize_state(state, buffers);
 
-        return state;
     }
 
     template <class D>
-    inline void xui_layer<D>::apply_patch(const xeus::xjson& patch)
+    inline void xui_layer<D>::apply_patch(const xeus::xjson& patch, const xeus::buffer_sequence& buffers)
     {
-        base_type::apply_patch(patch);
+        base_type::apply_patch(patch, buffers);
     }
 
     template <class D>

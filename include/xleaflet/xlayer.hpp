@@ -33,8 +33,8 @@ namespace xlf
 
         using widget_type = xw::xholder<xw::xwidget>;
 
-        xeus::xjson get_state() const;
-        void apply_patch(const xeus::xjson&);
+        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
+        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
 
         XPROPERTY(std::string, derived_type, name, "");
         XPROPERTY(bool, derived_type, base, true);
@@ -61,29 +61,27 @@ namespace xlf
      *************************/
 
     template <class D>
-    inline xeus::xjson xlayer<D>::get_state() const
+    inline void xlayer<D>::serialize_state(xeus::xjson& state, xeus::buffer_sequence& buffers) const
     {
-        xeus::xjson state = base_type::get_state();
+        base_type::serialize_state(state, buffers);
 
-        XOBJECT_SET_PATCH_FROM_PROPERTY(name, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(base, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(bottom, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(popup, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(options, state);
-
-        return state;
+        xw::set_patch_from_property(name, state, buffers);
+        xw::set_patch_from_property(base, state, buffers);
+        xw::set_patch_from_property(bottom, state, buffers);
+        xw::set_patch_from_property(popup, state, buffers);
+        xw::set_patch_from_property(options, state, buffers);
     }
 
     template <class D>
-    inline void xlayer<D>::apply_patch(const xeus::xjson& patch)
+    inline void xlayer<D>::apply_patch(const xeus::xjson& patch, const xeus::buffer_sequence& buffers)
     {
-        base_type::apply_patch(patch);
+        base_type::apply_patch(patch, buffers);
 
-        XOBJECT_SET_PROPERTY_FROM_PATCH(name, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(base, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(bottom, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(popup, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(options, patch);
+        xw::set_property_from_patch(name, patch, buffers);
+        xw::set_property_from_patch(base, patch, buffers);
+        xw::set_property_from_patch(bottom, patch, buffers);
+        xw::set_property_from_patch(popup, patch, buffers);
+        xw::set_property_from_patch(options, patch, buffers);
     }
 
     template <class D>

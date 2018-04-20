@@ -31,8 +31,8 @@ namespace xlf
         using base_type = xtile_layer<D>;
         using derived_type = D;
 
-        xeus::xjson get_state() const;
-        void apply_patch(const xeus::xjson&);
+        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
+        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
 
         XPROPERTY(std::string, derived_type, service, "WMS");
         XPROPERTY(std::string, derived_type, request, "GetMap");
@@ -63,37 +63,35 @@ namespace xlf
      *****************************/
 
     template <class D>
-    inline xeus::xjson xwms_layer<D>::get_state() const
+    inline void xwms_layer<D>::serialize_state(xeus::xjson& state, xeus::buffer_sequence& buffers) const
     {
-        xeus::xjson state = base_type::get_state();
+        base_type::serialize_state(state, buffers);
 
-        XOBJECT_SET_PATCH_FROM_PROPERTY(service, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(request, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(layers, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(styles, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(format, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(transparent, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(version, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(crs, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(uppercase, state);
-
-        return state;
+        xw::set_patch_from_property(service, state, buffers);
+        xw::set_patch_from_property(request, state, buffers);
+        xw::set_patch_from_property(layers, state, buffers);
+        xw::set_patch_from_property(styles, state, buffers);
+        xw::set_patch_from_property(format, state, buffers);
+        xw::set_patch_from_property(transparent, state, buffers);
+        xw::set_patch_from_property(version, state, buffers);
+        xw::set_patch_from_property(crs, state, buffers);
+        xw::set_patch_from_property(uppercase, state, buffers);
     }
 
     template <class D>
-    inline void xwms_layer<D>::apply_patch(const xeus::xjson& patch)
+    inline void xwms_layer<D>::apply_patch(const xeus::xjson& patch, const xeus::buffer_sequence& buffers)
     {
-        base_type::apply_patch(patch);
+        base_type::apply_patch(patch, buffers);
 
-        XOBJECT_SET_PROPERTY_FROM_PATCH(service, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(request, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(layers, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(styles, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(format, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(transparent, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(version, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(crs, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(uppercase, patch);
+        xw::set_property_from_patch(service, patch, buffers);
+        xw::set_property_from_patch(request, patch, buffers);
+        xw::set_property_from_patch(layers, patch, buffers);
+        xw::set_property_from_patch(styles, patch, buffers);
+        xw::set_property_from_patch(format, patch, buffers);
+        xw::set_property_from_patch(transparent, patch, buffers);
+        xw::set_property_from_patch(version, patch, buffers);
+        xw::set_property_from_patch(crs, patch, buffers);
+        xw::set_property_from_patch(uppercase, patch, buffers);
     }
 
     template <class D>

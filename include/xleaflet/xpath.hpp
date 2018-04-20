@@ -32,8 +32,8 @@ namespace xlf
         using base_type = xvector_layer<D>;
         using derived_type = D;
 
-        xeus::xjson get_state() const;
-        void apply_patch(const xeus::xjson&);
+        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
+        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
 
         XPROPERTY(bool, derived_type, stroke, true);
         XPROPERTY(xw::html_color, derived_type, color, "#0033FF");
@@ -68,45 +68,43 @@ namespace xlf
      ************************/
 
     template <class D>
-    inline xeus::xjson xpath<D>::get_state() const
+    inline void xpath<D>::serialize_state(xeus::xjson& state, xeus::buffer_sequence& buffers) const
     {
-        xeus::xjson state = base_type::get_state();
+        base_type::serialize_state(state, buffers);
 
-        XOBJECT_SET_PATCH_FROM_PROPERTY(stroke, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(color, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(weight, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(fill, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(fill_color, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(fill_opacity, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(dash_array, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(line_cap, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(line_join, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(clickable, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(pointer_events, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(class_name, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(opacity, state);
-
-        return state;
+        xw::set_patch_from_property(stroke, state, buffers);
+        xw::set_patch_from_property(color, state, buffers);
+        xw::set_patch_from_property(weight, state, buffers);
+        xw::set_patch_from_property(fill, state, buffers);
+        xw::set_patch_from_property(fill_color, state, buffers);
+        xw::set_patch_from_property(fill_opacity, state, buffers);
+        xw::set_patch_from_property(dash_array, state, buffers);
+        xw::set_patch_from_property(line_cap, state, buffers);
+        xw::set_patch_from_property(line_join, state, buffers);
+        xw::set_patch_from_property(clickable, state, buffers);
+        xw::set_patch_from_property(pointer_events, state, buffers);
+        xw::set_patch_from_property(class_name, state, buffers);
+        xw::set_patch_from_property(opacity, state, buffers);
     }
 
     template <class D>
-    inline void xpath<D>::apply_patch(const xeus::xjson& patch)
+    inline void xpath<D>::apply_patch(const xeus::xjson& patch, const xeus::buffer_sequence& buffers)
     {
-        base_type::apply_patch(patch);
+        base_type::apply_patch(patch, buffers);
 
-        XOBJECT_SET_PROPERTY_FROM_PATCH(stroke, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(color, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(weight, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(fill, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(fill_color, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(fill_opacity, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(dash_array, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(line_cap, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(line_join, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(clickable, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(pointer_events, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(class_name, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(opacity, patch);
+        xw::set_property_from_patch(stroke, patch, buffers);
+        xw::set_property_from_patch(color, patch, buffers);
+        xw::set_property_from_patch(weight, patch, buffers);
+        xw::set_property_from_patch(fill, patch, buffers);
+        xw::set_property_from_patch(fill_color, patch, buffers);
+        xw::set_property_from_patch(fill_opacity, patch, buffers);
+        xw::set_property_from_patch(dash_array, patch, buffers);
+        xw::set_property_from_patch(line_cap, patch, buffers);
+        xw::set_property_from_patch(line_join, patch, buffers);
+        xw::set_property_from_patch(clickable, patch, buffers);
+        xw::set_property_from_patch(pointer_events, patch, buffers);
+        xw::set_property_from_patch(class_name, patch, buffers);
+        xw::set_property_from_patch(opacity, patch, buffers);
     }
 
     template <class D>

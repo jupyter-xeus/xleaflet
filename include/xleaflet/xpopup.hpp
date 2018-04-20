@@ -36,8 +36,8 @@ namespace xlf
 
         using widget_type = xw::xholder<xw::xwidget>;
 
-        xeus::xjson get_state() const;
-        void apply_patch(const xeus::xjson&);
+        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
+        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
 
         XPROPERTY(point_type, derived_type, location);
         XPROPERTY(xtl::xoptional<widget_type>, derived_type, child);
@@ -73,47 +73,45 @@ namespace xlf
      *************************/
 
     template <class D>
-    inline xeus::xjson xpopup<D>::get_state() const
+    inline void xpopup<D>::serialize_state(xeus::xjson& state, xeus::buffer_sequence& buffers) const
     {
-        xeus::xjson state = base_type::get_state();
+        base_type::serialize_state(state, buffers);
 
-        XOBJECT_SET_PATCH_FROM_PROPERTY(location, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(child, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(max_width, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(min_width, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(max_height, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(auto_pan, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(auto_pan_padding_top_left, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(auto_pan_padding_bottom_right, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(auto_pan_padding, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(keep_in_view, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(close_button, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(auto_close, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(close_on_escape_key, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(class_name, state);
-
-        return state;
+        xw::set_patch_from_property(location, state, buffers);
+        xw::set_patch_from_property(child, state, buffers);
+        xw::set_patch_from_property(max_width, state, buffers);
+        xw::set_patch_from_property(min_width, state, buffers);
+        xw::set_patch_from_property(max_height, state, buffers);
+        xw::set_patch_from_property(auto_pan, state, buffers);
+        xw::set_patch_from_property(auto_pan_padding_top_left, state, buffers);
+        xw::set_patch_from_property(auto_pan_padding_bottom_right, state, buffers);
+        xw::set_patch_from_property(auto_pan_padding, state, buffers);
+        xw::set_patch_from_property(keep_in_view, state, buffers);
+        xw::set_patch_from_property(close_button, state, buffers);
+        xw::set_patch_from_property(auto_close, state, buffers);
+        xw::set_patch_from_property(close_on_escape_key, state, buffers);
+        xw::set_patch_from_property(class_name, state, buffers);
     }
 
     template <class D>
-    inline void xpopup<D>::apply_patch(const xeus::xjson& patch)
+    inline void xpopup<D>::apply_patch(const xeus::xjson& patch, const xeus::buffer_sequence& buffers)
     {
-        base_type::apply_patch(patch);
+        base_type::apply_patch(patch, buffers);
 
-        XOBJECT_SET_PROPERTY_FROM_PATCH(location, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(child, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(max_width, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(min_width, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(max_height, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(auto_pan, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(auto_pan_padding_top_left, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(auto_pan_padding_bottom_right, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(auto_pan_padding, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(keep_in_view, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(close_button, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(auto_close, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(close_on_escape_key, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(class_name, patch);
+        xw::set_property_from_patch(location, patch, buffers);
+        xw::set_property_from_patch(child, patch, buffers);
+        xw::set_property_from_patch(max_width, patch, buffers);
+        xw::set_property_from_patch(min_width, patch, buffers);
+        xw::set_property_from_patch(max_height, patch, buffers);
+        xw::set_property_from_patch(auto_pan, patch, buffers);
+        xw::set_property_from_patch(auto_pan_padding_top_left, patch, buffers);
+        xw::set_property_from_patch(auto_pan_padding_bottom_right, patch, buffers);
+        xw::set_property_from_patch(auto_pan_padding, patch, buffers);
+        xw::set_property_from_patch(keep_in_view, patch, buffers);
+        xw::set_property_from_patch(close_button, patch, buffers);
+        xw::set_property_from_patch(auto_close, patch, buffers);
+        xw::set_property_from_patch(close_on_escape_key, patch, buffers);
+        xw::set_property_from_patch(class_name, patch, buffers);
     }
 
     template <class D>

@@ -34,8 +34,8 @@ namespace xlf
         using base_type = xpath<D>;
         using derived_type = D;
 
-        xeus::xjson get_state() const;
-        void apply_patch(const xeus::xjson&);
+        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
+        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
 
         XPROPERTY(point_type, derived_type, location);
         XPROPERTY(int, derived_type, radius, 1000);
@@ -59,23 +59,21 @@ namespace xlf
      **************************/
 
     template <class D>
-    inline xeus::xjson xcircle<D>::get_state() const
+    inline void xcircle<D>::serialize_state(xeus::xjson& state, xeus::buffer_sequence& buffers) const
     {
-        xeus::xjson state = base_type::get_state();
+        base_type::serialize_state(state, buffers);
 
-        XOBJECT_SET_PATCH_FROM_PROPERTY(location, state);
-        XOBJECT_SET_PATCH_FROM_PROPERTY(radius, state);
-
-        return state;
+        xw::set_patch_from_property(location, state, buffers);
+        xw::set_patch_from_property(radius, state, buffers);
     }
 
     template <class D>
-    inline void xcircle<D>::apply_patch(const xeus::xjson& patch)
+    inline void xcircle<D>::apply_patch(const xeus::xjson& patch, const xeus::buffer_sequence& buffers)
     {
-        base_type::apply_patch(patch);
+        base_type::apply_patch(patch, buffers);
 
-        XOBJECT_SET_PROPERTY_FROM_PATCH(location, patch);
-        XOBJECT_SET_PROPERTY_FROM_PATCH(radius, patch);
+        xw::set_property_from_patch(location, patch, buffers);
+        xw::set_property_from_patch(radius, patch, buffers);
     }
 
     template <class D>
