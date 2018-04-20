@@ -4,9 +4,22 @@
 
    The full license is in the file LICENSE, distributed with this software.
 
+.. raw:: html
+   :file: embed_widgets/index_example.html
+
 .. image:: xleaflet.svg
 
 The C++ backend for ipyleaflet.
+
+.. raw:: html
+
+    <script type="application/vnd.jupyter.widget-view+json">
+    {
+    "model_id": "3331433c66c64edaad1cbf0fdd867c2c",
+    "version_major": 2,
+    "version_minor": 0
+    }
+    </script>
 
 Introduction
 ------------
