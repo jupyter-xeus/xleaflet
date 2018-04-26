@@ -49,6 +49,12 @@ cmake -D CMAKE_INSTALL_PREFIX=your_install_prefix
 make install
 ```
 
+## Documentation
+
+To get started with using `xleaflet`, check out the full documentation
+
+http://xleaflet.readthedocs.io/
+
 ## Dependencies
 
 All the dependencies of xleaflet are available for the conda package manager.
