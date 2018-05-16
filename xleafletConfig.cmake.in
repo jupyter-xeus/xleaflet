@@ -9,13 +9,13 @@
 # xwidgets cmake module
 # This module sets the following variables in your project::
 #
-#   xplot_FOUND - true if xplot found on the system
-#   xplot_INCLUDE_DIRS - the directory containing xplot headers
-#   xplot_LIBRARY - empty
+#   xleaflet_FOUND - true if xleaflet found on the system
+#   xleaflet_INCLUDE_DIRS - the directory containing xleaflet headers
+#   xleaflet_LIBRARY - empty
 
 @PACKAGE_INIT@
 
-set(PN xplot)
+set(PN xleaflet)
 set_and_check(${PN}_INCLUDE_DIRS "${PACKAGE_PREFIX_DIR}/@CMAKE_INSTALL_INCLUDEDIR@")
 set(${PN}_LIBRARY "")
 check_required_components(${PN})
