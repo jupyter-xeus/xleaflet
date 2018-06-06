@@ -1,4 +1,4 @@
-# ![xleaflet](http://quantstack.net/assets/images/xleaflet.svg)
+# ![xleaflet](docs/source/xleaflet.svg)
 
 [![Travis](https://travis-ci.org/QuantStack/xleaflet.svg?branch=master)](https://travis-ci.org/QuantStack/xleaflet)
 [![Appveyor](https://ci.appveyor.com/api/projects/status/gfiivu33g6hrv220?svg=true)](https://ci.appveyor.com/project/QuantStack/xleaflet)
