@@ -84,6 +84,7 @@ set(XLEAFLET_HEADERS
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xdraw_control.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xfeature_group.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xgeo_json.hpp
+    ${XLEAFLET_INCLUDE_DIR}/xleaflet/xheatmap.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/ximage_overlay.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xlayer_group.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xlayer.hpp
@@ -114,6 +115,7 @@ set(XLEAFLET_SOURCES
     ${XLEAFLET_SOURCE_DIR}/xdraw_control.cpp
     ${XLEAFLET_SOURCE_DIR}/xfeature_group.cpp
     ${XLEAFLET_SOURCE_DIR}/xgeo_json.cpp
+    ${XLEAFLET_SOURCE_DIR}/xheatmap.cpp
     ${XLEAFLET_SOURCE_DIR}/ximage_overlay.cpp
     ${XLEAFLET_SOURCE_DIR}/xlayer_group.cpp
     ${XLEAFLET_SOURCE_DIR}/xlayer.cpp
