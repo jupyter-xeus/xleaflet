@@ -6,6 +6,6 @@ dependencies:
   - xwidgets=0.10.0
   - xleaflet=0.1.0
   - xeus-cling=0.4.2
-  - ipyleaflet=0.8.1
+  - ipyleaflet=0.8.4
   - notebook >=5.4
   - widgetsnbextension >=3.0.0
