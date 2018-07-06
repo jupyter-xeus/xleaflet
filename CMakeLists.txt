@@ -94,6 +94,7 @@ set(XLEAFLET_HEADERS
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xmap.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xmarker_cluster.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xmarker.hpp
+    ${XLEAFLET_INCLUDE_DIR}/xleaflet/xmeasure_control.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xpath.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xpolygon.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xpolyline.hpp
@@ -124,6 +125,7 @@ set(XLEAFLET_SOURCES
     ${XLEAFLET_SOURCE_DIR}/xmap.cpp
     ${XLEAFLET_SOURCE_DIR}/xmarker_cluster.cpp
     ${XLEAFLET_SOURCE_DIR}/xmarker.cpp
+    ${XLEAFLET_SOURCE_DIR}/xmeasure_control.cpp
     ${XLEAFLET_SOURCE_DIR}/xpath.cpp
     ${XLEAFLET_SOURCE_DIR}/xpolygon.cpp
     ${XLEAFLET_SOURCE_DIR}/xpolyline.cpp
