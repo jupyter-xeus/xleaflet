@@ -84,6 +84,7 @@ set(XLEAFLET_HEADERS
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xdraw_control.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xfeature_group.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xgeo_json.hpp
+    ${XLEAFLET_INCLUDE_DIR}/xleaflet/xheatmap.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/ximage_overlay.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xlayer_group.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xlayer.hpp
@@ -93,6 +94,7 @@ set(XLEAFLET_HEADERS
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xmap.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xmarker_cluster.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xmarker.hpp
+    ${XLEAFLET_INCLUDE_DIR}/xleaflet/xmeasure_control.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xpath.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xpolygon.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xpolyline.hpp
@@ -103,6 +105,7 @@ set(XLEAFLET_HEADERS
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xtile_layer.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xui_layer.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xvector_layer.hpp
+    ${XLEAFLET_INCLUDE_DIR}/xleaflet/xvelocity.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xvideo_overlay.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xwms_layer.hpp
 )
@@ -114,6 +117,7 @@ set(XLEAFLET_SOURCES
     ${XLEAFLET_SOURCE_DIR}/xdraw_control.cpp
     ${XLEAFLET_SOURCE_DIR}/xfeature_group.cpp
     ${XLEAFLET_SOURCE_DIR}/xgeo_json.cpp
+    ${XLEAFLET_SOURCE_DIR}/xheatmap.cpp
     ${XLEAFLET_SOURCE_DIR}/ximage_overlay.cpp
     ${XLEAFLET_SOURCE_DIR}/xlayer_group.cpp
     ${XLEAFLET_SOURCE_DIR}/xlayer.cpp
@@ -121,6 +125,7 @@ set(XLEAFLET_SOURCES
     ${XLEAFLET_SOURCE_DIR}/xmap.cpp
     ${XLEAFLET_SOURCE_DIR}/xmarker_cluster.cpp
     ${XLEAFLET_SOURCE_DIR}/xmarker.cpp
+    ${XLEAFLET_SOURCE_DIR}/xmeasure_control.cpp
     ${XLEAFLET_SOURCE_DIR}/xpath.cpp
     ${XLEAFLET_SOURCE_DIR}/xpolygon.cpp
     ${XLEAFLET_SOURCE_DIR}/xpolyline.cpp
@@ -131,6 +136,7 @@ set(XLEAFLET_SOURCES
     ${XLEAFLET_SOURCE_DIR}/xtile_layer.cpp
     ${XLEAFLET_SOURCE_DIR}/xui_layer.cpp
     ${XLEAFLET_SOURCE_DIR}/xvector_layer.cpp
+    ${XLEAFLET_SOURCE_DIR}/xvelocity.cpp
     ${XLEAFLET_SOURCE_DIR}/xvideo_overlay.cpp
     ${XLEAFLET_SOURCE_DIR}/xwms_layer.cpp
 )

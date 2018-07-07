@@ -44,7 +44,6 @@ namespace xlf
         XPROPERTY(std::string, derived_type, dash_array, "");
         XPROPERTY(std::string, derived_type, line_cap, "");
         XPROPERTY(std::string, derived_type, line_join, "");
-        XPROPERTY(bool, derived_type, clickable, true);
         XPROPERTY(std::string, derived_type, pointer_events, "");
         XPROPERTY(std::string, derived_type, class_name, "");
         XPROPERTY(float, derived_type, opacity, 1.0);
@@ -81,7 +80,6 @@ namespace xlf
         xw::set_patch_from_property(dash_array, state, buffers);
         xw::set_patch_from_property(line_cap, state, buffers);
         xw::set_patch_from_property(line_join, state, buffers);
-        xw::set_patch_from_property(clickable, state, buffers);
         xw::set_patch_from_property(pointer_events, state, buffers);
         xw::set_patch_from_property(class_name, state, buffers);
         xw::set_patch_from_property(opacity, state, buffers);
@@ -101,7 +99,6 @@ namespace xlf
         xw::set_property_from_patch(dash_array, patch, buffers);
         xw::set_property_from_patch(line_cap, patch, buffers);
         xw::set_property_from_patch(line_join, patch, buffers);
-        xw::set_property_from_patch(clickable, patch, buffers);
         xw::set_property_from_patch(pointer_events, patch, buffers);
         xw::set_property_from_patch(class_name, patch, buffers);
         xw::set_property_from_patch(opacity, patch, buffers);
@@ -132,7 +129,6 @@ namespace xlf
                 "dash_array",
                 "line_cap",
                 "line_join",
-                "clickable",
                 "pointer_events",
                 "class_name",
                 "opacity"

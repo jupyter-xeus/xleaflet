@@ -14,7 +14,7 @@
 #include "xwidgets/xwidget.hpp"
 
 #include "xleaflet_config.hpp"
-#include "xlayer.hpp"
+#include "xlayer_group.hpp"
 
 namespace xlf
 {
@@ -23,11 +23,11 @@ namespace xlf
      *****************************/
 
     template <class D>
-    class xfeature_group : public xlayer<D>
+    class xfeature_group : public xlayer_group<D>
     {
     public:
 
-        using base_type = xlayer<D>;
+        using base_type = xlayer_group<D>;
         using derived_type = D;
 
     protected:
