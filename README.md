@@ -8,11 +8,23 @@
 
 C++ backend for the jupyter-leaflet map visualization library
 
-**xleaflet is an early developer preview, and is not suitable for general usage yet. Features and implementation are subject to change.**
-
 ## Usage
 
-![xleaflet screencast](xleaflet.gif)
+Selecting a base layer for a map:
+
+![Basemap Screencast](basemap.gif)
+
+Loading a geojson dataset:
+
+![GeoJSON Screencast](geojson.gif)
+
+Using the splitmap control:
+
+![Splitmap Screencast](splitmap.gif)
+
+Displaying velocity data on the top of a map:
+
+![Velocity Screencast](velocity.gif)
 
 ## Installation
 
@@ -71,3 +83,4 @@ We use a shared copyright model that enables all contributors to maintain the
 copyright on their contributions.
 
 This software is licensed under the BSD-3-Clause license. See the [LICENSE](LICENSE) file for details.
+
