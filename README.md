@@ -3,7 +3,7 @@
 [![Travis](https://travis-ci.org/QuantStack/xleaflet.svg?branch=master)](https://travis-ci.org/QuantStack/xleaflet)
 [![Appveyor](https://ci.appveyor.com/api/projects/status/gfiivu33g6hrv220?svg=true)](https://ci.appveyor.com/project/QuantStack/xleaflet)
 [![Documentation](http://readthedocs.org/projects/xleaflet/badge/?version=latest)](https://xleaflet.readthedocs.io/en/latest/?badge=latest)
-[![Binder](https://img.shields.io/badge/launch-binder-brightgreen.svg)](https://mybinder.org/v2/gh/QuantStack/xleaflet/0.1.0?filepath=notebooks)
+[![Binder](https://img.shields.io/badge/launch-binder-brightgreen.svg)](https://mybinder.org/v2/gh/QuantStack/xleaflet/0.2.0?filepath=notebooks)
 [![Join the Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/QuantStack/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 C++ backend for the jupyter-leaflet map visualization library
@@ -60,6 +60,13 @@ Or you can directly install it from the sources if you have all the dependencies
 cmake -D CMAKE_INSTALL_PREFIX=your_install_prefix
 make install
 ```
+
+## Trying it online
+
+To try out xleaflet interactively in your web browser, just click on the binder
+link:
+
+[![Binder](docs/source/binder-logo.svg)](https://mybinder.org/v2/gh/QuantStack/xleaflet/0.2.0?filepath=notebooks/)
 
 ## Documentation
 
