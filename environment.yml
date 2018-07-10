@@ -3,7 +3,7 @@ channels:
   - QuantStack
   - conda-forge
 dependencies:
-  - xwidgets=0.12.0
+  - xwidgets=0.12.2
   - xleaflet=0.2.1
   - xeus-cling=0.4.5
   - ipyleaflet=0.9.0
