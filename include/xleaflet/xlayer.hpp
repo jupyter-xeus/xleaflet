@@ -13,7 +13,7 @@
 #include <vector>
 
 #include "xwidgets/xmaterialize.hpp"
-#include "xwidgets/xwidget.hpp"
+#include "xwidgets/xobject.hpp"
 
 #include "xleaflet_config.hpp"
 
@@ -24,14 +24,14 @@ namespace xlf
      *********************/
 
     template <class D>
-    class xlayer : public xw::xwidget<D>
+    class xlayer : public xw::xobject<D>
     {
     public:
 
-        using base_type = xw::xwidget<D>;
+        using base_type = xw::xobject<D>;
         using derived_type = D;
 
-        using widget_type = xw::xholder<xw::xwidget>;
+        using widget_type = xw::xholder<xw::xobject>;
 
         void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
         void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
