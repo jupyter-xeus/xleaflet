@@ -17,3 +17,5 @@ From the master branch of xleaflet
 - Update the readme file w.r.t. dependencies on xleaflet
 - Stage the changes (``git add``), commit the changes (``git commit``) and add a tag of the form ``Major.minor.patch``. It is important to not add any other content to the tag name.
 - Push the new commit and tag to the main repository. (``git push``, and ``git push --tags``)
+- Release the new version on conda
+- Update the stable branch to point to the new tag
