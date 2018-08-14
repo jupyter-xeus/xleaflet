@@ -41,7 +41,8 @@ namespace xlf
         return maps;
     }
 
-    inline tile_layer basemap(const std::vector<std::string>& path, const std::string& day = "2018-01-01")
+    inline tile_layer basemap(const std::vector<std::string>& path,
+                              const std::string& day = "2018-01-01")
     {
         const xeus::xjson& maps = basemaps();
 
@@ -73,7 +74,7 @@ namespace xlf
         int min_zoom = 1;
 
         std::size_t date = url.find("%s");
-        if(date != std::string::npos)
+        if (date != std::string::npos)
         {
             url.replace(date, 2, day);
         }

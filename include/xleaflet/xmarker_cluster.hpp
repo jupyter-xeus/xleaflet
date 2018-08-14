@@ -12,12 +12,12 @@
 
 #include <string>
 
-#include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xholder.hpp"
+#include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xwidget.hpp"
 
-#include "xleaflet_config.hpp"
 #include "xlayer.hpp"
+#include "xleaflet_config.hpp"
 #include "xmarker.hpp"
 
 namespace xlf
@@ -60,19 +60,25 @@ namespace xlf
      **********************************/
 
     template <class D>
-    inline void xmarker_cluster<D>::serialize_state(xeus::xjson& state, xeus::buffer_sequence& buffers) const
+    inline void xmarker_cluster<D>::serialize_state(xeus::xjson& state,
+                                                    xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        xw::set_patch_from_property(markers, state, buffers);
+        using xw::set_patch_from_property;
+
+        set_patch_from_property(markers, state, buffers);
     }
 
     template <class D>
-    inline void xmarker_cluster<D>::apply_patch(const xeus::xjson& patch, const xeus::buffer_sequence& buffers)
+    inline void xmarker_cluster<D>::apply_patch(const xeus::xjson& patch,
+                                                const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
 
-        xw::set_property_from_patch(markers, patch, buffers);
+        using xw::set_property_from_patch;
+
+        set_property_from_patch(markers, patch, buffers);
     }
 
     template <class D>

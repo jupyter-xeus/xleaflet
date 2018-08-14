@@ -63,35 +63,41 @@ namespace xlf
      *****************************/
 
     template <class D>
-    inline void xwms_layer<D>::serialize_state(xeus::xjson& state, xeus::buffer_sequence& buffers) const
+    inline void xwms_layer<D>::serialize_state(xeus::xjson& state,
+                                               xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        xw::set_patch_from_property(service, state, buffers);
-        xw::set_patch_from_property(request, state, buffers);
-        xw::set_patch_from_property(layers, state, buffers);
-        xw::set_patch_from_property(styles, state, buffers);
-        xw::set_patch_from_property(format, state, buffers);
-        xw::set_patch_from_property(transparent, state, buffers);
-        xw::set_patch_from_property(version, state, buffers);
-        xw::set_patch_from_property(crs, state, buffers);
-        xw::set_patch_from_property(uppercase, state, buffers);
+        using xw::set_patch_from_property;
+
+        set_patch_from_property(service, state, buffers);
+        set_patch_from_property(request, state, buffers);
+        set_patch_from_property(layers, state, buffers);
+        set_patch_from_property(styles, state, buffers);
+        set_patch_from_property(format, state, buffers);
+        set_patch_from_property(transparent, state, buffers);
+        set_patch_from_property(version, state, buffers);
+        set_patch_from_property(crs, state, buffers);
+        set_patch_from_property(uppercase, state, buffers);
     }
 
     template <class D>
-    inline void xwms_layer<D>::apply_patch(const xeus::xjson& patch, const xeus::buffer_sequence& buffers)
+    inline void xwms_layer<D>::apply_patch(const xeus::xjson& patch,
+                                           const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
 
-        xw::set_property_from_patch(service, patch, buffers);
-        xw::set_property_from_patch(request, patch, buffers);
-        xw::set_property_from_patch(layers, patch, buffers);
-        xw::set_property_from_patch(styles, patch, buffers);
-        xw::set_property_from_patch(format, patch, buffers);
-        xw::set_property_from_patch(transparent, patch, buffers);
-        xw::set_property_from_patch(version, patch, buffers);
-        xw::set_property_from_patch(crs, patch, buffers);
-        xw::set_property_from_patch(uppercase, patch, buffers);
+        using xw::set_property_from_patch;
+
+        set_property_from_patch(service, patch, buffers);
+        set_property_from_patch(request, patch, buffers);
+        set_property_from_patch(layers, patch, buffers);
+        set_property_from_patch(styles, patch, buffers);
+        set_property_from_patch(format, patch, buffers);
+        set_property_from_patch(transparent, patch, buffers);
+        set_property_from_patch(version, patch, buffers);
+        set_property_from_patch(crs, patch, buffers);
+        set_property_from_patch(uppercase, patch, buffers);
     }
 
     template <class D>

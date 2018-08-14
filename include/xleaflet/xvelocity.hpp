@@ -13,12 +13,12 @@
 #include <string>
 #include <vector>
 
-#include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xcolor.hpp"
+#include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xwidget.hpp"
 
-#include "xleaflet_config.hpp"
 #include "xlayer.hpp"
+#include "xleaflet_config.hpp"
 
 namespace xlf
 {
@@ -73,33 +73,39 @@ namespace xlf
      ***************************/
 
     template <class D>
-    inline void xvelocity<D>::serialize_state(xeus::xjson& state, xeus::buffer_sequence& buffers) const
+    inline void xvelocity<D>::serialize_state(xeus::xjson& state,
+                                              xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        xw::set_patch_from_property(data, state, buffers);
-        xw::set_patch_from_property(units, state, buffers);
-        xw::set_patch_from_property(display_values, state, buffers);
-        xw::set_patch_from_property(display_options, state, buffers);
-        xw::set_patch_from_property(min_velocity, state, buffers);
-        xw::set_patch_from_property(max_velocity, state, buffers);
-        xw::set_patch_from_property(velocity_scale, state, buffers);
-        xw::set_patch_from_property(color_scale, state, buffers);
+        using xw::set_patch_from_property;
+
+        set_patch_from_property(data, state, buffers);
+        set_patch_from_property(units, state, buffers);
+        set_patch_from_property(display_values, state, buffers);
+        set_patch_from_property(display_options, state, buffers);
+        set_patch_from_property(min_velocity, state, buffers);
+        set_patch_from_property(max_velocity, state, buffers);
+        set_patch_from_property(velocity_scale, state, buffers);
+        set_patch_from_property(color_scale, state, buffers);
     }
 
     template <class D>
-    inline void xvelocity<D>::apply_patch(const xeus::xjson& patch, const xeus::buffer_sequence& buffers)
+    inline void xvelocity<D>::apply_patch(const xeus::xjson& patch,
+                                          const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
 
-        xw::set_property_from_patch(data, patch, buffers);
-        xw::set_property_from_patch(units, patch, buffers);
-        xw::set_property_from_patch(display_values, patch, buffers);
-        xw::set_property_from_patch(display_options, patch, buffers);
-        xw::set_property_from_patch(min_velocity, patch, buffers);
-        xw::set_property_from_patch(max_velocity, patch, buffers);
-        xw::set_property_from_patch(velocity_scale, patch, buffers);
-        xw::set_property_from_patch(color_scale, patch, buffers);
+        using xw::set_property_from_patch;
+
+        set_property_from_patch(data, patch, buffers);
+        set_property_from_patch(units, patch, buffers);
+        set_property_from_patch(display_values, patch, buffers);
+        set_property_from_patch(display_options, patch, buffers);
+        set_property_from_patch(min_velocity, patch, buffers);
+        set_property_from_patch(max_velocity, patch, buffers);
+        set_property_from_patch(velocity_scale, patch, buffers);
+        set_property_from_patch(color_scale, patch, buffers);
     }
 
     template <class D>

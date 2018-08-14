@@ -13,13 +13,13 @@
 #include <string>
 #include <vector>
 
-#include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xholder.hpp"
+#include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xwidget.hpp"
 
-#include "xleaflet_config.hpp"
-#include "xfeature_group.hpp"
 #include "xcontrol.hpp"
+#include "xfeature_group.hpp"
+#include "xleaflet_config.hpp"
 
 namespace xlf
 {
@@ -77,30 +77,45 @@ namespace xlf
      * xdraw_control implementation *
      ********************************/
 
-     template <class D>
-     inline void xdraw_control<D>::serialize_state(xeus::xjson& state, xeus::buffer_sequence& buffers) const
-     {
-         base_type::serialize_state(state, buffers);
+    template <class D>
+    inline void xdraw_control<D>::serialize_state(xeus::xjson& state,
+                                                  xeus::buffer_sequence& buffers) const
+    {
+        base_type::serialize_state(state, buffers);
 
-         xw::set_patch_from_property(layer, state, buffers);
-         xw::set_patch_from_property(polyline, state, buffers);
-         xw::set_patch_from_property(polygon, state, buffers);
-         xw::set_patch_from_property(circle, state, buffers);
-         xw::set_patch_from_property(rectangle, state, buffers);
-         xw::set_patch_from_property(marker, state, buffers);
-         xw::set_patch_from_property(edit, state, buffers);
-         xw::set_patch_from_property(remove, state, buffers);
-         xw::set_patch_from_property(last_draw, state, buffers);
-         xw::set_patch_from_property(last_action, state, buffers);
-     }
+        using xw::set_patch_from_property;
 
-     template <class D>
-     inline void xdraw_control<D>::apply_patch(const xeus::xjson& patch, const xeus::buffer_sequence& buffers)
-     {
-         base_type::apply_patch(patch, buffers);
+        set_patch_from_property(layer, state, buffers);
+        set_patch_from_property(polyline, state, buffers);
+        set_patch_from_property(polygon, state, buffers);
+        set_patch_from_property(circle, state, buffers);
+        set_patch_from_property(rectangle, state, buffers);
+        set_patch_from_property(marker, state, buffers);
+        set_patch_from_property(edit, state, buffers);
+        set_patch_from_property(remove, state, buffers);
+        set_patch_from_property(last_draw, state, buffers);
+        set_patch_from_property(last_action, state, buffers);
+    }
 
-         xw::set_property_from_patch(layer, patch, buffers);
-     }
+    template <class D>
+    inline void xdraw_control<D>::apply_patch(const xeus::xjson& patch,
+                                              const xeus::buffer_sequence& buffers)
+    {
+        base_type::apply_patch(patch, buffers);
+
+        using xw::set_property_from_patch;
+
+        set_property_from_patch(layer, patch, buffers);
+        set_property_from_patch(polyline, patch, buffers);
+        set_property_from_patch(polygon, patch, buffers);
+        set_property_from_patch(circle, patch, buffers);
+        set_property_from_patch(rectangle, patch, buffers);
+        set_property_from_patch(marker, patch, buffers);
+        set_property_from_patch(edit, patch, buffers);
+        set_property_from_patch(remove, patch, buffers);
+        set_property_from_patch(last_draw, patch, buffers);
+        set_property_from_patch(last_action, patch, buffers);
+    }
 
     template <class D>
     inline void xdraw_control<D>::on_draw(draw_callback_type callback)
@@ -133,10 +148,7 @@ namespace xlf
         if (it != content.end() && it.value().get<std::string>().find("draw") == 0)
         {
             std::string value = it.value().get<std::string>();
-            std::string action = value.substr(
-                value.find(":") + 1,
-                std::string::npos
-            );
+            std::string action = value.substr(value.find(":") + 1, std::string::npos);
             xeus::xjson geo_json_content = content["geo_json"];
 
             this->last_action() = action;

@@ -16,8 +16,8 @@
 #include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xwidget.hpp"
 
-#include "xleaflet_config.hpp"
 #include "xcontrol.hpp"
+#include "xleaflet_config.hpp"
 
 namespace xlf
 {

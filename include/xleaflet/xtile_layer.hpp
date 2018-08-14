@@ -72,29 +72,35 @@ namespace xlf
      ******************************/
 
     template <class D>
-    inline void xtile_layer<D>::serialize_state(xeus::xjson& state, xeus::buffer_sequence& buffers) const
+    inline void xtile_layer<D>::serialize_state(xeus::xjson& state,
+                                                xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        xw::set_patch_from_property(url, state, buffers);
-        xw::set_patch_from_property(min_zoom, state, buffers);
-        xw::set_patch_from_property(max_zoom, state, buffers);
-        xw::set_patch_from_property(tile_size, state, buffers);
-        xw::set_patch_from_property(attribution, state, buffers);
-        xw::set_patch_from_property(detect_retina, state, buffers);
+        using xw::set_patch_from_property;
+
+        set_patch_from_property(url, state, buffers);
+        set_patch_from_property(min_zoom, state, buffers);
+        set_patch_from_property(max_zoom, state, buffers);
+        set_patch_from_property(tile_size, state, buffers);
+        set_patch_from_property(attribution, state, buffers);
+        set_patch_from_property(detect_retina, state, buffers);
     }
 
     template <class D>
-    inline void xtile_layer<D>::apply_patch(const xeus::xjson& patch, const xeus::buffer_sequence& buffers)
+    inline void xtile_layer<D>::apply_patch(const xeus::xjson& patch,
+                                            const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
 
-        xw::set_property_from_patch(url, patch, buffers);
-        xw::set_property_from_patch(min_zoom, patch, buffers);
-        xw::set_property_from_patch(max_zoom, patch, buffers);
-        xw::set_property_from_patch(tile_size, patch, buffers);
-        xw::set_property_from_patch(attribution, patch, buffers);
-        xw::set_property_from_patch(detect_retina, patch, buffers);
+        using xw::set_property_from_patch;
+
+        set_property_from_patch(url, patch, buffers);
+        set_property_from_patch(min_zoom, patch, buffers);
+        set_property_from_patch(max_zoom, patch, buffers);
+        set_property_from_patch(tile_size, patch, buffers);
+        set_property_from_patch(attribution, patch, buffers);
+        set_property_from_patch(detect_retina, patch, buffers);
     }
 
     template <class D>

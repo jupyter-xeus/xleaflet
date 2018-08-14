@@ -61,27 +61,33 @@ namespace xlf
      *************************/
 
     template <class D>
-    inline void xlayer<D>::serialize_state(xeus::xjson& state, xeus::buffer_sequence& buffers) const
+    inline void xlayer<D>::serialize_state(xeus::xjson& state,
+                                           xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        xw::set_patch_from_property(name, state, buffers);
-        xw::set_patch_from_property(base, state, buffers);
-        xw::set_patch_from_property(bottom, state, buffers);
-        xw::set_patch_from_property(popup, state, buffers);
-        xw::set_patch_from_property(options, state, buffers);
+        using xw::set_patch_from_property;
+
+        set_patch_from_property(name, state, buffers);
+        set_patch_from_property(base, state, buffers);
+        set_patch_from_property(bottom, state, buffers);
+        set_patch_from_property(popup, state, buffers);
+        set_patch_from_property(options, state, buffers);
     }
 
     template <class D>
-    inline void xlayer<D>::apply_patch(const xeus::xjson& patch, const xeus::buffer_sequence& buffers)
+    inline void xlayer<D>::apply_patch(const xeus::xjson& patch,
+                                       const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
 
-        xw::set_property_from_patch(name, patch, buffers);
-        xw::set_property_from_patch(base, patch, buffers);
-        xw::set_property_from_patch(bottom, patch, buffers);
-        xw::set_property_from_patch(popup, patch, buffers);
-        xw::set_property_from_patch(options, patch, buffers);
+        using xw::set_property_from_patch;
+
+        set_property_from_patch(name, patch, buffers);
+        set_property_from_patch(base, patch, buffers);
+        set_property_from_patch(bottom, patch, buffers);
+        set_property_from_patch(popup, patch, buffers);
+        set_property_from_patch(options, patch, buffers);
     }
 
     template <class D>

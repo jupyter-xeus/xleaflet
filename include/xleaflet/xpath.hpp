@@ -12,8 +12,8 @@
 
 #include <string>
 
-#include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xcolor.hpp"
+#include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xwidget.hpp"
 
 #include "xvector_layer.hpp"
@@ -71,37 +71,42 @@ namespace xlf
     {
         base_type::serialize_state(state, buffers);
 
-        xw::set_patch_from_property(stroke, state, buffers);
-        xw::set_patch_from_property(color, state, buffers);
-        xw::set_patch_from_property(weight, state, buffers);
-        xw::set_patch_from_property(fill, state, buffers);
-        xw::set_patch_from_property(fill_color, state, buffers);
-        xw::set_patch_from_property(fill_opacity, state, buffers);
-        xw::set_patch_from_property(dash_array, state, buffers);
-        xw::set_patch_from_property(line_cap, state, buffers);
-        xw::set_patch_from_property(line_join, state, buffers);
-        xw::set_patch_from_property(pointer_events, state, buffers);
-        xw::set_patch_from_property(class_name, state, buffers);
-        xw::set_patch_from_property(opacity, state, buffers);
+        using xw::set_patch_from_property;
+
+        set_patch_from_property(stroke, state, buffers);
+        set_patch_from_property(color, state, buffers);
+        set_patch_from_property(weight, state, buffers);
+        set_patch_from_property(fill, state, buffers);
+        set_patch_from_property(fill_color, state, buffers);
+        set_patch_from_property(fill_opacity, state, buffers);
+        set_patch_from_property(dash_array, state, buffers);
+        set_patch_from_property(line_cap, state, buffers);
+        set_patch_from_property(line_join, state, buffers);
+        set_patch_from_property(pointer_events, state, buffers);
+        set_patch_from_property(class_name, state, buffers);
+        set_patch_from_property(opacity, state, buffers);
     }
 
     template <class D>
-    inline void xpath<D>::apply_patch(const xeus::xjson& patch, const xeus::buffer_sequence& buffers)
+    inline void xpath<D>::apply_patch(const xeus::xjson& patch,
+                                      const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
 
-        xw::set_property_from_patch(stroke, patch, buffers);
-        xw::set_property_from_patch(color, patch, buffers);
-        xw::set_property_from_patch(weight, patch, buffers);
-        xw::set_property_from_patch(fill, patch, buffers);
-        xw::set_property_from_patch(fill_color, patch, buffers);
-        xw::set_property_from_patch(fill_opacity, patch, buffers);
-        xw::set_property_from_patch(dash_array, patch, buffers);
-        xw::set_property_from_patch(line_cap, patch, buffers);
-        xw::set_property_from_patch(line_join, patch, buffers);
-        xw::set_property_from_patch(pointer_events, patch, buffers);
-        xw::set_property_from_patch(class_name, patch, buffers);
-        xw::set_property_from_patch(opacity, patch, buffers);
+        using xw::set_property_from_patch;
+
+        set_property_from_patch(stroke, patch, buffers);
+        set_property_from_patch(color, patch, buffers);
+        set_property_from_patch(weight, patch, buffers);
+        set_property_from_patch(fill, patch, buffers);
+        set_property_from_patch(fill_color, patch, buffers);
+        set_property_from_patch(fill_opacity, patch, buffers);
+        set_property_from_patch(dash_array, patch, buffers);
+        set_property_from_patch(line_cap, patch, buffers);
+        set_property_from_patch(line_join, patch, buffers);
+        set_property_from_patch(pointer_events, patch, buffers);
+        set_property_from_patch(class_name, patch, buffers);
+        set_property_from_patch(opacity, patch, buffers);
     }
 
     template <class D>
