@@ -53,14 +53,15 @@ namespace xlf
      ********************************/
 
     template <class D>
-    inline void xvector_layer<D>::serialize_state(xeus::xjson& state, xeus::buffer_sequence& buffers) const
+    inline void xvector_layer<D>::serialize_state(xeus::xjson& state,
+                                                  xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
-
     }
 
     template <class D>
-    inline void xvector_layer<D>::apply_patch(const xeus::xjson& patch, const xeus::buffer_sequence& buffers)
+    inline void xvector_layer<D>::apply_patch(const xeus::xjson& patch,
+                                              const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
     }

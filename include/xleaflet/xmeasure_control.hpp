@@ -13,14 +13,14 @@
 #include <string>
 #include <vector>
 
-#include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xcolor.hpp"
 #include "xwidgets/xholder.hpp"
+#include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xwidget.hpp"
 
-#include "xleaflet_config.hpp"
-#include "xfeature_group.hpp"
 #include "xcontrol.hpp"
+#include "xfeature_group.hpp"
+#include "xleaflet_config.hpp"
 
 namespace xlf
 {
@@ -72,35 +72,41 @@ namespace xlf
      * xmeasure_control implementation *
      ********************************/
 
-     template <class D>
-     inline void xmeasure_control<D>::serialize_state(xeus::xjson& state, xeus::buffer_sequence& buffers) const
-     {
-         base_type::serialize_state(state, buffers);
+    template <class D>
+    inline void xmeasure_control<D>::serialize_state(xeus::xjson& state,
+                                                     xeus::buffer_sequence& buffers) const
+    {
+        base_type::serialize_state(state, buffers);
 
-         xw::set_patch_from_property(primary_length_unit, state, buffers);
-         xw::set_patch_from_property(secondary_length_unit, state, buffers);
-         xw::set_patch_from_property(primary_area_unit, state, buffers);
-         xw::set_patch_from_property(secondary_area_unit, state, buffers);
-         xw::set_patch_from_property(active_color, state, buffers);
-         xw::set_patch_from_property(completed_color, state, buffers);
-         xw::set_patch_from_property(popup_options, state, buffers);
-         xw::set_patch_from_property(capture_z_index, state, buffers);
-     }
+        using xw::set_patch_from_property;
 
-     template <class D>
-     inline void xmeasure_control<D>::apply_patch(const xeus::xjson& patch, const xeus::buffer_sequence& buffers)
-     {
-         base_type::apply_patch(patch, buffers);
+        set_patch_from_property(primary_length_unit, state, buffers);
+        set_patch_from_property(secondary_length_unit, state, buffers);
+        set_patch_from_property(primary_area_unit, state, buffers);
+        set_patch_from_property(secondary_area_unit, state, buffers);
+        set_patch_from_property(active_color, state, buffers);
+        set_patch_from_property(completed_color, state, buffers);
+        set_patch_from_property(popup_options, state, buffers);
+        set_patch_from_property(capture_z_index, state, buffers);
+    }
 
-         xw::set_property_from_patch(primary_length_unit, patch, buffers);
-         xw::set_property_from_patch(secondary_length_unit, patch, buffers);
-         xw::set_property_from_patch(primary_area_unit, patch, buffers);
-         xw::set_property_from_patch(secondary_area_unit, patch, buffers);
-         xw::set_property_from_patch(active_color, patch, buffers);
-         xw::set_property_from_patch(completed_color, patch, buffers);
-         xw::set_property_from_patch(popup_options, patch, buffers);
-         xw::set_property_from_patch(capture_z_index, patch, buffers);
-     }
+    template <class D>
+    inline void xmeasure_control<D>::apply_patch(const xeus::xjson& patch,
+                                                 const xeus::buffer_sequence& buffers)
+    {
+        base_type::apply_patch(patch, buffers);
+
+        using xw::set_property_from_patch;
+
+        set_property_from_patch(primary_length_unit, patch, buffers);
+        set_property_from_patch(secondary_length_unit, patch, buffers);
+        set_property_from_patch(primary_area_unit, patch, buffers);
+        set_property_from_patch(secondary_area_unit, patch, buffers);
+        set_property_from_patch(active_color, patch, buffers);
+        set_property_from_patch(completed_color, patch, buffers);
+        set_property_from_patch(popup_options, patch, buffers);
+        set_property_from_patch(capture_z_index, patch, buffers);
+    }
 
     template <class D>
     inline xmeasure_control<D>::xmeasure_control()

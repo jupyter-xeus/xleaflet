@@ -19,17 +19,17 @@
 
 #include "xwidgets/xcolor.hpp"
 #include "xwidgets/xeither.hpp"
-#include "xwidgets/xmaterialize.hpp"
-#include "xwidgets/xstyle.hpp"
-#include "xwidgets/xobject.hpp"
 #include "xwidgets/xholder.hpp"
+#include "xwidgets/xmaterialize.hpp"
+#include "xwidgets/xobject.hpp"
+#include "xwidgets/xstyle.hpp"
 #include "xwidgets/xwidget.hpp"
 
-#include "xleaflet_config.hpp"
-#include "xlayer.hpp"
-#include "xtile_layer.hpp"
-#include "xcontrol.hpp"
 #include "xbasemaps.hpp"
+#include "xcontrol.hpp"
+#include "xlayer.hpp"
+#include "xleaflet_config.hpp"
+#include "xtile_layer.hpp"
 
 namespace xlf
 {
@@ -140,34 +140,36 @@ namespace xlf
     {
         base_type::serialize_state(state, buffers);
 
-        xw::set_patch_from_property(center, state, buffers);
-        xw::set_patch_from_property(zoom_start, state, buffers);
-        xw::set_patch_from_property(zoom, state, buffers);
-        xw::set_patch_from_property(max_zoom, state, buffers);
-        xw::set_patch_from_property(min_zoom, state, buffers);
-        xw::set_patch_from_property(dragging, state, buffers);
-        xw::set_patch_from_property(touch_zoom, state, buffers);
-        xw::set_patch_from_property(scroll_wheel_zoom, state, buffers);
-        xw::set_patch_from_property(double_click_zoom, state, buffers);
-        xw::set_patch_from_property(box_zoom, state, buffers);
-        xw::set_patch_from_property(tap, state, buffers);
-        xw::set_patch_from_property(tap_tolerance, state, buffers);
-        xw::set_patch_from_property(world_copy_jump, state, buffers);
-        xw::set_patch_from_property(close_popup_on_click, state, buffers);
-        xw::set_patch_from_property(keyboard, state, buffers);
-        xw::set_patch_from_property(keyboard_pan_offset, state, buffers);
-        xw::set_patch_from_property(keyboard_zoom_offset, state, buffers);
-        xw::set_patch_from_property(inertia, state, buffers);
-        xw::set_patch_from_property(inertia_deceleration, state, buffers);
-        xw::set_patch_from_property(inertia_max_speed, state, buffers);
-        xw::set_patch_from_property(zoom_control, state, buffers);
-        xw::set_patch_from_property(attribution_control, state, buffers);
-        xw::set_patch_from_property(zoom_animation_threshold, state, buffers);
-        xw::set_patch_from_property(options, state, buffers);
-        xw::set_patch_from_property(bounds, state, buffers);
-        xw::set_patch_from_property(bounds_polygon, state, buffers);
-        xw::set_patch_from_property(layers, state, buffers);
-        xw::set_patch_from_property(controls, state, buffers);
+        using xw::set_patch_from_property;
+
+        set_patch_from_property(center, state, buffers);
+        set_patch_from_property(zoom_start, state, buffers);
+        set_patch_from_property(zoom, state, buffers);
+        set_patch_from_property(max_zoom, state, buffers);
+        set_patch_from_property(min_zoom, state, buffers);
+        set_patch_from_property(dragging, state, buffers);
+        set_patch_from_property(touch_zoom, state, buffers);
+        set_patch_from_property(scroll_wheel_zoom, state, buffers);
+        set_patch_from_property(double_click_zoom, state, buffers);
+        set_patch_from_property(box_zoom, state, buffers);
+        set_patch_from_property(tap, state, buffers);
+        set_patch_from_property(tap_tolerance, state, buffers);
+        set_patch_from_property(world_copy_jump, state, buffers);
+        set_patch_from_property(close_popup_on_click, state, buffers);
+        set_patch_from_property(keyboard, state, buffers);
+        set_patch_from_property(keyboard_pan_offset, state, buffers);
+        set_patch_from_property(keyboard_zoom_offset, state, buffers);
+        set_patch_from_property(inertia, state, buffers);
+        set_patch_from_property(inertia_deceleration, state, buffers);
+        set_patch_from_property(inertia_max_speed, state, buffers);
+        set_patch_from_property(zoom_control, state, buffers);
+        set_patch_from_property(attribution_control, state, buffers);
+        set_patch_from_property(zoom_animation_threshold, state, buffers);
+        set_patch_from_property(options, state, buffers);
+        set_patch_from_property(bounds, state, buffers);
+        set_patch_from_property(bounds_polygon, state, buffers);
+        set_patch_from_property(layers, state, buffers);
+        set_patch_from_property(controls, state, buffers);
     }
 
     template <class D>
@@ -175,34 +177,36 @@ namespace xlf
     {
         base_type::apply_patch(patch, buffers);
 
-        xw::set_property_from_patch(center, patch, buffers);
-        xw::set_property_from_patch(zoom_start, patch, buffers);
-        xw::set_property_from_patch(zoom, patch, buffers);
-        xw::set_property_from_patch(max_zoom, patch, buffers);
-        xw::set_property_from_patch(min_zoom, patch, buffers);
-        xw::set_property_from_patch(dragging, patch, buffers);
-        xw::set_property_from_patch(touch_zoom, patch, buffers);
-        xw::set_property_from_patch(scroll_wheel_zoom, patch, buffers);
-        xw::set_property_from_patch(double_click_zoom, patch, buffers);
-        xw::set_property_from_patch(box_zoom, patch, buffers);
-        xw::set_property_from_patch(tap, patch, buffers);
-        xw::set_property_from_patch(tap_tolerance, patch, buffers);
-        xw::set_property_from_patch(world_copy_jump, patch, buffers);
-        xw::set_property_from_patch(close_popup_on_click, patch, buffers);
-        xw::set_property_from_patch(keyboard, patch, buffers);
-        xw::set_property_from_patch(keyboard_pan_offset, patch, buffers);
-        xw::set_property_from_patch(keyboard_zoom_offset, patch, buffers);
-        xw::set_property_from_patch(inertia, patch, buffers);
-        xw::set_property_from_patch(inertia_deceleration, patch, buffers);
-        xw::set_property_from_patch(inertia_max_speed, patch, buffers);
-        xw::set_property_from_patch(zoom_control, patch, buffers);
-        xw::set_property_from_patch(attribution_control, patch, buffers);
-        xw::set_property_from_patch(zoom_animation_threshold, patch, buffers);
-        xw::set_property_from_patch(options, patch, buffers);
-        xw::set_property_from_patch(bounds, patch, buffers);
-        xw::set_property_from_patch(bounds_polygon, patch, buffers);
-        xw::set_property_from_patch(layers, patch, buffers);
-        xw::set_property_from_patch(controls, patch, buffers);
+        using xw::set_property_from_patch;
+
+        set_property_from_patch(center, patch, buffers);
+        set_property_from_patch(zoom_start, patch, buffers);
+        set_property_from_patch(zoom, patch, buffers);
+        set_property_from_patch(max_zoom, patch, buffers);
+        set_property_from_patch(min_zoom, patch, buffers);
+        set_property_from_patch(dragging, patch, buffers);
+        set_property_from_patch(touch_zoom, patch, buffers);
+        set_property_from_patch(scroll_wheel_zoom, patch, buffers);
+        set_property_from_patch(double_click_zoom, patch, buffers);
+        set_property_from_patch(box_zoom, patch, buffers);
+        set_property_from_patch(tap, patch, buffers);
+        set_property_from_patch(tap_tolerance, patch, buffers);
+        set_property_from_patch(world_copy_jump, patch, buffers);
+        set_property_from_patch(close_popup_on_click, patch, buffers);
+        set_property_from_patch(keyboard, patch, buffers);
+        set_property_from_patch(keyboard_pan_offset, patch, buffers);
+        set_property_from_patch(keyboard_zoom_offset, patch, buffers);
+        set_property_from_patch(inertia, patch, buffers);
+        set_property_from_patch(inertia_deceleration, patch, buffers);
+        set_property_from_patch(inertia_max_speed, patch, buffers);
+        set_property_from_patch(zoom_control, patch, buffers);
+        set_property_from_patch(attribution_control, patch, buffers);
+        set_property_from_patch(zoom_animation_threshold, patch, buffers);
+        set_property_from_patch(options, patch, buffers);
+        set_property_from_patch(bounds, patch, buffers);
+        set_property_from_patch(bounds_polygon, patch, buffers);
+        set_property_from_patch(layers, patch, buffers);
+        set_property_from_patch(controls, patch, buffers);
     }
 
     template <class D>
@@ -218,7 +222,8 @@ namespace xlf
         this->layers().emplace_back(xw::make_id_holder<xlayer>(l.id()));
         xeus::xjson state;
         xeus::buffer_sequence buffers;
-        xw::set_patch_from_property(layers, state, buffers);
+        using xw::set_patch_from_property;
+        set_patch_from_property(layers, state, buffers);
         this->send_patch(std::move(state), std::move(buffers));
     }
 
@@ -229,7 +234,8 @@ namespace xlf
         this->layers().emplace_back(xw::make_owning_holder(std::move(l)));
         xeus::xjson state;
         xeus::buffer_sequence buffers;
-        xw::set_patch_from_property(layers, state, buffers);
+        using xw::set_patch_from_property;
+        set_patch_from_property(layers, state, buffers);
         this->send_patch(std::move(state), std::move(buffers));
     }
 
@@ -248,7 +254,8 @@ namespace xlf
         );
         xeus::xjson state;
         xeus::buffer_sequence buffers;
-        xw::set_patch_from_property(layers, state, buffers);
+        using xw::set_patch_from_property;
+        set_patch_from_property(layers, state, buffers);
         this->send_patch(std::move(state), std::move(buffers));
     }
 
@@ -258,7 +265,8 @@ namespace xlf
         this->layers() = {};
         xeus::xjson state;
         xeus::buffer_sequence buffers;
-        xw::set_patch_from_property(layers, state, buffers);
+        using xw::set_patch_from_property;
+        set_patch_from_property(layers, state, buffers);
         this->send_patch(std::move(state), std::move(buffers));
     }
 
@@ -269,7 +277,8 @@ namespace xlf
         this->controls().emplace_back(xw::make_id_holder<xcontrol>(c.id()));
         xeus::xjson state;
         xeus::buffer_sequence buffers;
-        xw::set_patch_from_property(controls, state, buffers);
+        using xw::set_patch_from_property;
+        set_patch_from_property(controls, state, buffers);
         this->send_patch(std::move(state), std::move(buffers));
     }
 
@@ -280,7 +289,8 @@ namespace xlf
         this->controls().emplace_back(xw::make_owning_holder(std::move(c)));
         xeus::xjson state;
         xeus::buffer_sequence buffers;
-        xw::set_patch_from_property(controls, state, buffers);
+        using xw::set_patch_from_property;
+        set_patch_from_property(controls, state, buffers);
         this->send_patch(std::move(state), std::move(buffers));
     }
 
@@ -299,7 +309,8 @@ namespace xlf
         );
         xeus::xjson state;
         xeus::buffer_sequence buffers;
-        xw::set_patch_from_property(controls, state, buffers);
+        using xw::set_patch_from_property;
+        set_patch_from_property(controls, state, buffers);
         this->send_patch(std::move(state), std::move(buffers));
     }
 
@@ -309,7 +320,8 @@ namespace xlf
         this->controls() = {};
         xeus::xjson state;
         xeus::buffer_sequence buffers;
-        xw::set_patch_from_property(controls, state, buffers);
+        using xw::set_patch_from_property;
+        set_patch_from_property(controls, state, buffers);
         this->send_patch(std::move(state), std::move(buffers));
     }
 

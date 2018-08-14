@@ -10,8 +10,8 @@
 #ifndef XLEAFLET_HEATMAP_HPP
 #define XLEAFLET_HEATMAP_HPP
 
-#include <string>
 #include <array>
+#include <string>
 #include <vector>
 
 #include "xwidgets/xmaterialize.hpp"
@@ -68,31 +68,37 @@ namespace xlf
      **************************/
 
     template <class D>
-    inline void xheatmap<D>::serialize_state(xeus::xjson& state, xeus::buffer_sequence& buffers) const
+    inline void xheatmap<D>::serialize_state(xeus::xjson& state,
+                                             xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        xw::set_patch_from_property(locations, state, buffers);
-        xw::set_patch_from_property(min_opacity, state, buffers);
-        xw::set_patch_from_property(max_zoom, state, buffers);
-        xw::set_patch_from_property(max, state, buffers);
-        xw::set_patch_from_property(radius, state, buffers);
-        xw::set_patch_from_property(blur, state, buffers);
-        xw::set_patch_from_property(gradient, state, buffers);
+        using xw::set_patch_from_property;
+
+        set_patch_from_property(locations, state, buffers);
+        set_patch_from_property(min_opacity, state, buffers);
+        set_patch_from_property(max_zoom, state, buffers);
+        set_patch_from_property(max, state, buffers);
+        set_patch_from_property(radius, state, buffers);
+        set_patch_from_property(blur, state, buffers);
+        set_patch_from_property(gradient, state, buffers);
     }
 
     template <class D>
-    inline void xheatmap<D>::apply_patch(const xeus::xjson& patch, const xeus::buffer_sequence& buffers)
+    inline void xheatmap<D>::apply_patch(const xeus::xjson& patch,
+                                         const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
 
-        xw::set_property_from_patch(locations, patch, buffers);
-        xw::set_property_from_patch(min_opacity, patch, buffers);
-        xw::set_property_from_patch(max_zoom, patch, buffers);
-        xw::set_property_from_patch(max, patch, buffers);
-        xw::set_property_from_patch(radius, patch, buffers);
-        xw::set_property_from_patch(blur, patch, buffers);
-        xw::set_property_from_patch(gradient, patch, buffers);
+        using xw::set_property_from_patch;
+
+        set_property_from_patch(locations, patch, buffers);
+        set_property_from_patch(min_opacity, patch, buffers);
+        set_property_from_patch(max_zoom, patch, buffers);
+        set_property_from_patch(max, patch, buffers);
+        set_property_from_patch(radius, patch, buffers);
+        set_property_from_patch(blur, patch, buffers);
+        set_property_from_patch(gradient, patch, buffers);
     }
 
     template <class D>

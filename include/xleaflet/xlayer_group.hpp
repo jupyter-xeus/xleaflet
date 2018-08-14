@@ -10,14 +10,15 @@
 #define XLEAFLET_LAYER_GROUP_HPP
 
 #include <algorithm>
+#include <utility>
 #include <vector>
 
-#include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xholder.hpp"
+#include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xwidget.hpp"
 
-#include "xleaflet_config.hpp"
 #include "xlayer.hpp"
+#include "xleaflet_config.hpp"
 
 namespace xlf
 {
@@ -77,19 +78,25 @@ namespace xlf
      *******************************/
 
     template <class D>
-    inline void xlayer_group<D>::serialize_state(xeus::xjson& state, xeus::buffer_sequence& buffers) const
+    inline void xlayer_group<D>::serialize_state(xeus::xjson& state,
+                                                 xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        xw::set_patch_from_property(layers, state, buffers);
+        using xw::set_patch_from_property;
+
+        set_patch_from_property(layers, state, buffers);
     }
 
     template <class D>
-    inline void xlayer_group<D>::apply_patch(const xeus::xjson& patch, const xeus::buffer_sequence& buffers)
+    inline void xlayer_group<D>::apply_patch(const xeus::xjson& patch,
+                                             const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
 
-        xw::set_property_from_patch(layers, patch, buffers);
+        using xw::set_property_from_patch;
+
+        set_property_from_patch(layers, patch, buffers);
     }
 
     template <class D>
@@ -99,7 +106,8 @@ namespace xlf
         this->layers().emplace_back(xw::make_id_holder<xlayer>(l.id()));
         xeus::xjson state;
         xeus::buffer_sequence buffers;
-        xw::set_patch_from_property(layers, state, buffers);
+        using xw::set_patch_from_property;
+        set_patch_from_property(layers, state, buffers);
         this->send_patch(std::move(state), std::move(buffers));
     }
 
@@ -110,7 +118,8 @@ namespace xlf
         this->layers().emplace_back(xw::make_owning_holder(std::move(l)));
         xeus::xjson state;
         xeus::buffer_sequence buffers;
-        xw::set_patch_from_property(layers, state, buffers);
+        using xw::set_patch_from_property;
+        set_patch_from_property(layers, state, buffers);
         this->send_patch(std::move(state), std::move(buffers));
     }
 
@@ -129,7 +138,8 @@ namespace xlf
         );
         xeus::xjson state;
         xeus::buffer_sequence buffers;
-        xw::set_patch_from_property(layers, state, buffers);
+        using xw::set_patch_from_property;
+        set_patch_from_property(layers, state, buffers);
         this->send_patch(std::move(state), std::move(buffers));
     }
 
@@ -139,7 +149,8 @@ namespace xlf
         this->layers() = {};
         xeus::xjson state;
         xeus::buffer_sequence buffers;
-        xw::set_patch_from_property(layers, state, buffers);
+        using xw::set_patch_from_property;
+        set_patch_from_property(layers, state, buffers);
         this->send_patch(std::move(state), std::move(buffers));
     }
 

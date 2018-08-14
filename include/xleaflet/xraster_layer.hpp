@@ -14,8 +14,8 @@
 #include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xwidget.hpp"
 
-#include "xleaflet_config.hpp"
 #include "xlayer.hpp"
+#include "xleaflet_config.hpp"
 
 namespace xlf
 {
@@ -58,21 +58,27 @@ namespace xlf
      ********************************/
 
     template <class D>
-    inline void xraster_layer<D>::serialize_state(xeus::xjson& state, xeus::buffer_sequence& buffers) const
+    inline void xraster_layer<D>::serialize_state(xeus::xjson& state,
+                                                  xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        xw::set_patch_from_property(opacity, state, buffers);
-        xw::set_patch_from_property(visible, state, buffers);
+        using xw::set_patch_from_property;
+
+        set_patch_from_property(opacity, state, buffers);
+        set_patch_from_property(visible, state, buffers);
     }
 
     template <class D>
-    inline void xraster_layer<D>::apply_patch(const xeus::xjson& patch, const xeus::buffer_sequence& buffers)
+    inline void xraster_layer<D>::apply_patch(const xeus::xjson& patch,
+                                              const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
 
-        xw::set_property_from_patch(opacity, patch, buffers);
-        xw::set_property_from_patch(visible, patch, buffers);
+        using xw::set_property_from_patch;
+
+        set_property_from_patch(opacity, patch, buffers);
+        set_property_from_patch(visible, patch, buffers);
     }
 
     template <class D>
@@ -87,7 +93,7 @@ namespace xlf
     template <class D>
     inline void xraster_layer<D>::setup_properties()
     {
-        //TODO: Create a class (in xproperty?) for bounded integer/float/double
+        // TODO: Create a class (in xproperty?) for bounded integer/float/double
         // instead of having a validator when needed
 
         // Opacity should be bounded between 0.0 and 1.0

@@ -13,8 +13,8 @@
 #include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xwidget.hpp"
 
-#include "xleaflet_config.hpp"
 #include "xfeature_group.hpp"
+#include "xleaflet_config.hpp"
 
 namespace xlf
 {
@@ -64,37 +64,43 @@ namespace xlf
      * xgeo_json implementation *
      ****************************/
 
-     template <class D>
-     inline void xgeo_json<D>::serialize_state(xeus::xjson& state, xeus::buffer_sequence& buffers) const
-     {
-         base_type::serialize_state(state, buffers);
+    template <class D>
+    inline void xgeo_json<D>::serialize_state(xeus::xjson& state,
+                                              xeus::buffer_sequence& buffers) const
+    {
+        base_type::serialize_state(state, buffers);
 
-         xw::set_patch_from_property(data, state, buffers);
-         xw::set_patch_from_property(style, state, buffers);
-         xw::set_patch_from_property(hover_style, state, buffers);
-     }
+        using xw::set_patch_from_property;
 
-     template <class D>
-     inline void xgeo_json<D>::apply_patch(const xeus::xjson& patch, const xeus::buffer_sequence& buffers)
-     {
-         base_type::apply_patch(patch, buffers);
+        set_patch_from_property(data, state, buffers);
+        set_patch_from_property(style, state, buffers);
+        set_patch_from_property(hover_style, state, buffers);
+    }
 
-         xw::set_property_from_patch(data, patch, buffers);
-         xw::set_property_from_patch(style, patch, buffers);
-         xw::set_property_from_patch(hover_style, patch, buffers);
-     }
+    template <class D>
+    inline void xgeo_json<D>::apply_patch(const xeus::xjson& patch,
+                                          const xeus::buffer_sequence& buffers)
+    {
+        base_type::apply_patch(patch, buffers);
 
-     template <class D>
-     inline void xgeo_json<D>::on_click(callback_type callback)
-     {
-         m_click_callbacks.emplace_back(std::move(callback));
-     }
+        using xw::set_property_from_patch;
 
-     template <class D>
-     inline void xgeo_json<D>::on_hover(callback_type callback)
-     {
-         m_hover_callbacks.emplace_back(std::move(callback));
-     }
+        set_property_from_patch(data, patch, buffers);
+        set_property_from_patch(style, patch, buffers);
+        set_property_from_patch(hover_style, patch, buffers);
+    }
+
+    template <class D>
+    inline void xgeo_json<D>::on_click(callback_type callback)
+    {
+        m_click_callbacks.emplace_back(std::move(callback));
+    }
+
+    template <class D>
+    inline void xgeo_json<D>::on_hover(callback_type callback)
+    {
+        m_hover_callbacks.emplace_back(std::move(callback));
+    }
 
     template <class D>
     inline xgeo_json<D>::xgeo_json()
