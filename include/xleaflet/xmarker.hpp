@@ -11,10 +11,14 @@
 
 #include <string>
 
+#include "xtl/xoptional.hpp"
+
 #include "xwidgets/xmaterialize.hpp"
+#include "xwidgets/xholder.hpp"
 #include "xwidgets/xwidget.hpp"
 
 #include "xui_layer.hpp"
+#include "xicon.hpp"
 
 namespace xlf
 {
@@ -30,6 +34,7 @@ namespace xlf
         using move_callback_type = std::function<void(const xeus::xjson&)>;
 
         using point_type = std::array<double, 2>;
+        using icon_type = xw::xholder<xicon>;
 
         using base_type = xui_layer<D>;
         using derived_type = D;
@@ -51,6 +56,9 @@ namespace xlf
         // TODO: bounded between 0.0 and 1.0
         XPROPERTY(float, derived_type, opacity, 1.0);
         XPROPERTY(bool, derived_type, visible, true);
+        XPROPERTY(xtl::xoptional<icon_type>, derived_type, icon);
+        XPROPERTY(float, derived_type, rotation_angle, 0.);
+        XPROPERTY(std::string, derived_type, rotation_origin, "");
         XPROPERTY(int, derived_type, rise_offset, 250);
 
     protected:
@@ -90,6 +98,9 @@ namespace xlf
         set_patch_from_property(rise_on_hover, state, buffers);
         set_patch_from_property(opacity, state, buffers);
         set_patch_from_property(visible, state, buffers);
+        set_patch_from_property(icon, state, buffers);
+        set_patch_from_property(rotation_angle, state, buffers);
+        set_patch_from_property(rotation_origin, state, buffers);
         set_patch_from_property(rise_offset, state, buffers);
     }
 
@@ -110,6 +121,9 @@ namespace xlf
         set_property_from_patch(rise_on_hover, patch, buffers);
         set_property_from_patch(opacity, patch, buffers);
         set_property_from_patch(visible, patch, buffers);
+        set_property_from_patch(icon, patch, buffers);
+        set_property_from_patch(rotation_angle, patch, buffers);
+        set_property_from_patch(rotation_origin, patch, buffers);
         set_property_from_patch(rise_offset, patch, buffers);
     }
 
@@ -143,7 +157,9 @@ namespace xlf
                 "title",
                 "alt",
                 "rise_on_hover",
-                "rise_offset"
+                "rise_offset",
+                "rotation_angle",
+                "rotation_origin"
             }
         );
     }
