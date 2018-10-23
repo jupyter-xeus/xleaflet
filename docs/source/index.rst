@@ -58,6 +58,7 @@ This software is licensed under the BSD-3-Clause license. See the LICENSE file f
    api_reference/map
    api_reference/tile_layer
    api_reference/marker
+   api_reference/icon
    api_reference/popup
    api_reference/wms_layer
    api_reference/image_video_overlay

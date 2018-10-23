@@ -58,6 +58,9 @@ alt                     ``std::string``              ""                      Tex
 rise_on_hover           ``bool``                     false                   The z-index offset used for the `rise_on_hover` feature
 opacity                 ``float``                    1.0
 visible                 ``bool``                     true
+icon                    ``xlf::icon``                                        The icon for the marker
+rotation_angle          ``int``                      0                       The rotation angle of the marker in degrees
+rotation_origin         ``std::string``              ""                      The rotation origin of the marker
 rise_offset             ``int``                      250                     The z-index offset used for the `rise_on_hover` feature
 =====================   =========================    =====================   ===
 
