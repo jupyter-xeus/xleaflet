@@ -10,7 +10,7 @@
 #ifndef XLEAFLET_POLYLINE_HPP
 #define XLEAFLET_POLYLINE_HPP
 
-#include <array>
+#include "xtensor/xexpression_holder.hpp"
 
 #include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xwidget.hpp"
@@ -28,7 +28,7 @@ namespace xlf
     {
     public:
 
-        using point_type = std::array<double, 2>;
+        using locations_type = xt::xexpression_holder;
 
         using base_type = xpath<D>;
         using derived_type = D;
@@ -36,7 +36,7 @@ namespace xlf
         void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
         void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
 
-        XPROPERTY(std::vector<point_type>, derived_type, locations);
+        XPROPERTY(locations_type, derived_type, locations);
         XPROPERTY(float, derived_type, smooth_factor, 1.0);
         XPROPERTY(bool, derived_type, no_clip, false);
 
@@ -97,7 +97,7 @@ namespace xlf
         this->_model_name() = "LeafletPolylineModel";
         this->_view_name() = "LeafletPolylineView";
 
-        this->locations() = {};
+        this->locations() = xt::xexpression_holder();
 
         this->options().insert(
             this->options().end(),

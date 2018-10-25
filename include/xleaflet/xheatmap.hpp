@@ -10,9 +10,7 @@
 #ifndef XLEAFLET_HEATMAP_HPP
 #define XLEAFLET_HEATMAP_HPP
 
-#include <array>
-#include <string>
-#include <vector>
+#include "xtensor/xexpression_holder.hpp"
 
 #include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xwidget.hpp"
@@ -32,8 +30,7 @@ namespace xlf
     public:
 
         // Lat, lng, intensity
-        using point_type = std::array<double, 3>;
-        using locations_type = std::vector<point_type>;
+        using locations_type = xt::xexpression_holder;
 
         using base_type = xraster_layer<D>;
         using derived_type = D;
@@ -133,6 +130,8 @@ namespace xlf
                 "gradient"
             }
         );
+
+        this->locations() = xt::xexpression_holder();
     }
 }
 

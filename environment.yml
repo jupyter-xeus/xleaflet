@@ -3,6 +3,7 @@ channels:
   - QuantStack
   - conda-forge
 dependencies:
+  - xtensor>=0.18.0
   - xwidgets=0.13.1
   - xleaflet=0.3.1
   - xeus-cling=0.4.7
