@@ -9,6 +9,8 @@
 #ifndef XLEAFLET_CONFIG_HPP
 #define XLEAFLET_CONFIG_HPP
 
+#include <string>
+
 // Visual C++ declspec macros
 #ifdef _WIN32
     #ifdef XLEAFLET_EXPORTS
@@ -22,8 +24,8 @@
 
 // Project version
 #define XLEAFLET_VERSION_MAJOR 0
-#define XLEAFLET_VERSION_MINOR 3
-#define XLEAFLET_VERSION_PATCH 1
+#define XLEAFLET_VERSION_MINOR 4
+#define XLEAFLET_VERSION_PATCH 0
 
 // Binary version
 #define XLEAFLET_BINARY_CURRENT 1
@@ -44,6 +46,11 @@
 #define XJUPYTER_LEAFLET_VERSION XLEAFLET_STRINGIFY(XLEAFLET_CONCATENATE(XJUPYTER_LEAFLET_VERSION_MAJOR,   \
                              XLEAFLET_CONCATENATE(.,XLEAFLET_CONCATENATE(XJUPYTER_LEAFLET_VERSION_MINOR,   \
                                                   XLEAFLET_CONCATENATE(.,XJUPYTER_LEAFLET_VERSION_PATCH)))))
+
+inline std::string jupyter_leaflet_semver()
+{
+    return std::string("^") + XJUPYTER_LEAFLET_VERSION;
+}
 
 #ifdef __CLING__
 #include "xleaflet_config_cling.hpp"

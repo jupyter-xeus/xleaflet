@@ -78,15 +78,16 @@ http://xleaflet.readthedocs.io/
 
 All the dependencies of xleaflet are available for the conda package manager.
 
-| `xleaflet` | `xwidgets`  |  `xeus`         |
-|------------|-------------|-----------------|
-|  master    |   ~0.13.1   |  >=0.14.1,<0.15 |
-|  0.3.1     |   ~0.13.1   |  >=0.14.1,<0.15 |
-|  0.3.0     |   ~0.13.0   |  >=0.13.0,<0.14 |
-|  0.2.1     |   ~0.12.2   |  >=0.13.0,<0.14 |
-|  0.2.0     |   ~0.12.0   |  >=0.13.0,<0.14 |
-|  0.1.0     |   ~0.10.0   |  >=0.12.0,<0.13 |
-|  0.0.1     |   ~0.9.0    |  >=0.12.0,<0.13 |
+| `xleaflet` | `xwidgets`  |  `xeus`         |  `xtensor`      |  
+|------------|-------------|-----------------|-----------------|
+|  master    |   ~0.14.0   |  >=0.15.0,<0.16 |  >=0.18.1,<0.19 |
+|  0.4.0     |   ~0.14.0   |  >=0.15.0,<0.16 |  >=0.18.1,<0.19 |
+|  0.3.1     |   ~0.13.1   |  >=0.14.1,<0.15 |                 |
+|  0.3.0     |   ~0.13.0   |  >=0.13.0,<0.14 |                 |
+|  0.2.1     |   ~0.12.2   |  >=0.13.0,<0.14 |                 |
+|  0.2.0     |   ~0.12.0   |  >=0.13.0,<0.14 |                 |
+|  0.1.0     |   ~0.10.0   |  >=0.12.0,<0.13 |                 |
+|  0.0.1     |   ~0.9.0    |  >=0.12.0,<0.13 |                 |
 
 ## License
 
@@ -94,4 +95,3 @@ We use a shared copyright model that enables all contributors to maintain the
 copyright on their contributions.
 
 This software is licensed under the BSD-3-Clause license. See the [LICENSE](LICENSE) file for details.
-

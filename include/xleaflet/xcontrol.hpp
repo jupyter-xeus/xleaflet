@@ -91,8 +91,8 @@ namespace xlf
         this->_view_module() = "jupyter-leaflet";
         this->_model_name() = "LeafletControlModel";
         this->_view_name() = "LeafletControlView";
-        this->_model_module_version() = XJUPYTER_LEAFLET_VERSION;
-        this->_view_module_version() = XJUPYTER_LEAFLET_VERSION;
+        this->_model_module_version() = jupyter_leaflet_semver();
+        this->_view_module_version() = jupyter_leaflet_semver();
 
         this->options() = std::vector<std::string>();
     }
