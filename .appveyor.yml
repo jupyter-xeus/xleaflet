@@ -4,8 +4,12 @@ platform:
   - x64
 
 image:
-  - Previous Visual Studio 2017
+  - Visual Studio 2017
   - Visual Studio 2015
+
+matrix:
+  allow_failures:
+      - image: Visual Studio 2017
 
 environment:
   matrix:
@@ -15,8 +19,8 @@ init:
   - "ECHO %MINICONDA%"
   - if "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2015" set VCVARPATH="C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"
   - if "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2015" set VCARGUMENT=%PLATFORM%
-  - if "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Previous Visual Studio 2017" if "%PLATFORM%" == "x64" set VCVARPATH="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
-  - if "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Previous Visual Studio 2017" if "%PLATFORM%" == "x86" set VCVARPATH="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars32.bat"
+  - if "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" if "%PLATFORM%" == "x64" set VCVARPATH="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
+  - if "%APPVEYOR_BUILD_WORKER_IMAGE%" == "Visual Studio 2017" if "%PLATFORM%" == "x86" set VCVARPATH="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars32.bat"
   - echo "%VCVARPATH% %VCARGUMENT%"
   - "%VCVARPATH% %VCARGUMENT%"
   - ps: if($env:Platform -eq "x64"){Start-FileDownload 'http://repo.continuum.io/miniconda/Miniconda3-latest-Windows-x86_64.exe' C:\Miniconda.exe; echo "Done"}
@@ -28,7 +32,7 @@ install:
   - conda config --set always_yes yes --set changeps1 no
   - conda update -q conda
   - conda info -a
-  - conda install gtest cmake xeus=0.15.0 cppzmq=4.3.0 xproperty=0.7 xtl=0.4 xwidgets=0.14.0 xtensor=0.18.1 -c QuantStack -c conda-forge
+  - conda install gtest cmake xeus=0.17.0 cppzmq=4.3.0 xproperty=0.7 xtl=0.5 xwidgets=0.15.0 xtensor=0.19.0 -c QuantStack -c conda-forge
   - cmake -G "NMake Makefiles" -D CMAKE_INSTALL_PREFIX=%MINICONDA%\\LIBRARY -DBUILD_TESTS=ON .
   - nmake
   - nmake test_xleaflet
