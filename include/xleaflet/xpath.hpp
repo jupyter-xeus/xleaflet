@@ -40,13 +40,13 @@ namespace xlf
         XPROPERTY(int, derived_type, weight, 5);
         XPROPERTY(bool, derived_type, fill, true);
         XPROPERTY(xw::html_color, derived_type, fill_color, "#0033FF");
-        XPROPERTY(float, derived_type, fill_opacity, 0.2);
+        XPROPERTY(double, derived_type, fill_opacity, 0.2);
         XPROPERTY(std::string, derived_type, dash_array, "");
         XPROPERTY(std::string, derived_type, line_cap, "");
         XPROPERTY(std::string, derived_type, line_join, "");
         XPROPERTY(std::string, derived_type, pointer_events, "");
         XPROPERTY(std::string, derived_type, class_name, "");
-        XPROPERTY(float, derived_type, opacity, 1.0);
+        XPROPERTY(double, derived_type, opacity, 1.0);
 
     protected:
 
