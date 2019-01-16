@@ -39,11 +39,11 @@ namespace xlf
         void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
 
         XPROPERTY(locations_type, derived_type, locations);
-        XPROPERTY(float, derived_type, min_opacity, 0.05);
+        XPROPERTY(double, derived_type, min_opacity, 0.05);
         XPROPERTY(int, derived_type, max_zoom, 18);
-        XPROPERTY(float, derived_type, max, 1.0);
-        XPROPERTY(float, derived_type, radius, 25.0);
-        XPROPERTY(float, derived_type, blur, 15.0);
+        XPROPERTY(double, derived_type, max, 1.0);
+        XPROPERTY(double, derived_type, radius, 25.0);
+        XPROPERTY(double, derived_type, blur, 15.0);
         XPROPERTY(xeus::xjson, derived_type, gradient);
 
     protected:

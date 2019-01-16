@@ -34,7 +34,7 @@ namespace xlf
         void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
         void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
 
-        XPROPERTY(float, derived_type, opacity, 1.0);
+        XPROPERTY(double, derived_type, opacity, 1.0);
         XPROPERTY(bool, derived_type, visible, true);
 
     protected:

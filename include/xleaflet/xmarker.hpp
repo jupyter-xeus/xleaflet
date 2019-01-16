@@ -54,10 +54,10 @@ namespace xlf
         XPROPERTY(std::string, derived_type, alt, "");
         XPROPERTY(bool, derived_type, rise_on_hover, false);
         // TODO: bounded between 0.0 and 1.0
-        XPROPERTY(float, derived_type, opacity, 1.0);
+        XPROPERTY(double, derived_type, opacity, 1.0);
         XPROPERTY(bool, derived_type, visible, true);
         XPROPERTY(xtl::xoptional<icon_type>, derived_type, icon);
-        XPROPERTY(float, derived_type, rotation_angle, 0.);
+        XPROPERTY(double, derived_type, rotation_angle, 0.);
         XPROPERTY(std::string, derived_type, rotation_origin, "");
         XPROPERTY(int, derived_type, rise_offset, 250);
 

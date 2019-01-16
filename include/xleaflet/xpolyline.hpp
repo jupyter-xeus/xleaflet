@@ -37,7 +37,7 @@ namespace xlf
         void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
 
         XPROPERTY(locations_type, derived_type, locations);
-        XPROPERTY(float, derived_type, smooth_factor, 1.0);
+        XPROPERTY(double, derived_type, smooth_factor, 1.0);
         XPROPERTY(bool, derived_type, no_clip, false);
 
     protected:
