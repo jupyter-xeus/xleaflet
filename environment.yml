@@ -1,12 +1,10 @@
 name: xleaflet
 channels:
-  - QuantStack
   - conda-forge
 dependencies:
-  - xtensor=0.19.1
-  - xwidgets=0.16.0
+  - xtensor=0.19.2
+  - xwidgets=0.16.1
   - xleaflet=0.6.0
-  - xeus-cling=0.4.10
+  - xeus-cling=0.4.11
   - ipyleaflet>=0.9.1
-  - notebook >=5.4
   - widgetsnbextension >=3.0.0
