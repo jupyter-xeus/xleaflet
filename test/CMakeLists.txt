@@ -14,8 +14,9 @@ set(CMAKE_BUILD_TYPE Release CACHE STRING "Choose the type of build." FORCE)
 if (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
     project(xleaflet-test)
 
-    find_package(xwidgets REQUIRED CONFIG)
+    find_package(xleaflet REQUIRED CONFIG)
     set(XWIDGETS_INCLUDE_DIR ${xwidgets_INCLUDE_DIRS})
+    set(XLEAFLET_INCLUDE_DIR ${xleaflet_INCLUDE_DIRS})
 endif ()
 
 # Dependencies
@@ -45,7 +46,7 @@ if(DOWNLOAD_GTEST OR GTEST_SRC_DIR)
     # Add googletest directly to our build. This defines
     # the gtest and gtest_main targets.
     add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/googletest-src
-                     ${CMAKE_CURRENT_BINARY_DIR}/googletest-build)
+                     ${CMAKE_CURRENT_BINARY_DIR}/googletest-build EXCLUDE_FROM_ALL)
 
     set(GTEST_INCLUDE_DIRS "${gtest_SOURCE_DIR}/include")
     set(GTEST_BOTH_LIBRARIES  gtest_main gtest)
@@ -78,20 +79,19 @@ if("${isSystemDir}" STREQUAL "-1")
     set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 endif("${isSystemDir}" STREQUAL "-1")
 
-set(XLEAFLET_TEST_TARGET test_xleaflet)
-
-add_executable(${XLEAFLET_TEST_TARGET} ${XLEAFLET_TESTS} ${XLEAFLET_HEADERS})
+add_executable(test_xleaflet ${XLEAFLET_TESTS} ${XLEAFLET_HEADERS})
 if(DOWNLOAD_GTEST OR GTEST_SRC_DIR)
-    add_dependencies(${XLEAFLET_TEST_TARGET} gtest_main)
+    add_dependencies(test_xleaflet gtest_main)
 endif()
 
-target_compile_features(${XLEAFLET_TEST_TARGET} PRIVATE cxx_std_14)
+target_compile_features(test_xleaflet PRIVATE cxx_std_14)
 
-target_link_libraries(${XLEAFLET_TEST_TARGET}
-                        PUBLIC xtl
-                        PUBLIC xeus
-                        PUBLIC xwidgets
-                        PUBLIC xleaflet
-                        PRIVATE ${GTEST_BOTH_LIBRARIES}
-                        PRIVATE ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(test_xleaflet
+                      PUBLIC xtl
+                      PUBLIC xeus
+                      PUBLIC xwidgets
+                      PUBLIC xleaflet
+                      PRIVATE ${GTEST_BOTH_LIBRARIES}
+                      PRIVATE ${CMAKE_THREAD_LIBS_INIT})
+target_include_directories(test_xleaflet PRIVATE ${XLEAFLET_INCLUDE_DIR} ${XWIDGETS_INCLUDE_DIR})
 
