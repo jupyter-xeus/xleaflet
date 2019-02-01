@@ -4,7 +4,7 @@ channels:
 dependencies:
   - xtensor=0.19.2
   - xwidgets=0.16.1
-  - xleaflet=0.6.0
+  - xleaflet=0.6.1
   - xeus-cling=0.4.11
   - ipyleaflet>=0.9.1
   - widgetsnbextension >=3.0.0
