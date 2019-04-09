@@ -24,8 +24,8 @@
 
 // Project version
 #define XLEAFLET_VERSION_MAJOR 0
-#define XLEAFLET_VERSION_MINOR 6
-#define XLEAFLET_VERSION_PATCH 1
+#define XLEAFLET_VERSION_MINOR 7
+#define XLEAFLET_VERSION_PATCH 0
 
 // Binary version
 #define XLEAFLET_BINARY_CURRENT 1
@@ -34,7 +34,7 @@
 
 // Semver requirement for jupyter-leaflet
 #define XJUPYTER_LEAFLET_VERSION_MAJOR 0
-#define XJUPYTER_LEAFLET_VERSION_MINOR 9
+#define XJUPYTER_LEAFLET_VERSION_MINOR 10
 #define XJUPYTER_LEAFLET_VERSION_PATCH 1
 
 // Composing the version strings from major, minor and patch
