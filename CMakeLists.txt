@@ -68,10 +68,10 @@ message(STATUS "xleaflet binary version: v${XLEAFLET_BINARY_VERSION}")
 # ============
 
 find_package(cppzmq 4.3.0 REQUIRED)
-find_package(xtl 0.5 REQUIRED)
-find_package(xtensor 0.19.1 REQUIRED)
-find_package(xeus 0.18.1 REQUIRED)
-find_package(xwidgets 0.16.0 REQUIRED)
+find_package(xtl 0.6.1 REQUIRED)
+find_package(xtensor 0.20.1 REQUIRED)
+find_package(xeus 0.19.1 REQUIRED)
+find_package(xwidgets 0.17.0 REQUIRED)
 
 # Source files
 # ============
