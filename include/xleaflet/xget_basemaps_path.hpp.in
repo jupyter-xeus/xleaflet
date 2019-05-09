@@ -14,7 +14,7 @@
 
 namespace xlf
 {
-    std::string get_basemaps_path()
+    inline std::string get_basemaps_path()
     {
         static std::string basemaps_path = @XLEAFLET_BASEMAPS_PATH@;
         return basemaps_path;

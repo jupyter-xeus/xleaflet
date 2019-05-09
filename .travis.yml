@@ -18,7 +18,7 @@ install:
     - conda config --set always_yes yes --set changeps1 no
     - conda update -q conda
     # Install host dependencies
-    - conda install xeus=0.23.3 cppzmq=4.3.0 xproperty=0.10.0 xwidgets=0.20.0 xtensor=0.20.8 -c conda-forge
+    - conda install xeus=0.23.3 cppzmq=4.3.0 xproperty=0.10.0 xwidgets=0.20.0 xtensor=0.20.8 pybind11=2.4 ipyleaflet=0.10.4 -c conda-forge
     # Install build dependencies
     - conda install cmake
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
