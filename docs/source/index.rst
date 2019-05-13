@@ -71,6 +71,7 @@ This software is licensed under the BSD-3-Clause license. See the LICENSE file f
    api_reference/velocity
    api_reference/layer_group
    api_reference/geo_json
+   api_reference/fullscreen_control
    api_reference/layers_control
    api_reference/split_map_control
    api_reference/measure_control
