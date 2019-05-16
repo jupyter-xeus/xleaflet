@@ -39,7 +39,6 @@ namespace xlf
         void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
         void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
 
-        XPROPERTY(point_type, derived_type, location);
         XPROPERTY(xtl::xoptional<widget_type>, derived_type, widget);
         XPROPERTY(int, derived_type, max_width, 300);
         XPROPERTY(int, derived_type, min_width, 50);
@@ -113,7 +112,7 @@ namespace xlf
                 "max_width",
                 "min_width",
                 "max_height",
-                "min_height",
+                "min_height"
             }
         );
     }
