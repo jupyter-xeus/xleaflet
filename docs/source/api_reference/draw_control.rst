@@ -7,7 +7,7 @@
 .. raw:: html
    :file: embed_widgets/draw_control.html
 
-Draw control
+Draw Control
 ============
 
 The ``draw_control`` allows one to draw shapes on the map such as ``rectangle`` ``circle`` or lines.

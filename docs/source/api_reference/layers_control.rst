@@ -7,7 +7,7 @@
 .. raw:: html
     :file: embed_widgets/layers_control.html
 
-Layers control
+Layers Control
 ==============
 
 The ``layers_control`` allows one to display a selector on the top right of the map in order to select which tile layer to display on the map.
