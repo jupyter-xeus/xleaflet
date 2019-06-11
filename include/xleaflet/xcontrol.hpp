@@ -96,15 +96,7 @@ namespace xlf
         this->_view_name() = "LeafletControlView";
         this->_model_module_version() = jupyter_leaflet_semver();
         this->_view_module_version() = jupyter_leaflet_semver();
-
-        this->options() = std::vector<std::string>();
-
-        this->options().insert(
-            this->options().end(),
-            {
-                "position"
-            }
-        );
+        this->options() = {"position"};
     }
 
 }

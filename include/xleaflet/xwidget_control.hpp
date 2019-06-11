@@ -29,8 +29,6 @@ namespace xlf
     {
     public:
 
-        using point_type = std::array<double, 2>;
-
         using base_type = xcontrol<D>;
         using derived_type = D;
 
@@ -39,11 +37,11 @@ namespace xlf
         void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
         void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
 
-        XPROPERTY(xtl::xoptional<widget_type>, derived_type, widget);
-        XPROPERTY(int, derived_type, max_width, 300);
-        XPROPERTY(int, derived_type, min_width, 50);
-        XPROPERTY(int, derived_type, max_height);
-        XPROPERTY(int, derived_type, min_height);
+        XPROPERTY(widget_type, derived_type, widget);
+        XPROPERTY(xtl::xoptional<int>, derived_type, max_width);
+        XPROPERTY(xtl::xoptional<int>, derived_type, min_width);
+        XPROPERTY(xtl::xoptional<int>, derived_type, max_height);
+        XPROPERTY(xtl::xoptional<int>, derived_type, min_height);
 
     protected:
 
@@ -65,7 +63,7 @@ namespace xlf
 
     template <class D>
     inline void xwidget_control<D>::serialize_state(xeus::xjson& state,
-                                           xeus::buffer_sequence& buffers) const
+                                                    xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
@@ -80,7 +78,7 @@ namespace xlf
 
     template <class D>
     inline void xwidget_control<D>::apply_patch(const xeus::xjson& patch,
-                                       const xeus::buffer_sequence& buffers)
+                                                const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
 
