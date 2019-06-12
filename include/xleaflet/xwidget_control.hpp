@@ -20,9 +20,9 @@
 
 namespace xlf
 {
-    /*********************
+    /******************************
      * widget_control declaration *
-     *********************/
+     ******************************/
 
     template <class D>
     class xwidget_control : public xcontrol<D>
@@ -57,9 +57,9 @@ namespace xlf
 
     using widget_control_generator = xw::xgenerator<xwidget_control>;
 
-    /*************************
+    /**********************************
      * xwidget_control implementation *
-     *************************/
+     **********************************/
 
     template <class D>
     inline void xwidget_control<D>::serialize_state(xeus::xjson& state,
