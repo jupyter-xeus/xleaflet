@@ -15,7 +15,7 @@
 
 #include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xobject.hpp"
-
+#include "xwidgets/xeither.hpp"
 #include "xleaflet_config.hpp"
 
 namespace xlf
@@ -36,6 +36,7 @@ namespace xlf
         void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
 
         XPROPERTY(std::vector<std::string>, derived_type, options);
+        XPROPERTY(std::string, derived_type, position, "topleft", XEITHER("topright", "topleft", "bottomright", "bottomleft"));
 
     protected:
 
@@ -64,6 +65,7 @@ namespace xlf
         using xw::set_patch_from_property;
 
         set_patch_from_property(options, state, buffers);
+        set_patch_from_property(position, state, buffers);
     }
 
     template <class D>
@@ -75,6 +77,7 @@ namespace xlf
         using xw::set_property_from_patch;
 
         set_property_from_patch(options, patch, buffers);
+        set_property_from_patch(position, patch, buffers);
     }
 
     template <class D>
@@ -93,8 +96,7 @@ namespace xlf
         this->_view_name() = "LeafletControlView";
         this->_model_module_version() = jupyter_leaflet_semver();
         this->_view_module_version() = jupyter_leaflet_semver();
-
-        this->options() = std::vector<std::string>();
+        this->options() = {"position"};
     }
 
 }

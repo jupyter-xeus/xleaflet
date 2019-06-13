@@ -111,6 +111,7 @@ set(XLEAFLET_HEADERS
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xvelocity.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xvideo_overlay.hpp
     ${XLEAFLET_INCLUDE_DIR}/xleaflet/xwms_layer.hpp
+    ${XLEAFLET_INCLUDE_DIR}/xleaflet/xwidget_control.hpp
 )
 
 set(XLEAFLET_SOURCES
@@ -144,6 +145,7 @@ set(XLEAFLET_SOURCES
     ${XLEAFLET_SOURCE_DIR}/xvelocity.cpp
     ${XLEAFLET_SOURCE_DIR}/xvideo_overlay.cpp
     ${XLEAFLET_SOURCE_DIR}/xwms_layer.cpp
+    ${XLEAFLET_SOURCE_DIR}/xwidget_control.cpp
 )
 
 # Output
