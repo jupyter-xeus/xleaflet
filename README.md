@@ -33,7 +33,7 @@ We provide a package for the conda package manager.
 - Installing `xleaflet` and the C++ kernel
 
 ```bash
-conda install xeus-cling xleaflet -c QuantStack -c conda-forge
+conda install xeus-cling xleaflet -c conda-forge
 ```
 
 Then, the front-end extension must be installed for either the classic notebook or JupyterLab.
