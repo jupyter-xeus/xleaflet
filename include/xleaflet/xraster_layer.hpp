@@ -9,13 +9,13 @@
 #ifndef XLEAFLET_RASTER_LAYER_HPP
 #define XLEAFLET_RASTER_LAYER_HPP
 
-#include <string>
-
 #include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xwidget.hpp"
 
 #include "xlayer.hpp"
 #include "xleaflet_config.hpp"
+
+namespace nl = nlohmann;
 
 namespace xlf
 {
@@ -31,8 +31,8 @@ namespace xlf
         using base_type = xlayer<D>;
         using derived_type = D;
 
-        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
-        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
+        void serialize_state(nl::json&, xeus::buffer_sequence&) const;
+        void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
         XPROPERTY(double, derived_type, opacity, 1.0);
         XPROPERTY(bool, derived_type, visible, true);
@@ -51,26 +51,24 @@ namespace xlf
 
     using raster_layer = xw::xmaterialize<xraster_layer>;
 
-    using raster_layer_generator = xw::xgenerator<xraster_layer>;
-
     /********************************
      * xraster_layer implementation *
      ********************************/
 
     template <class D>
-    inline void xraster_layer<D>::serialize_state(xeus::xjson& state,
+    inline void xraster_layer<D>::serialize_state(nl::json& state,
                                                   xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        using xw::set_patch_from_property;
+        using xw::xwidgets_serialize;
 
-        set_patch_from_property(opacity, state, buffers);
-        set_patch_from_property(visible, state, buffers);
+        xwidgets_serialize(opacity(), state["opacity"], buffers);
+        xwidgets_serialize(visible(), state["visible"], buffers);
     }
 
     template <class D>
-    inline void xraster_layer<D>::apply_patch(const xeus::xjson& patch,
+    inline void xraster_layer<D>::apply_patch(const nl::json& patch,
                                               const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
@@ -115,9 +113,6 @@ namespace xlf
     extern template class xw::xmaterialize<xlf::xraster_layer>;
     extern template xw::xmaterialize<xlf::xraster_layer>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xraster_layer>>;
-    extern template class xw::xgenerator<xlf::xraster_layer>;
-    extern template xw::xgenerator<xlf::xraster_layer>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xlf::xraster_layer>>;
 #endif
 
 #endif

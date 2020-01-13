@@ -18,13 +18,13 @@ Example
 
     auto terrain = xlf::basemap({"Stamen", "Watercolor"});
 
-    auto map = xlf::map_generator()
+    auto map = xlf::map::initialize()
         .layers({terrain})
         .center({53, 354})
         .zoom(5)
         .finalize();
 
-    auto circle = xlf::circle_generator()
+    auto circle = xlf::circle::initialize()
         .location({50, 354})
         .radius(50000)
         .color("green")

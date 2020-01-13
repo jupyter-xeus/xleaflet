@@ -20,7 +20,7 @@ The ``layers_control`` allows one to display a selector on the top right of the 
     #include "xleaflet/xwms_layer.hpp"
     #include "xleaflet/xlayers_control.hpp"
 
-    auto map = xlf::map_generator()
+    auto map = xlf::map::initialize()
         .center({50, 354})
         .zoom(4)
         .finalize();
@@ -28,7 +28,7 @@ The ``layers_control`` allows one to display a selector on the top right of the 
     auto nasa_layer = xlf::basemap({"NASAGIBS", "ModisTerraTrueColorCR"}, "2018-03-30");
     map.add_layer(nasa_layer);
 
-    auto wms = xlf::wms_layer_generator()
+    auto wms = xlf::wms_layer::initialize()
         .url("https://demo.boundlessgeo.com/geoserver/ows?")
         .layers("nasa:bluemarble")
         .name("nasa:bluemarble")

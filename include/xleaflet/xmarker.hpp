@@ -9,6 +9,9 @@
 #ifndef XLEAFLET_MARKER_HPP
 #define XLEAFLET_MARKER_HPP
 
+#include <array>
+#include <functional>
+#include <list>
 #include <string>
 
 #include "xtl/xoptional.hpp"
@@ -19,6 +22,8 @@
 
 #include "xui_layer.hpp"
 #include "xicon.hpp"
+
+namespace nl = nlohmann;
 
 namespace xlf
 {
@@ -31,7 +36,7 @@ namespace xlf
     {
     public:
 
-        using move_callback_type = std::function<void(const xeus::xjson&)>;
+        using move_callback_type = std::function<void(const nl::json&)>;
 
         using point_type = std::array<double, 2>;
         using icon_type = xw::xholder<xicon>;
@@ -39,12 +44,12 @@ namespace xlf
         using base_type = xui_layer<D>;
         using derived_type = D;
 
-        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
-        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
+        void serialize_state(nl::json&, xeus::buffer_sequence&) const;
+        void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
         void on_move(move_callback_type);
 
-        void handle_custom_message(const xeus::xjson&);
+        void handle_custom_message(const nl::json&);
 
         XPROPERTY(point_type, derived_type, location);
         XPROPERTY(int, derived_type, z_index_offset, 0.0);
@@ -75,37 +80,35 @@ namespace xlf
 
     using marker = xw::xmaterialize<xmarker>;
 
-    using marker_generator = xw::xgenerator<xmarker>;
-
     /******************************
      * xmarker implementation *
      ******************************/
 
     template <class D>
-    inline void xmarker<D>::serialize_state(xeus::xjson& state,
+    inline void xmarker<D>::serialize_state(nl::json& state,
                                             xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        using xw::set_patch_from_property;
+        using xw::xwidgets_serialize;
 
-        set_patch_from_property(location, state, buffers);
-        set_patch_from_property(z_index_offset, state, buffers);
-        set_patch_from_property(draggable, state, buffers);
-        set_patch_from_property(keyboard, state, buffers);
-        set_patch_from_property(title, state, buffers);
-        set_patch_from_property(alt, state, buffers);
-        set_patch_from_property(rise_on_hover, state, buffers);
-        set_patch_from_property(opacity, state, buffers);
-        set_patch_from_property(visible, state, buffers);
-        set_patch_from_property(icon, state, buffers);
-        set_patch_from_property(rotation_angle, state, buffers);
-        set_patch_from_property(rotation_origin, state, buffers);
-        set_patch_from_property(rise_offset, state, buffers);
+        xwidgets_serialize(location(), state["location"], buffers);
+        xwidgets_serialize(z_index_offset(), state["z_index_offset"], buffers);
+        xwidgets_serialize(draggable(), state["draggable"], buffers);
+        xwidgets_serialize(keyboard(), state["keyboard"], buffers);
+        xwidgets_serialize(title(), state["title"], buffers);
+        xwidgets_serialize(alt(), state["alt"], buffers);
+        xwidgets_serialize(rise_on_hover(), state["rise_on_hover"], buffers);
+        xwidgets_serialize(opacity(), state["opacity"], buffers);
+        xwidgets_serialize(visible(), state["visible"], buffers);
+        xwidgets_serialize(icon(), state["icon"], buffers);
+        xwidgets_serialize(rotation_angle(), state["rotation_angle"], buffers);
+        xwidgets_serialize(rotation_origin(), state["rotation_origin"], buffers);
+        xwidgets_serialize(rise_offset(), state["rise_offset"], buffers);
     }
 
     template <class D>
-    inline void xmarker<D>::apply_patch(const xeus::xjson& patch,
+    inline void xmarker<D>::apply_patch(const nl::json& patch,
                                         const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
@@ -165,7 +168,7 @@ namespace xlf
     }
 
     template <class D>
-    inline void xmarker<D>::handle_custom_message(const xeus::xjson& content)
+    inline void xmarker<D>::handle_custom_message(const nl::json& content)
     {
         auto it = content.find("event");
         if (it != content.end() && it.value() == "move")
@@ -186,9 +189,6 @@ namespace xlf
     extern template class xw::xmaterialize<xlf::xmarker>;
     extern template xw::xmaterialize<xlf::xmarker>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xmarker>>;
-    extern template class xw::xgenerator<xlf::xmarker>;
-    extern template xw::xgenerator<xlf::xmarker>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xlf::xmarker>>;
 #endif
 
 #endif

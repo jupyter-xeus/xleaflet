@@ -20,7 +20,7 @@ The ``draw_control`` allows one to draw shapes on the map such as ``rectangle`` 
 
     auto water_color = xlf::basemap({"Stamen", "Watercolor"});
 
-    auto map = xlf::map_generator()
+    auto map = xlf::map::initialize()
         .layers({water_color})
         .center({50, 354})
         .zoom(5)
@@ -64,7 +64,7 @@ The ``draw_control`` allows one to draw shapes on the map such as ``rectangle`` 
         }}
     };
 
-    auto draw_control = xlf::draw_control_generator()
+    auto draw_control = xlf::draw_control::initialize()
         .polyline(polyline_options)
         .polygon(polygon_options)
         .circle(circle_options)

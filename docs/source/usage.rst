@@ -81,7 +81,7 @@ Providing a constructor for ``map`` with a large number of such attributes would
 
     #include "xleaflet/xmap.hpp"
 
-    auto map = xlf::map_generator()
+    auto map = xlf::map::initialize()
         .center({52.204793, 360.121558})
         .zoom(15)
         .scroll_wheel_zoom(true)

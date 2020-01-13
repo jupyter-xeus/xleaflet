@@ -21,30 +21,30 @@ Example
 
     auto toner = xlf::basemap({"Stamen", "Toner"});
 
-    auto map = xlf::map_generator()
+    auto map = xlf::map::initialize()
         .layers({toner})
         .center({50, 354})
         .zoom(5)
         .finalize();
 
     // Create some layers
-    auto marker = xlf::marker_generator()
+    auto marker = xlf::marker::initialize()
         .location({50, 354})
         .finalize();
-    auto circle = xlf::circle_generator()
+    auto circle = xlf::circle::initialize()
         .location({50, 370})
         .radius(50000)
         .color("yellow")
         .fill_color("yellow")
         .finalize();
-    auto rectangle = xlf::rectangle_generator()
+    auto rectangle = xlf::rectangle::initialize()
         .bounds({{{54, 354}, {55, 360}}})
         .color("orange")
         .fill_color("orange")
         .finalize();
 
     // Create layer group
-    auto layer_group = xlf::layer_group_generator()
+    auto layer_group = xlf::layer_group::initialize()
         .layers({marker, circle})
         .finalize();
 

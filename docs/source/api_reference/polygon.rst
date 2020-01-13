@@ -15,13 +15,13 @@ Example
     #include "xleaflet/xmap.hpp"
     #include "xleaflet/xpolygon.hpp"
 
-    auto polygon = xlf::polygon_generator()
+    auto polygon = xlf::polygon::initialize()
         .locations({{{42, -49}, {43, -49}, {43, -48}}})
         .color("green")
         .fill_color("green")
         .finalize();
 
-    auto map = xlf::map_generator()
+    auto map = xlf::map::initialize()
         .center({42.5531, -48.6914})
         .zoom(6)
         .finalize();

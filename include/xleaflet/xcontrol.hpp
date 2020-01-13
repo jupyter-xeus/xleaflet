@@ -13,10 +13,14 @@
 #include <string>
 #include <vector>
 
+#include "nlohmann/json.hpp"
+
 #include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xobject.hpp"
 #include "xwidgets/xeither.hpp"
 #include "xleaflet_config.hpp"
+
+namespace nl = nlohmann;
 
 namespace xlf
 {
@@ -32,8 +36,8 @@ namespace xlf
         using base_type = xw::xobject<D>;
         using derived_type = D;
 
-        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
-        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
+        void serialize_state(nl::json&, xeus::buffer_sequence&) const;
+        void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
         XPROPERTY(std::vector<std::string>, derived_type, options);
         XPROPERTY(std::string, derived_type, position, "topleft", XEITHER("topright", "topleft", "bottomright", "bottomleft"));
@@ -50,26 +54,24 @@ namespace xlf
 
     using control = xw::xmaterialize<xcontrol>;
 
-    using control_generator = xw::xgenerator<xcontrol>;
-
     /***************************
      * xcontrol implementation *
      ***************************/
 
     template <class D>
-    inline void xcontrol<D>::serialize_state(xeus::xjson& state,
+    inline void xcontrol<D>::serialize_state(nl::json& state,
                                              xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        using xw::set_patch_from_property;
+        using xw::xwidgets_serialize;
 
-        set_patch_from_property(options, state, buffers);
-        set_patch_from_property(position, state, buffers);
+        xwidgets_serialize(options(), state["options"], buffers);
+        xwidgets_serialize(position(), state["position"], buffers);
     }
 
     template <class D>
-    inline void xcontrol<D>::apply_patch(const xeus::xjson& patch,
+    inline void xcontrol<D>::apply_patch(const nl::json& patch,
                                          const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
@@ -109,9 +111,6 @@ namespace xlf
     extern template class xw::xmaterialize<xlf::xcontrol>;
     extern template xw::xmaterialize<xlf::xcontrol>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xcontrol>>;
-    extern template class xw::xgenerator<xlf::xcontrol>;
-    extern template xw::xgenerator<xlf::xcontrol>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xlf::xcontrol>>;
 #endif
 
 #endif

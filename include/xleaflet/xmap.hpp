@@ -11,6 +11,7 @@
 
 #include <array>
 #include <functional>
+#include <list>
 #include <string>
 #include <utility>
 #include <vector>
@@ -31,6 +32,8 @@
 #include "xleaflet_config.hpp"
 #include "xtile_layer.hpp"
 
+namespace nl = nlohmann;
+
 namespace xlf
 {
     /*******************
@@ -42,7 +45,7 @@ namespace xlf
     {
     public:
 
-        using callback_type = std::function<void(const xeus::xjson&)>;
+        using callback_type = std::function<void(const nl::json&)>;
 
         using point_type = std::array<double, 2>;
         using bounds_type = std::array<point_type, 2>;
@@ -54,8 +57,8 @@ namespace xlf
         using layer_list_type = std::vector<xw::xholder<xlayer>>;
         using control_list_type = std::vector<xw::xholder<xcontrol>>;
 
-        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
-        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
+        void serialize_state(nl::json&, xeus::buffer_sequence&) const;
+        void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
         void on_interaction(callback_type);
 
@@ -81,7 +84,7 @@ namespace xlf
 
         void clear_controls();
 
-        void handle_custom_message(const xeus::xjson&);
+        void handle_custom_message(const nl::json&);
 
         XPROPERTY(point_type, derived_type, center);
         XPROPERTY(int, derived_type, zoom_start, 12);
@@ -129,51 +132,49 @@ namespace xlf
 
     using map = xw::xmaterialize<xmap>;
 
-    using map_generator = xw::xgenerator<xmap>;
-
     /***********************
      * xmap implementation *
      ***********************/
 
     template <class D>
-    inline void xmap<D>::serialize_state(xeus::xjson& state, xeus::buffer_sequence& buffers) const
+    inline void xmap<D>::serialize_state(nl::json& state, xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        using xw::set_patch_from_property;
+        using xw::xwidgets_serialize;
 
-        set_patch_from_property(center, state, buffers);
-        set_patch_from_property(zoom_start, state, buffers);
-        set_patch_from_property(zoom, state, buffers);
-        set_patch_from_property(max_zoom, state, buffers);
-        set_patch_from_property(min_zoom, state, buffers);
-        set_patch_from_property(dragging, state, buffers);
-        set_patch_from_property(touch_zoom, state, buffers);
-        set_patch_from_property(scroll_wheel_zoom, state, buffers);
-        set_patch_from_property(double_click_zoom, state, buffers);
-        set_patch_from_property(box_zoom, state, buffers);
-        set_patch_from_property(tap, state, buffers);
-        set_patch_from_property(tap_tolerance, state, buffers);
-        set_patch_from_property(world_copy_jump, state, buffers);
-        set_patch_from_property(close_popup_on_click, state, buffers);
-        set_patch_from_property(keyboard, state, buffers);
-        set_patch_from_property(keyboard_pan_offset, state, buffers);
-        set_patch_from_property(keyboard_zoom_offset, state, buffers);
-        set_patch_from_property(inertia, state, buffers);
-        set_patch_from_property(inertia_deceleration, state, buffers);
-        set_patch_from_property(inertia_max_speed, state, buffers);
-        set_patch_from_property(zoom_control, state, buffers);
-        set_patch_from_property(attribution_control, state, buffers);
-        set_patch_from_property(zoom_animation_threshold, state, buffers);
-        set_patch_from_property(options, state, buffers);
-        set_patch_from_property(bounds, state, buffers);
-        set_patch_from_property(bounds_polygon, state, buffers);
-        set_patch_from_property(layers, state, buffers);
-        set_patch_from_property(controls, state, buffers);
+        xwidgets_serialize(center(), state["center"], buffers);
+        xwidgets_serialize(zoom_start(), state["zoom_start"], buffers);
+        xwidgets_serialize(zoom(), state["zoom"], buffers);
+        xwidgets_serialize(max_zoom(), state["max_zoom"], buffers);        
+        xwidgets_serialize(min_zoom(), state["min_zoom"], buffers);
+        xwidgets_serialize(dragging(), state["dragging"], buffers);
+        xwidgets_serialize(touch_zoom(), state["touch_zoom"], buffers);
+        xwidgets_serialize(scroll_wheel_zoom(), state["scroll_wheel_zoom"], buffers); 
+        xwidgets_serialize(double_click_zoom(), state["double_click_zoom"], buffers);
+        xwidgets_serialize(box_zoom(), state["box_zoom"], buffers);
+        xwidgets_serialize(tap(), state["tap"], buffers);
+        xwidgets_serialize(tap_tolerance(), state["tap_tolerance"], buffers); 
+        xwidgets_serialize(world_copy_jump(), state["world_copy_jump"], buffers);
+        xwidgets_serialize(close_popup_on_click(), state["close_popup_on_click"], buffers); 
+        xwidgets_serialize(keyboard(), state["keyboard"], buffers);
+        xwidgets_serialize(keyboard_pan_offset(), state["keyboard_pan_offset"], buffers); 
+        xwidgets_serialize(keyboard_zoom_offset(), state["keyboard_zoom_offset"], buffers);
+        xwidgets_serialize(inertia(), state["inertia"], buffers); 
+        xwidgets_serialize(inertia_deceleration(), state["inertia_deceleration"], buffers); 
+        xwidgets_serialize(inertia_max_speed(), state["inertia_max_speed"], buffers); 
+        xwidgets_serialize(zoom_control(), state["zoom_control"], buffers); 
+        xwidgets_serialize(attribution_control(), state["attribution_control"], buffers); 
+        xwidgets_serialize(zoom_animation_threshold(), state["zoom_animation_threshold"], buffers); 
+        xwidgets_serialize(options(), state["options"], buffers); 
+        xwidgets_serialize(bounds(), state["bounds"], buffers); 
+        xwidgets_serialize(bounds_polygon(), state["bounds_polygon"], buffers); 
+        xwidgets_serialize(layers(), state["layers"], buffers); 
+        xwidgets_serialize(controls(), state["controls"], buffers); 
     }
 
     template <class D>
-    inline void xmap<D>::apply_patch(const xeus::xjson& patch, const xeus::buffer_sequence& buffers)
+    inline void xmap<D>::apply_patch(const nl::json& patch, const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
 
@@ -220,10 +221,10 @@ namespace xlf
     inline void xmap<D>::add_layer(const xlayer<T>& l)
     {
         this->layers().emplace_back(xw::make_id_holder<xlayer>(l.id()));
-        xeus::xjson state;
+        nl::json state;
         xeus::buffer_sequence buffers;
-        using xw::set_patch_from_property;
-        set_patch_from_property(layers, state, buffers);
+        using xw::xwidgets_serialize;
+        xwidgets_serialize(layers(), state["layers"], buffers);
         this->send_patch(std::move(state), std::move(buffers));
     }
 
@@ -232,10 +233,10 @@ namespace xlf
     inline void xmap<D>::add_layer(xlayer<T>&& l)
     {
         this->layers().emplace_back(xw::make_owning_holder(std::move(l)));
-        xeus::xjson state;
+        nl::json state;
         xeus::buffer_sequence buffers;
-        using xw::set_patch_from_property;
-        set_patch_from_property(layers, state, buffers);
+        using xw::xwidgets_serialize;
+        xwidgets_serialize(layers(), state["layers"], buffers);
         this->send_patch(std::move(state), std::move(buffers));
     }
 
@@ -252,10 +253,10 @@ namespace xlf
             ),
             this->layers().end()
         );
-        xeus::xjson state;
+        nl::json state;
         xeus::buffer_sequence buffers;
-        using xw::set_patch_from_property;
-        set_patch_from_property(layers, state, buffers);
+        using xw::xwidgets_serialize;
+        xwidgets_serialize(layers(), state["layers"], buffers);
         this->send_patch(std::move(state), std::move(buffers));
     }
 
@@ -263,10 +264,10 @@ namespace xlf
     inline void xmap<D>::clear_layers()
     {
         this->layers() = {};
-        xeus::xjson state;
+        nl::json state;
         xeus::buffer_sequence buffers;
-        using xw::set_patch_from_property;
-        set_patch_from_property(layers, state, buffers);
+        using xw::xwidgets_serialize;
+        xwidgets_serialize(layers(), state["layers"], buffers);
         this->send_patch(std::move(state), std::move(buffers));
     }
 
@@ -275,10 +276,10 @@ namespace xlf
     inline void xmap<D>::add_control(const xcontrol<T>& c)
     {
         this->controls().emplace_back(xw::make_id_holder<xcontrol>(c.id()));
-        xeus::xjson state;
+        nl::json state;
         xeus::buffer_sequence buffers;
-        using xw::set_patch_from_property;
-        set_patch_from_property(controls, state, buffers);
+        using xw::xwidgets_serialize;
+        xwidgets_serialize(controls(), state["controls"], buffers);
         this->send_patch(std::move(state), std::move(buffers));
     }
 
@@ -287,10 +288,10 @@ namespace xlf
     inline void xmap<D>::add_control(xcontrol<T>&& c)
     {
         this->controls().emplace_back(xw::make_owning_holder(std::move(c)));
-        xeus::xjson state;
+        nl::json state;
         xeus::buffer_sequence buffers;
-        using xw::set_patch_from_property;
-        set_patch_from_property(controls, state, buffers);
+        using xw::xwidgets_serialize;
+        xwidgets_serialize(controls(), state["controls"], buffers);
         this->send_patch(std::move(state), std::move(buffers));
     }
 
@@ -307,10 +308,10 @@ namespace xlf
             ),
             this->controls().end()
         );
-        xeus::xjson state;
+        nl::json state;
         xeus::buffer_sequence buffers;
-        using xw::set_patch_from_property;
-        set_patch_from_property(controls, state, buffers);
+        using xw::xwidgets_serialize;
+        xwidgets_serialize(controls(), state["controls"], buffers);
         this->send_patch(std::move(state), std::move(buffers));
     }
 
@@ -318,10 +319,10 @@ namespace xlf
     inline void xmap<D>::clear_controls()
     {
         this->controls() = {};
-        xeus::xjson state;
+        nl::json state;
         xeus::buffer_sequence buffers;
-        using xw::set_patch_from_property;
-        set_patch_from_property(controls, state, buffers);
+        using xw::xwidgets_serialize;
+        xwidgets_serialize(controls(), state["controls"], buffers);
         this->send_patch(std::move(state), std::move(buffers));
     }
 
@@ -378,7 +379,7 @@ namespace xlf
     }
 
     template <class D>
-    inline void xmap<D>::handle_custom_message(const xeus::xjson& content)
+    inline void xmap<D>::handle_custom_message(const nl::json& content)
     {
         auto it = content.find("event");
         if (it != content.end() && it.value() == "interaction")
@@ -399,9 +400,6 @@ namespace xlf
     extern template class xw::xmaterialize<xlf::xmap>;
     extern template xw::xmaterialize<xlf::xmap>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xmap>>;
-    extern template class xw::xgenerator<xlf::xmap>;
-    extern template xw::xgenerator<xlf::xmap>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xlf::xmap>>;
 #endif
 
 #endif

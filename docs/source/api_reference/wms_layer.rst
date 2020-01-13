@@ -18,12 +18,12 @@ Example
     #include "xleaflet/xmap.hpp"
     #include "xleaflet/xwms_layer.hpp"
 
-    auto wms = xlf::wms_layer_generator()
+    auto wms = xlf::wms_layer::initialize()
         .url("https://demo.boundlessgeo.com/geoserver/ows?")
         .layers("nasa:bluemarble")
         .finalize();
 
-    auto map = xlf::map_generator()
+    auto map = xlf::map::initialize()
         .layers({wms})
         .center({42.5531, -48.6914})
         .zoom(3)

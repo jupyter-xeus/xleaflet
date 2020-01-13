@@ -18,6 +18,8 @@
 
 #include "xcontrol.hpp"
 
+namespace nl = nlohmann;
+
 namespace xlf
 {
     /******************************
@@ -34,8 +36,8 @@ namespace xlf
 
         using widget_type = xw::xholder<xw::xwidget>;
 
-        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
-        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
+        void serialize_state(nl::json&, xeus::buffer_sequence&) const;
+        void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
         XPROPERTY(widget_type, derived_type, widget);
         XPROPERTY(xtl::xoptional<int>, derived_type, max_width);
@@ -55,29 +57,27 @@ namespace xlf
 
     using widget_control = xw::xmaterialize<xwidget_control>;
 
-    using widget_control_generator = xw::xgenerator<xwidget_control>;
-
     /**********************************
      * xwidget_control implementation *
      **********************************/
 
     template <class D>
-    inline void xwidget_control<D>::serialize_state(xeus::xjson& state,
+    inline void xwidget_control<D>::serialize_state(nl::json& state,
                                                     xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        using xw::set_patch_from_property;
+        using xw::xwidgets_serialize;
 
-        set_patch_from_property(widget, state, buffers);
-        set_patch_from_property(max_width, state, buffers);
-        set_patch_from_property(min_width, state, buffers);
-        set_patch_from_property(max_height, state, buffers);
-        set_patch_from_property(min_height, state, buffers);
+        xwidgets_serialize(widget(), state["widget"], buffers);
+        xwidgets_serialize(max_width(), state["max_width"], buffers);
+        xwidgets_serialize(min_width(), state["min_width"], buffers);
+        xwidgets_serialize(max_height(), state["max_height"], buffers);
+        xwidgets_serialize(min_height(), state["min_height"], buffers);
     }
 
     template <class D>
-    inline void xwidget_control<D>::apply_patch(const xeus::xjson& patch,
+    inline void xwidget_control<D>::apply_patch(const nl::json& patch,
                                                 const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
@@ -124,9 +124,6 @@ namespace xlf
     extern template class xw::xmaterialize<xlf::xwidget_control>;
     extern template xw::xmaterialize<xlf::xwidget_control>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xwidget_control>>;
-    extern template class xw::xgenerator<xlf::xwidget_control>;
-    extern template xw::xgenerator<xlf::xwidget_control>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xlf::xwidget_control>>;
 #endif
 
 #endif

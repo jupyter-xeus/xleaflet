@@ -18,7 +18,7 @@ Example
     #include "xleaflet/xmap.hpp"
     #include "xleaflet/xbasemaps.hpp"
 
-    auto map = xlf::map_generator()
+    auto map = xlf::map::initialize()
         .layers({xlf::basemap({"NASAGIBS", "ModisTerraTrueColorCR"}, "2017-04-08")})
         .center({52.204793, 360.121558})
         .zoom(4)

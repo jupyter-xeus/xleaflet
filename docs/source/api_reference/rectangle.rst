@@ -18,13 +18,13 @@ Example
 
     auto terrain = xlf::basemap({"Stamen", "Watercolor"});
 
-    auto map = xlf::map_generator()
+    auto map = xlf::map::initialize()
         .layers({terrain})
         .center({53, 354})
         .zoom(5)
         .finalize();
 
-    auto rectangle = xlf::rectangle_generator()
+    auto rectangle = xlf::rectangle::initialize()
         .bounds({{{52, 354}, {53, 360}}})
         .finalize();
 

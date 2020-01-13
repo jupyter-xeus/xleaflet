@@ -15,6 +15,8 @@
 
 #include "xpolyline.hpp"
 
+namespace nl = nlohmann;
+
 namespace xlf
 {
     /***********************
@@ -29,8 +31,8 @@ namespace xlf
         using base_type = xpolyline<D>;
         using derived_type = D;
 
-        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
-        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
+        void serialize_state(nl::json&, xeus::buffer_sequence&) const;
+        void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
     protected:
 
@@ -44,21 +46,19 @@ namespace xlf
 
     using polygon = xw::xmaterialize<xpolygon>;
 
-    using polygon_generator = xw::xgenerator<xpolygon>;
-
     /***************************
      * xpolygon implementation *
      ***************************/
 
     template <class D>
-    inline void xpolygon<D>::serialize_state(xeus::xjson& state,
+    inline void xpolygon<D>::serialize_state(nl::json& state,
                                              xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
     }
 
     template <class D>
-    inline void xpolygon<D>::apply_patch(const xeus::xjson& patch,
+    inline void xpolygon<D>::apply_patch(const nl::json& patch,
                                          const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
@@ -87,9 +87,6 @@ namespace xlf
     extern template class xw::xmaterialize<xlf::xpolygon>;
     extern template xw::xmaterialize<xlf::xpolygon>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xpolygon>>;
-    extern template class xw::xgenerator<xlf::xpolygon>;
-    extern template xw::xgenerator<xlf::xpolygon>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xlf::xpolygon>>;
 #endif
 
 #endif

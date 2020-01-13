@@ -10,9 +10,6 @@
 #ifndef XLEAFLET_FULLSCREEN_CONTROL_HPP
 #define XLEAFLET_FULLSCREEN_CONTROL_HPP
 
-#include <string>
-#include <vector>
-
 #include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xwidget.hpp"
 
@@ -45,8 +42,6 @@ namespace xlf
 
     using fullscreen_control = xw::xmaterialize<xfullscreen_control>;
 
-    using fullscreen_control_generator = xw::xgenerator<xfullscreen_control>;
-
     /**********************************
      * xfullscreen_control implementation *
      **********************************/
@@ -74,9 +69,6 @@ namespace xlf
     extern template class xw::xmaterialize<xlf::xfullscreen_control>;
     extern template xw::xmaterialize<xlf::xfullscreen_control>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xfullscreen_control>>;
-    extern template class xw::xgenerator<xlf::xfullscreen_control>;
-    extern template xw::xgenerator<xlf::xfullscreen_control>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xlf::xfullscreen_control>>;
 #endif
 
 #endif

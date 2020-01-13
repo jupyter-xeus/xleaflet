@@ -9,13 +9,18 @@
 #ifndef XLEAFLET_TILE_LAYER_HPP
 #define XLEAFLET_TILE_LAYER_HPP
 
+#include <functional>
+#include <list>
 #include <string>
+#include <utility>
 
 #include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xwidget.hpp"
 
 #include "xleaflet_config.hpp"
 #include "xraster_layer.hpp"
+
+namespace nl = nlohmann;
 
 namespace xlf
 {
@@ -28,17 +33,17 @@ namespace xlf
     {
     public:
 
-        using load_callback_type = std::function<void(const xeus::xjson&)>;
+        using load_callback_type = std::function<void(const nl::json&)>;
 
         using base_type = xraster_layer<D>;
         using derived_type = D;
 
-        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
-        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
+        void serialize_state(nl::json&, xeus::buffer_sequence&) const;
+        void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
         void on_load(load_callback_type);
 
-        void handle_custom_message(const xeus::xjson&);
+        void handle_custom_message(const nl::json&);
 
         XPROPERTY(
             std::string, derived_type, url,
@@ -65,30 +70,28 @@ namespace xlf
 
     using tile_layer = xw::xmaterialize<xtile_layer>;
 
-    using tile_layer_generator = xw::xgenerator<xtile_layer>;
-
     /******************************
      * xtile_layer implementation *
      ******************************/
 
     template <class D>
-    inline void xtile_layer<D>::serialize_state(xeus::xjson& state,
+    inline void xtile_layer<D>::serialize_state(nl::json& state,
                                                 xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        using xw::set_patch_from_property;
+        using xw::xwidgets_serialize;
 
-        set_patch_from_property(url, state, buffers);
-        set_patch_from_property(min_zoom, state, buffers);
-        set_patch_from_property(max_zoom, state, buffers);
-        set_patch_from_property(tile_size, state, buffers);
-        set_patch_from_property(attribution, state, buffers);
-        set_patch_from_property(detect_retina, state, buffers);
+        xwidgets_serialize(url(), state["url"], buffers);
+        xwidgets_serialize(min_zoom(), state["min_zoom"], buffers);
+        xwidgets_serialize(max_zoom(), state["max_zoom"], buffers);
+        xwidgets_serialize(tile_size(), state["tile_size"], buffers);
+        xwidgets_serialize(attribution(), state["attribution"], buffers);
+        xwidgets_serialize(detect_retina(), state["detect_retina"], buffers);
     }
 
     template <class D>
-    inline void xtile_layer<D>::apply_patch(const xeus::xjson& patch,
+    inline void xtile_layer<D>::apply_patch(const nl::json& patch,
                                             const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
@@ -137,7 +140,7 @@ namespace xlf
     }
 
     template <class D>
-    inline void xtile_layer<D>::handle_custom_message(const xeus::xjson& content)
+    inline void xtile_layer<D>::handle_custom_message(const nl::json& content)
     {
         auto it = content.find("event");
         if (it != content.end() && it.value() == "load")
@@ -158,9 +161,6 @@ namespace xlf
     extern template class xw::xmaterialize<xlf::xtile_layer>;
     extern template xw::xmaterialize<xlf::xtile_layer>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xtile_layer>>;
-    extern template class xw::xgenerator<xlf::xtile_layer>;
-    extern template xw::xgenerator<xlf::xtile_layer>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xlf::xtile_layer>>;
 #endif
 
 #endif

@@ -24,14 +24,14 @@ Example
 
     std::array<double, 2> center = {52.204793, 360.121558};
 
-    auto map = xlf::map_generator()
+    auto map = xlf::map::initialize()
         .center(center)
         .zoom(9)
         .close_popup_on_click(false)
         .finalize();
     map.display();
 
-    auto marker = xlf::marker_generator()
+    auto marker = xlf::marker::initialize()
         .location({52.1, 359.9})
         .finalize();
     map.add_layer(marker);
@@ -43,7 +43,7 @@ Example
     message2.description = "Some HTML";
 
     // Popup with a given location on the map:
-    auto popup = xlf::popup_generator()
+    auto popup = xlf::popup::initialize()
         .location(center)
         .child(message1)
         .close_button(false)

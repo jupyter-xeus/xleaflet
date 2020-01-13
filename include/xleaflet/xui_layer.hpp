@@ -9,11 +9,11 @@
 #ifndef XLEAFLET_UI_LAYER_HPP
 #define XLEAFLET_UI_LAYER_HPP
 
-#include <string>
-
 #include "xwidgets/xmaterialize.hpp"
 
 #include "xlayer.hpp"
+
+namespace nl = nlohmann;
 
 namespace xlf
 {
@@ -29,8 +29,8 @@ namespace xlf
         using base_type = xlayer<D>;
         using derived_type = D;
 
-        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
-        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
+        void serialize_state(nl::json&, xeus::buffer_sequence&) const;
+        void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
     protected:
 
@@ -44,21 +44,19 @@ namespace xlf
 
     using ui_layer = xw::xmaterialize<xui_layer>;
 
-    using ui_layer_generator = xw::xgenerator<xui_layer>;
-
     /****************************
      * xui_layer implementation *
      ****************************/
 
     template <class D>
-    inline void xui_layer<D>::serialize_state(xeus::xjson& state,
+    inline void xui_layer<D>::serialize_state(nl::json& state,
                                               xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
     }
 
     template <class D>
-    inline void xui_layer<D>::apply_patch(const xeus::xjson& patch,
+    inline void xui_layer<D>::apply_patch(const nl::json& patch,
                                           const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
@@ -87,9 +85,6 @@ namespace xlf
     extern template class xw::xmaterialize<xlf::xui_layer>;
     extern template xw::xmaterialize<xlf::xui_layer>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xui_layer>>;
-    extern template class xw::xgenerator<xlf::xui_layer>;
-    extern template xw::xgenerator<xlf::xui_layer>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xlf::xui_layer>>;
 #endif
 
 #endif

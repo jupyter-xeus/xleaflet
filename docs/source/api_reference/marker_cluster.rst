@@ -17,22 +17,22 @@ Example
     #include "xleaflet/xmarker.hpp"
     #include "xleaflet/xmarker_cluster.hpp"
 
-    auto map = xlf::map_generator()
+    auto map = xlf::map::initialize()
         .center({50, 354})
         .zoom(5)
         .finalize();
 
-    auto marker1 = xlf::marker_generator()
+    auto marker1 = xlf::marker::initialize()
         .location({50, 354})
         .finalize();
-    auto marker2 = xlf::marker_generator()
+    auto marker2 = xlf::marker::initialize()
         .location({52, 356})
         .finalize();
-    auto marker3 = xlf::marker_generator()
+    auto marker3 = xlf::marker::initialize()
         .location({48, 352})
         .finalize();
 
-    auto marker_cluster = xlf::marker_cluster_generator()
+    auto marker_cluster = xlf::marker_cluster::initialize()
         .markers({marker1, marker2, marker3})
         .finalize();
 

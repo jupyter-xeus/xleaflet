@@ -18,7 +18,7 @@ Example
     #include "xleaflet/xmap.hpp"
     #include "xleaflet/xbasemaps.hpp"
 
-    auto map = xlf::map_generator()
+    auto map = xlf::map::initialize()
         .center({52.204793, 360.121558})
         .zoom(9)
         .finalize();

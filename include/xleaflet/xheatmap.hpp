@@ -18,6 +18,8 @@
 #include "xleaflet_config.hpp"
 #include "xraster_layer.hpp"
 
+namespace nl = nlohmann;
+
 namespace xlf
 {
     /***********************
@@ -35,8 +37,8 @@ namespace xlf
         using base_type = xraster_layer<D>;
         using derived_type = D;
 
-        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
-        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
+        void serialize_state(nl::json&, xeus::buffer_sequence&) const;
+        void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
         XPROPERTY(locations_type, derived_type, locations);
         XPROPERTY(double, derived_type, min_opacity, 0.05);
@@ -44,7 +46,7 @@ namespace xlf
         XPROPERTY(double, derived_type, max, 1.0);
         XPROPERTY(double, derived_type, radius, 25.0);
         XPROPERTY(double, derived_type, blur, 15.0);
-        XPROPERTY(xeus::xjson, derived_type, gradient);
+        XPROPERTY(nl::json, derived_type, gradient);
 
     protected:
 
@@ -58,31 +60,29 @@ namespace xlf
 
     using heatmap = xw::xmaterialize<xheatmap>;
 
-    using heatmap_generator = xw::xgenerator<xheatmap>;
-
     /**************************
      * heatmap implementation *
      **************************/
 
     template <class D>
-    inline void xheatmap<D>::serialize_state(xeus::xjson& state,
+    inline void xheatmap<D>::serialize_state(nl::json& state,
                                              xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        using xw::set_patch_from_property;
+        using xw::xwidgets_serialize;
 
-        set_patch_from_property(locations, state, buffers);
-        set_patch_from_property(min_opacity, state, buffers);
-        set_patch_from_property(max_zoom, state, buffers);
-        set_patch_from_property(max, state, buffers);
-        set_patch_from_property(radius, state, buffers);
-        set_patch_from_property(blur, state, buffers);
-        set_patch_from_property(gradient, state, buffers);
+        xwidgets_serialize(locations(), state["locations"], buffers);
+        xwidgets_serialize(min_opacity(), state["min_opacity"], buffers);
+        xwidgets_serialize(max_zoom(), state["max_zoom"], buffers);
+        xwidgets_serialize(max(), state["max"], buffers);
+        xwidgets_serialize(radius(), state["radius"], buffers);
+        xwidgets_serialize(blur(), state["blur"], buffers);
+        xwidgets_serialize(gradient(), state["gradient"], buffers);
     }
 
     template <class D>
-    inline void xheatmap<D>::apply_patch(const xeus::xjson& patch,
+    inline void xheatmap<D>::apply_patch(const nl::json& patch,
                                          const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
@@ -143,9 +143,6 @@ namespace xlf
     extern template class xw::xmaterialize<xlf::xheatmap>;
     extern template xw::xmaterialize<xlf::xheatmap>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xheatmap>>;
-    extern template class xw::xgenerator<xlf::xheatmap>;
-    extern template xw::xgenerator<xlf::xheatmap>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xlf::xheatmap>>;
 #endif
 
 #endif

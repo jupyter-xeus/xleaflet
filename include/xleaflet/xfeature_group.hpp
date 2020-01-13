@@ -42,8 +42,6 @@ namespace xlf
 
     using feature_group = xw::xmaterialize<xfeature_group>;
 
-    using feature_group_generator = xw::xgenerator<xfeature_group>;
-
     /*********************************
      * xfeature_group implementation *
      *********************************/
@@ -71,9 +69,6 @@ namespace xlf
     extern template class xw::xmaterialize<xlf::xfeature_group>;
     extern template xw::xmaterialize<xlf::xfeature_group>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xfeature_group>>;
-    extern template class xw::xgenerator<xlf::xfeature_group>;
-    extern template xw::xgenerator<xlf::xfeature_group>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xlf::xfeature_group>>;
 #endif
 
 #endif

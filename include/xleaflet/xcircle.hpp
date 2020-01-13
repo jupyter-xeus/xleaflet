@@ -11,12 +11,15 @@
 #define XLEAFLET_CIRCLE_HPP
 
 #include <array>
-#include <string>
+
+#include "nlohmann/json.hpp"
 
 #include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xwidget.hpp"
 
 #include "xpath.hpp"
+
+namespace nl = nlohmann;
 
 namespace xlf
 {
@@ -34,8 +37,8 @@ namespace xlf
         using base_type = xpath<D>;
         using derived_type = D;
 
-        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
-        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
+        void serialize_state(nl::json&, xeus::buffer_sequence&) const;
+        void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
         XPROPERTY(point_type, derived_type, location);
         XPROPERTY(int, derived_type, radius, 1000);
@@ -52,26 +55,24 @@ namespace xlf
 
     using circle = xw::xmaterialize<xcircle>;
 
-    using circle_generator = xw::xgenerator<xcircle>;
-
     /**************************
      * xcircle implementation *
      **************************/
 
     template <class D>
-    inline void xcircle<D>::serialize_state(xeus::xjson& state,
+    inline void xcircle<D>::serialize_state(nl::json& state,
                                             xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        using xw::set_patch_from_property;
+        using xw::xwidgets_serialize;
 
-        set_patch_from_property(location, state, buffers);
-        set_patch_from_property(radius, state, buffers);
+        xwidgets_serialize(location(), state["location"], buffers);
+        xwidgets_serialize(radius(), state["radius"], buffers);
     }
 
     template <class D>
-    inline void xcircle<D>::apply_patch(const xeus::xjson& patch,
+    inline void xcircle<D>::apply_patch(const nl::json& patch,
                                         const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
@@ -112,9 +113,6 @@ namespace xlf
     extern template class xw::xmaterialize<xlf::xcircle>;
     extern template xw::xmaterialize<xlf::xcircle>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xcircle>>;
-    extern template class xw::xgenerator<xlf::xcircle>;
-    extern template xw::xgenerator<xlf::xcircle>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xlf::xcircle>>;
 #endif
 
 #endif
