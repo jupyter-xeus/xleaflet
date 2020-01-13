@@ -75,6 +75,7 @@ This software is licensed under the BSD-3-Clause license. See the LICENSE file f
    api_reference/layers_control
    api_reference/split_map_control
    api_reference/measure_control
+   api_reference/widget_control
    api_reference/draw_control
 
 .. toctree::
