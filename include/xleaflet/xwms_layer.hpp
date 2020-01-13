@@ -17,6 +17,8 @@
 
 #include "xtile_layer.hpp"
 
+namespace nl = nlohmann;
+
 namespace xlf
 {
     /*************************
@@ -31,8 +33,8 @@ namespace xlf
         using base_type = xtile_layer<D>;
         using derived_type = D;
 
-        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
-        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
+        void serialize_state(nl::json&, xeus::buffer_sequence&) const;
+        void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
         XPROPERTY(std::string, derived_type, service, "WMS");
         XPROPERTY(std::string, derived_type, request, "GetMap");
@@ -56,33 +58,31 @@ namespace xlf
 
     using wms_layer = xw::xmaterialize<xwms_layer>;
 
-    using wms_layer_generator = xw::xgenerator<xwms_layer>;
-
     /*****************************
      * xwms_layer implementation *
      *****************************/
 
     template <class D>
-    inline void xwms_layer<D>::serialize_state(xeus::xjson& state,
+    inline void xwms_layer<D>::serialize_state(nl::json& state,
                                                xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        using xw::set_patch_from_property;
+        using xw::xwidgets_serialize;
 
-        set_patch_from_property(service, state, buffers);
-        set_patch_from_property(request, state, buffers);
-        set_patch_from_property(layers, state, buffers);
-        set_patch_from_property(styles, state, buffers);
-        set_patch_from_property(format, state, buffers);
-        set_patch_from_property(transparent, state, buffers);
-        set_patch_from_property(version, state, buffers);
-        set_patch_from_property(crs, state, buffers);
-        set_patch_from_property(uppercase, state, buffers);
+        xwidgets_serialize(service(), state["service"], buffers);
+        xwidgets_serialize(request(), state["request"], buffers);
+        xwidgets_serialize(layers(), state["layers"], buffers);
+        xwidgets_serialize(styles(), state["styles"], buffers);
+        xwidgets_serialize(format(), state["format"], buffers);
+        xwidgets_serialize(transparent(), state["transparent"], buffers);
+        xwidgets_serialize(version(), state["version"], buffers);
+        xwidgets_serialize(crs(), state["crs"], buffers);
+        xwidgets_serialize(uppercase(), state["uppercase"], buffers);
     }
 
     template <class D>
-    inline void xwms_layer<D>::apply_patch(const xeus::xjson& patch,
+    inline void xwms_layer<D>::apply_patch(const nl::json& patch,
                                            const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
@@ -135,9 +135,6 @@ namespace xlf
     extern template class xw::xmaterialize<xlf::xwms_layer>;
     extern template xw::xmaterialize<xlf::xwms_layer>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xwms_layer>>;
-    extern template class xw::xgenerator<xlf::xwms_layer>;
-    extern template xw::xgenerator<xlf::xwms_layer>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xlf::xwms_layer>>;
 #endif
 
 #endif

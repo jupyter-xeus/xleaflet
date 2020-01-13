@@ -10,12 +10,12 @@
 #ifndef XLEAFLET_VECTOR_LAYER_HPP
 #define XLEAFLET_VECTOR_LAYER_HPP
 
-#include <string>
-
 #include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xwidget.hpp"
 
 #include "xlayer.hpp"
+
+namespace nl = nlohmann;
 
 namespace xlf
 {
@@ -31,8 +31,8 @@ namespace xlf
         using base_type = xlayer<D>;
         using derived_type = D;
 
-        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
-        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
+        void serialize_state(nl::json&, xeus::buffer_sequence&) const;
+        void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
     protected:
 
@@ -46,21 +46,19 @@ namespace xlf
 
     using vector_layer = xw::xmaterialize<xvector_layer>;
 
-    using vector_layer_generator = xw::xgenerator<xvector_layer>;
-
     /********************************
      * xvector_layer implementation *
      ********************************/
 
     template <class D>
-    inline void xvector_layer<D>::serialize_state(xeus::xjson& state,
+    inline void xvector_layer<D>::serialize_state(nl::json& state,
                                                   xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
     }
 
     template <class D>
-    inline void xvector_layer<D>::apply_patch(const xeus::xjson& patch,
+    inline void xvector_layer<D>::apply_patch(const nl::json& patch,
                                               const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
@@ -89,9 +87,6 @@ namespace xlf
     extern template class xw::xmaterialize<xlf::xvector_layer>;
     extern template xw::xmaterialize<xlf::xvector_layer>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xvector_layer>>;
-    extern template class xw::xgenerator<xlf::xvector_layer>;
-    extern template xw::xgenerator<xlf::xvector_layer>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xlf::xvector_layer>>;
 #endif
 
 #endif

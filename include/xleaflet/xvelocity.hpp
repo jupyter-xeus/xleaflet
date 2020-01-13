@@ -20,6 +20,8 @@
 #include "xlayer.hpp"
 #include "xleaflet_config.hpp"
 
+namespace nl = nlohmann;
+
 namespace xlf
 {
     /************************
@@ -34,13 +36,13 @@ namespace xlf
         using base_type = xlayer<D>;
         using derived_type = D;
 
-        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
-        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
+        void serialize_state(nl::json&, xeus::buffer_sequence&) const;
+        void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
-        XPROPERTY(xeus::xjson, derived_type, data);
+        XPROPERTY(nl::json, derived_type, data);
         XPROPERTY(std::string, derived_type, units);
         XPROPERTY(bool, derived_type, display_values, true);
-        XPROPERTY(xeus::xjson, derived_type, display_options, R"({
+        XPROPERTY(nl::json, derived_type, display_options, R"({
             "velocityType": "Global Wind",
             "position": "bottomleft",
             "emptyString": "No velocity data",
@@ -66,32 +68,30 @@ namespace xlf
 
     using velocity = xw::xmaterialize<xvelocity>;
 
-    using velocity_generator = xw::xgenerator<xvelocity>;
-
     /***************************
      * velocity implementation *
      ***************************/
 
     template <class D>
-    inline void xvelocity<D>::serialize_state(xeus::xjson& state,
+    inline void xvelocity<D>::serialize_state(nl::json& state,
                                               xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        using xw::set_patch_from_property;
+        using xw::xwidgets_serialize;
 
-        set_patch_from_property(data, state, buffers);
-        set_patch_from_property(units, state, buffers);
-        set_patch_from_property(display_values, state, buffers);
-        set_patch_from_property(display_options, state, buffers);
-        set_patch_from_property(min_velocity, state, buffers);
-        set_patch_from_property(max_velocity, state, buffers);
-        set_patch_from_property(velocity_scale, state, buffers);
-        set_patch_from_property(color_scale, state, buffers);
+        xwidgets_serialize(data(), state["data"], buffers);
+        xwidgets_serialize(units(), state["units"], buffers);
+        xwidgets_serialize(display_values(), state["display_values"], buffers);
+        xwidgets_serialize(display_options(), state["display_options"], buffers);
+        xwidgets_serialize(min_velocity(), state["min_velocity"], buffers);
+        xwidgets_serialize(max_velocity(), state["max_velocity"], buffers);
+        xwidgets_serialize(velocity_scale(), state["velocity_scale"], buffers);
+        xwidgets_serialize(color_scale(), state["color_scale"], buffers);
     }
 
     template <class D>
-    inline void xvelocity<D>::apply_patch(const xeus::xjson& patch,
+    inline void xvelocity<D>::apply_patch(const nl::json& patch,
                                           const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
@@ -163,9 +163,6 @@ namespace xlf
     extern template class xw::xmaterialize<xlf::xvelocity>;
     extern template xw::xmaterialize<xlf::xvelocity>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xvelocity>>;
-    extern template class xw::xgenerator<xlf::xvelocity>;
-    extern template xw::xgenerator<xlf::xvelocity>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xlf::xvelocity>>;
 #endif
 
 #endif

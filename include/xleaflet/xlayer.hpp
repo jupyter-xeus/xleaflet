@@ -17,6 +17,8 @@
 
 #include "xleaflet_config.hpp"
 
+namespace nl = nlohmann;
+
 namespace xlf
 {
     /*********************
@@ -33,8 +35,8 @@ namespace xlf
 
         using widget_type = xw::xholder<xw::xobject>;
 
-        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
-        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
+        void serialize_state(nl::json&, xeus::buffer_sequence&) const;
+        void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
         XPROPERTY(std::string, derived_type, name, "");
         XPROPERTY(bool, derived_type, base, true);
@@ -54,29 +56,27 @@ namespace xlf
 
     using layer = xw::xmaterialize<xlayer>;
 
-    using layer_generator = xw::xgenerator<xlayer>;
-
     /*************************
      * xlayer implementation *
      *************************/
 
     template <class D>
-    inline void xlayer<D>::serialize_state(xeus::xjson& state,
+    inline void xlayer<D>::serialize_state(nl::json& state,
                                            xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        using xw::set_patch_from_property;
+        using xw::xwidgets_serialize;
 
-        set_patch_from_property(name, state, buffers);
-        set_patch_from_property(base, state, buffers);
-        set_patch_from_property(bottom, state, buffers);
-        set_patch_from_property(popup, state, buffers);
-        set_patch_from_property(options, state, buffers);
+        xwidgets_serialize(name(), state["name"], buffers);
+        xwidgets_serialize(base(), state["base"], buffers);
+        xwidgets_serialize(bottom(), state["bottom"], buffers);
+        xwidgets_serialize(popup(), state["popup"], buffers);
+        xwidgets_serialize(options(), state["options"], buffers);
     }
 
     template <class D>
-    inline void xlayer<D>::apply_patch(const xeus::xjson& patch,
+    inline void xlayer<D>::apply_patch(const nl::json& patch,
                                        const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
@@ -120,9 +120,6 @@ namespace xlf
     extern template class xw::xmaterialize<xlf::xlayer>;
     extern template xw::xmaterialize<xlf::xlayer>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xlayer>>;
-    extern template class xw::xgenerator<xlf::xlayer>;
-    extern template xw::xgenerator<xlf::xlayer>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xlf::xlayer>>;
 #endif
 
 #endif

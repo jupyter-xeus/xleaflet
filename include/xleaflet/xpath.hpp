@@ -18,6 +18,8 @@
 
 #include "xvector_layer.hpp"
 
+namespace nl = nlohmann;
+
 namespace xlf
 {
     /********************
@@ -32,8 +34,8 @@ namespace xlf
         using base_type = xvector_layer<D>;
         using derived_type = D;
 
-        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
-        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
+        void serialize_state(nl::json&, xeus::buffer_sequence&) const;
+        void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
         XPROPERTY(bool, derived_type, stroke, true);
         XPROPERTY(xw::html_color, derived_type, color, "#0033FF");
@@ -60,35 +62,33 @@ namespace xlf
 
     using path = xw::xmaterialize<xpath>;
 
-    using path_generator = xw::xgenerator<xpath>;
-
     /************************
      * xpath implementation *
      ************************/
 
     template <class D>
-    inline void xpath<D>::serialize_state(xeus::xjson& state, xeus::buffer_sequence& buffers) const
+    inline void xpath<D>::serialize_state(nl::json& state, xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        using xw::set_patch_from_property;
+        using xw::xwidgets_serialize;
 
-        set_patch_from_property(stroke, state, buffers);
-        set_patch_from_property(color, state, buffers);
-        set_patch_from_property(weight, state, buffers);
-        set_patch_from_property(fill, state, buffers);
-        set_patch_from_property(fill_color, state, buffers);
-        set_patch_from_property(fill_opacity, state, buffers);
-        set_patch_from_property(dash_array, state, buffers);
-        set_patch_from_property(line_cap, state, buffers);
-        set_patch_from_property(line_join, state, buffers);
-        set_patch_from_property(pointer_events, state, buffers);
-        set_patch_from_property(class_name, state, buffers);
-        set_patch_from_property(opacity, state, buffers);
+        xwidgets_serialize(stroke(), state["stroke"], buffers);
+        xwidgets_serialize(color(), state["color"], buffers);
+        xwidgets_serialize(weight(), state["weight"], buffers);
+        xwidgets_serialize(fill(), state["fill"], buffers);
+        xwidgets_serialize(fill_color(), state["fill_color"], buffers);
+        xwidgets_serialize(fill_opacity(), state["fill_opacity"], buffers);
+        xwidgets_serialize(dash_array(), state["dash_array"], buffers);
+        xwidgets_serialize(line_cap(), state["line_cap"], buffers);
+        xwidgets_serialize(line_join(), state["line_join"], buffers);
+        xwidgets_serialize(pointer_events(), state["pointer_events"], buffers);
+        xwidgets_serialize(class_name(), state["class_name"], buffers);
+        xwidgets_serialize(opacity(), state["opacity"], buffers);
     }
 
     template <class D>
-    inline void xpath<D>::apply_patch(const xeus::xjson& patch,
+    inline void xpath<D>::apply_patch(const nl::json& patch,
                                       const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
@@ -150,9 +150,6 @@ namespace xlf
     extern template class xw::xmaterialize<xlf::xpath>;
     extern template xw::xmaterialize<xlf::xpath>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xpath>>;
-    extern template class xw::xgenerator<xlf::xpath>;
-    extern template xw::xgenerator<xlf::xpath>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xlf::xpath>>;
 #endif
 
 #endif

@@ -19,7 +19,7 @@ The ``fullscreen_control`` allows one to display a selector on the top left of t
     #include "xleaflet/xmap.hpp"
     #include "xleaflet/xfullscreen_control.hpp"
 
-    auto map = xlf::map_generator()
+    auto map = xlf::map::initialize()
         .center({51.64, -76.52})
         .zoom(5)
         .finalize();

@@ -18,12 +18,12 @@ Example
     #include "xleaflet/xmap.hpp"
     #include "xleaflet/xvideo_overlay.hpp"
 
-    auto map = xlf::map_generator()
+    auto map = xlf::map::initialize()
         .center({25, -115})
         .zoom(4)
         .finalize();
 
-    auto video = xlf::video_overlay_generator()
+    auto video = xlf::video_overlay::initialize()
         .url("https://www.mapbox.com/bites/00188/patricia_nasa.webm")
         .bounds({{{13, -130}, {32, -100}}})
         .finalize();

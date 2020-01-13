@@ -10,9 +10,6 @@
 #ifndef XLEAFLET_LAYERS_CONTROL_HPP
 #define XLEAFLET_LAYERS_CONTROL_HPP
 
-#include <string>
-#include <vector>
-
 #include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xwidget.hpp"
 
@@ -45,8 +42,6 @@ namespace xlf
 
     using layers_control = xw::xmaterialize<xlayers_control>;
 
-    using layers_control_generator = xw::xgenerator<xlayers_control>;
-
     /**********************************
      * xlayers_control implementation *
      **********************************/
@@ -75,9 +70,6 @@ namespace xlf
     extern template class xw::xmaterialize<xlf::xlayers_control>;
     extern template xw::xmaterialize<xlf::xlayers_control>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xlayers_control>>;
-    extern template class xw::xgenerator<xlf::xlayers_control>;
-    extern template xw::xgenerator<xlf::xlayers_control>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xlf::xlayers_control>>;
 #endif
 
 #endif

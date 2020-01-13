@@ -10,7 +10,7 @@
 #ifndef XLEAFLET_MARKER_CLUSTER_HPP
 #define XLEAFLET_MARKER_CLUSTER_HPP
 
-#include <string>
+#include <vector>
 
 #include "xwidgets/xholder.hpp"
 #include "xwidgets/xmaterialize.hpp"
@@ -19,6 +19,8 @@
 #include "xlayer.hpp"
 #include "xleaflet_config.hpp"
 #include "xmarker.hpp"
+
+namespace nl = nlohmann;
 
 namespace xlf
 {
@@ -36,8 +38,8 @@ namespace xlf
 
         using marker_list_type = std::vector<xw::xholder<xmarker>>;
 
-        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
-        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
+        void serialize_state(nl::json&, xeus::buffer_sequence&) const;
+        void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
         XPROPERTY(std::vector<xw::xholder<xmarker>>, derived_type, markers);
 
@@ -53,25 +55,23 @@ namespace xlf
 
     using marker_cluster = xw::xmaterialize<xmarker_cluster>;
 
-    using marker_cluster_generator = xw::xgenerator<xmarker_cluster>;
-
     /**********************************
      * xmarker_cluster implementation *
      **********************************/
 
     template <class D>
-    inline void xmarker_cluster<D>::serialize_state(xeus::xjson& state,
+    inline void xmarker_cluster<D>::serialize_state(nl::json& state,
                                                     xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        using xw::set_patch_from_property;
+        using xw::xwidgets_serialize;
 
-        set_patch_from_property(markers, state, buffers);
+        xwidgets_serialize(markers(), state["markers"], buffers);
     }
 
     template <class D>
-    inline void xmarker_cluster<D>::apply_patch(const xeus::xjson& patch,
+    inline void xmarker_cluster<D>::apply_patch(const nl::json& patch,
                                                 const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
@@ -104,9 +104,6 @@ namespace xlf
     extern template class xw::xmaterialize<xlf::xmarker_cluster>;
     extern template xw::xmaterialize<xlf::xmarker_cluster>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xmarker_cluster>>;
-    extern template class xw::xgenerator<xlf::xmarker_cluster>;
-    extern template xw::xgenerator<xlf::xmarker_cluster>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xlf::xmarker_cluster>>;
 #endif
 
 #endif

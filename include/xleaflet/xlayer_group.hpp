@@ -20,6 +20,8 @@
 #include "xlayer.hpp"
 #include "xleaflet_config.hpp"
 
+namespace nl = nlohmann;
+
 namespace xlf
 {
     /***************************
@@ -43,8 +45,8 @@ namespace xlf
         using layer_list_type = std::vector<xw::xholder<xlayer>>;
 #endif
 
-        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
-        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
+        void serialize_state(nl::json&, xeus::buffer_sequence&) const;
+        void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
         template <class T>
         void add_layer(const xlayer<T>& l);
@@ -71,25 +73,23 @@ namespace xlf
 
     using layer_group = xw::xmaterialize<xlayer_group>;
 
-    using layer_group_generator = xw::xgenerator<xlayer_group>;
-
     /*******************************
      * xlayer_group implementation *
      *******************************/
 
     template <class D>
-    inline void xlayer_group<D>::serialize_state(xeus::xjson& state,
+    inline void xlayer_group<D>::serialize_state(nl::json& state,
                                                  xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        using xw::set_patch_from_property;
+        using xw::xwidgets_serialize;
 
-        set_patch_from_property(layers, state, buffers);
+        xwidgets_serialize(layers(), state["layers"], buffers);
     }
 
     template <class D>
-    inline void xlayer_group<D>::apply_patch(const xeus::xjson& patch,
+    inline void xlayer_group<D>::apply_patch(const nl::json& patch,
                                              const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
@@ -104,10 +104,10 @@ namespace xlf
     inline void xlayer_group<D>::add_layer(const xlayer<T>& l)
     {
         this->layers().emplace_back(xw::make_id_holder<xlayer>(l.id()));
-        xeus::xjson state;
+        nl::json state;
         xeus::buffer_sequence buffers;
-        using xw::set_patch_from_property;
-        set_patch_from_property(layers, state, buffers);
+        using xw::xwidgets_serialize;
+        xwidgets_serialize(layers(), state["layers"], buffers);
         this->send_patch(std::move(state), std::move(buffers));
     }
 
@@ -116,10 +116,10 @@ namespace xlf
     inline void xlayer_group<D>::add_layer(xlayer<T>&& l)
     {
         this->layers().emplace_back(xw::make_owning_holder(std::move(l)));
-        xeus::xjson state;
+        nl::json state;
         xeus::buffer_sequence buffers;
-        using xw::set_patch_from_property;
-        set_patch_from_property(layers, state, buffers);
+        using xw::xwidgets_serialize;
+        xwidgets_serialize(layers(), state["layers"], buffers);
         this->send_patch(std::move(state), std::move(buffers));
     }
 
@@ -136,10 +136,10 @@ namespace xlf
             ),
             this->layers().end()
         );
-        xeus::xjson state;
+        nl::json state;
         xeus::buffer_sequence buffers;
-        using xw::set_patch_from_property;
-        set_patch_from_property(layers, state, buffers);
+        using xw::xwidgets_serialize;
+        xwidgets_serialize(layers(), state["layers"], buffers);
         this->send_patch(std::move(state), std::move(buffers));
     }
 
@@ -147,10 +147,10 @@ namespace xlf
     inline void xlayer_group<D>::clear_layers()
     {
         this->layers() = {};
-        xeus::xjson state;
+        nl::json state;
         xeus::buffer_sequence buffers;
-        using xw::set_patch_from_property;
-        set_patch_from_property(layers, state, buffers);
+        using xw::xwidgets_serialize;
+        xwidgets_serialize(layers(), state["layers"], buffers);
         this->send_patch(std::move(state), std::move(buffers));
     }
 
@@ -177,9 +177,6 @@ namespace xlf
     extern template class xw::xmaterialize<xlf::xlayer_group>;
     extern template xw::xmaterialize<xlf::xlayer_group>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xlayer_group>>;
-    extern template class xw::xgenerator<xlf::xlayer_group>;
-    extern template xw::xgenerator<xlf::xlayer_group>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xlf::xlayer_group>>;
 #endif
 
 #endif

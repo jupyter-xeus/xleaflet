@@ -9,6 +9,7 @@
 #ifndef XLEAFLET_ICON_HPP
 #define XLEAFLET_ICON_HPP
 
+#include <array>
 #include <string>
 
 #include "xtl/xoptional.hpp"
@@ -17,6 +18,8 @@
 #include "xwidgets/xwidget.hpp"
 
 #include "xui_layer.hpp"
+
+namespace nl = nlohmann;
 
 namespace xlf
 {
@@ -34,8 +37,8 @@ namespace xlf
         using base_type = xui_layer<D>;
         using derived_type = D;
 
-        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
-        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
+        void serialize_state(nl::json&, xeus::buffer_sequence&) const;
+        void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
         XPROPERTY(std::string, derived_type, icon_url, "");
         XPROPERTY(xtl::xoptional<std::string>, derived_type, shadow_url);
@@ -57,31 +60,29 @@ namespace xlf
 
     using icon = xw::xmaterialize<xicon>;
 
-    using icon_generator = xw::xgenerator<xicon>;
-
     /************************
      * xicon implementation *
      ************************/
 
     template <class D>
-    inline void xicon<D>::serialize_state(xeus::xjson& state,
+    inline void xicon<D>::serialize_state(nl::json& state,
                                             xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        using xw::set_patch_from_property;
+        using xw::xwidgets_serialize;
 
-        set_patch_from_property(icon_url, state, buffers);
-        set_patch_from_property(shadow_url, state, buffers);
-        set_patch_from_property(icon_size, state, buffers);
-        set_patch_from_property(shadow_size, state, buffers);
-        set_patch_from_property(icon_anchor, state, buffers);
-        set_patch_from_property(shadow_anchor, state, buffers);
-        set_patch_from_property(popup_anchor, state, buffers);
+        xwidgets_serialize(icon_url(), state["icon_url"], buffers);
+        xwidgets_serialize(shadow_url(), state["shadow_url"], buffers);
+        xwidgets_serialize(icon_size(), state["icon_size"], buffers);
+        xwidgets_serialize(shadow_size(), state["shadow_size"], buffers);
+        xwidgets_serialize(icon_anchor(), state["icon_anchor"], buffers);
+        xwidgets_serialize(shadow_anchor(), state["shadow_anchor"], buffers);
+        xwidgets_serialize(popup_anchor(), state["popup_anchor"], buffers);
     }
 
     template <class D>
-    inline void xicon<D>::apply_patch(const xeus::xjson& patch,
+    inline void xicon<D>::apply_patch(const nl::json& patch,
                                         const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
@@ -139,9 +140,6 @@ namespace xlf
     extern template class xw::xmaterialize<xlf::xicon>;
     extern template xw::xmaterialize<xlf::xicon>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xicon>>;
-    extern template class xw::xgenerator<xlf::xicon>;
-    extern template xw::xgenerator<xlf::xicon>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xlf::xicon>>;
 #endif
 
 #endif

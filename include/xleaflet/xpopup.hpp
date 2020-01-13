@@ -10,6 +10,7 @@
 #ifndef XLEAFLET_POPUP_HPP
 #define XLEAFLET_POPUP_HPP
 
+#include <array>
 #include <string>
 
 #include "xwidgets/xholder.hpp"
@@ -17,6 +18,8 @@
 #include "xwidgets/xwidget.hpp"
 
 #include "xui_layer.hpp"
+
+namespace nl = nlohmann;
 
 namespace xlf
 {
@@ -36,8 +39,8 @@ namespace xlf
 
         using widget_type = xw::xholder<xw::xwidget>;
 
-        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
-        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
+        void serialize_state(nl::json&, xeus::buffer_sequence&) const;
+        void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
         XPROPERTY(point_type, derived_type, location);
         XPROPERTY(xtl::xoptional<widget_type>, derived_type, child);
@@ -66,38 +69,36 @@ namespace xlf
 
     using popup = xw::xmaterialize<xpopup>;
 
-    using popup_generator = xw::xgenerator<xpopup>;
-
     /*************************
      * xpopup implementation *
      *************************/
 
     template <class D>
-    inline void xpopup<D>::serialize_state(xeus::xjson& state,
+    inline void xpopup<D>::serialize_state(nl::json& state,
                                            xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        using xw::set_patch_from_property;
+        using xw::xwidgets_serialize;
 
-        set_patch_from_property(location, state, buffers);
-        set_patch_from_property(child, state, buffers);
-        set_patch_from_property(max_width, state, buffers);
-        set_patch_from_property(min_width, state, buffers);
-        set_patch_from_property(max_height, state, buffers);
-        set_patch_from_property(auto_pan, state, buffers);
-        set_patch_from_property(auto_pan_padding_top_left, state, buffers);
-        set_patch_from_property(auto_pan_padding_bottom_right, state, buffers);
-        set_patch_from_property(auto_pan_padding, state, buffers);
-        set_patch_from_property(keep_in_view, state, buffers);
-        set_patch_from_property(close_button, state, buffers);
-        set_patch_from_property(auto_close, state, buffers);
-        set_patch_from_property(close_on_escape_key, state, buffers);
-        set_patch_from_property(class_name, state, buffers);
+        xwidgets_serialize(location(), state["location"], buffers);
+        xwidgets_serialize(child(), state["child"], buffers);
+        xwidgets_serialize(max_width(), state["max_width"], buffers);
+        xwidgets_serialize(min_width(), state["min_width"], buffers);
+        xwidgets_serialize(max_height(), state["max_height"], buffers);
+        xwidgets_serialize(auto_pan(), state["auto_pan"], buffers);
+        xwidgets_serialize(auto_pan_padding_top_left(), state["auto_pan_padding_top_left"], buffers);
+        xwidgets_serialize(auto_pan_padding_bottom_right(), state["auto_pan_padding_bottom_right"], buffers);
+        xwidgets_serialize(auto_pan_padding(), state["auto_pan_padding"], buffers);
+        xwidgets_serialize(keep_in_view(), state["keep_in_view"], buffers);
+        xwidgets_serialize(close_button(), state["close_button"], buffers);
+        xwidgets_serialize(auto_close(), state["auto_close"], buffers);
+        xwidgets_serialize(close_on_escape_key(), state["close_on_escape_key"], buffers);
+        xwidgets_serialize(class_name(), state["class_name"], buffers);
     }
 
     template <class D>
-    inline void xpopup<D>::apply_patch(const xeus::xjson& patch,
+    inline void xpopup<D>::apply_patch(const nl::json& patch,
                                        const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
@@ -164,9 +165,6 @@ namespace xlf
     extern template class xw::xmaterialize<xlf::xpopup>;
     extern template xw::xmaterialize<xlf::xpopup>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xpopup>>;
-    extern template class xw::xgenerator<xlf::xpopup>;
-    extern template xw::xgenerator<xlf::xpopup>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xlf::xpopup>>;
 #endif
 
 #endif

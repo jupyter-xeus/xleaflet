@@ -19,6 +19,8 @@
 #include "xleaflet_config.hpp"
 #include "xraster_layer.hpp"
 
+namespace nl = nlohmann;
+
 namespace xlf
 {
     /*****************************
@@ -36,8 +38,8 @@ namespace xlf
         using base_type = xraster_layer<D>;
         using derived_type = D;
 
-        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
-        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
+        void serialize_state(nl::json&, xeus::buffer_sequence&) const;
+        void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
         XPROPERTY(std::string, derived_type, url, "");
         XPROPERTY(bounds_type, derived_type, bounds);
@@ -55,27 +57,25 @@ namespace xlf
 
     using image_overlay = xw::xmaterialize<ximage_overlay>;
 
-    using image_overlay_generator = xw::xgenerator<ximage_overlay>;
-
     /********************************
      * image_overlay implementation *
      ********************************/
 
     template <class D>
-    inline void ximage_overlay<D>::serialize_state(xeus::xjson& state,
+    inline void ximage_overlay<D>::serialize_state(nl::json& state,
                                                    xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        using xw::set_patch_from_property;
+        using xw::xwidgets_serialize;
 
-        set_patch_from_property(url, state, buffers);
-        set_patch_from_property(bounds, state, buffers);
-        set_patch_from_property(attribution, state, buffers);
+        xwidgets_serialize(url(), state["url"], buffers);
+        xwidgets_serialize(bounds(), state["bounds"], buffers);
+        xwidgets_serialize(attribution(), state["attribution"], buffers);
     }
 
     template <class D>
-    inline void ximage_overlay<D>::apply_patch(const xeus::xjson& patch,
+    inline void ximage_overlay<D>::apply_patch(const nl::json& patch,
                                                const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
@@ -119,9 +119,6 @@ namespace xlf
     extern template class xw::xmaterialize<xlf::ximage_overlay>;
     extern template xw::xmaterialize<xlf::ximage_overlay>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::ximage_overlay>>;
-    extern template class xw::xgenerator<xlf::ximage_overlay>;
-    extern template xw::xgenerator<xlf::ximage_overlay>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xlf::ximage_overlay>>;
 #endif
 
 #endif

@@ -19,7 +19,7 @@ Example
     #include "xleaflet/xbasemaps.hpp"
     #include "xleaflet/xsplit_map_control.hpp"
 
-    auto map = xlf::map_generator()
+    auto map = xlf::map::initialize()
         .center({42.6824, 365.581})
         .zoom(5)
         .finalize();
@@ -27,7 +27,7 @@ Example
     auto right_layer = xlf::basemap({"NASAGIBS", "ModisTerraTrueColorCR"}, "2017-11-11");
     auto left_layer = xlf::basemap({"NASAGIBS", "ModisAquaBands721CR"}, "2017-11-11");
 
-    auto control = xlf::split_map_control_generator()
+    auto control = xlf::split_map_control::initialize()
         .left_layer(left_layer)
         .right_layer(right_layer)
         .finalize();

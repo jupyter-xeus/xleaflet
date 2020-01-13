@@ -11,7 +11,6 @@
 #define XLEAFLET_MEASURE_CONTROL_HPP
 
 #include <string>
-#include <vector>
 
 #include "xwidgets/xcolor.hpp"
 #include "xwidgets/xholder.hpp"
@@ -21,6 +20,8 @@
 #include "xcontrol.hpp"
 #include "xfeature_group.hpp"
 #include "xleaflet_config.hpp"
+
+namespace nl = nlohmann;
 
 namespace xlf
 {
@@ -38,8 +39,8 @@ namespace xlf
         using base_type = xcontrol<D>;
         using derived_type = D;
 
-        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
-        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
+        void serialize_state(nl::json&, xeus::buffer_sequence&) const;
+        void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
         XPROPERTY(std::string, derived_type, position, "topright", XEITHER("topright", "topleft", "bottomright", "bottomleft"));
         XPROPERTY(std::string, derived_type, primary_length_unit, "feet", XEITHER("feet", "meters", "miles", "kilometers"));
@@ -48,7 +49,7 @@ namespace xlf
         XPROPERTY(xtl::xoptional<std::string>, derived_type, secondary_area_unit, {}, XEITHER_OPTIONAL("acres", "hectares", "sqfeet", "sqmeters", "sqmiles"));
         XPROPERTY(xw::html_color, derived_type, active_color, "#ABE67E");
         XPROPERTY(xw::html_color, derived_type, completed_color, "#C8F2BE");
-        XPROPERTY(xeus::xjson, derived_type, popup_options, R"({
+        XPROPERTY(nl::json, derived_type, popup_options, R"({
             "className": "leaflet-measure-resultpopup",
             "autoPanPadding": [10, 10]
         })"_json);
@@ -66,32 +67,30 @@ namespace xlf
 
     using measure_control = xw::xmaterialize<xmeasure_control>;
 
-    using measure_control_generator = xw::xgenerator<xmeasure_control>;
-
     /********************************
      * xmeasure_control implementation *
      ********************************/
 
     template <class D>
-    inline void xmeasure_control<D>::serialize_state(xeus::xjson& state,
+    inline void xmeasure_control<D>::serialize_state(nl::json& state,
                                                      xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        using xw::set_patch_from_property;
+        using xw::xwidgets_serialize;
 
-        set_patch_from_property(primary_length_unit, state, buffers);
-        set_patch_from_property(secondary_length_unit, state, buffers);
-        set_patch_from_property(primary_area_unit, state, buffers);
-        set_patch_from_property(secondary_area_unit, state, buffers);
-        set_patch_from_property(active_color, state, buffers);
-        set_patch_from_property(completed_color, state, buffers);
-        set_patch_from_property(popup_options, state, buffers);
-        set_patch_from_property(capture_z_index, state, buffers);
+        xwidgets_serialize(primary_length_unit(), state["primary_length_unit"], buffers);
+        xwidgets_serialize(secondary_length_unit(), state["secondary_length_unit"], buffers);
+        xwidgets_serialize(primary_area_unit(), state["primary_area_unit"], buffers);
+        xwidgets_serialize(secondary_area_unit(), state["secondary_area_unit"], buffers);
+        xwidgets_serialize(active_color(), state["active_color"], buffers);
+        xwidgets_serialize(completed_color(), state["completed_color"], buffers);
+        xwidgets_serialize(popup_options(), state["popup_options"], buffers);
+        xwidgets_serialize(capture_z_index(), state["capture_z_index"], buffers);
     }
 
     template <class D>
-    inline void xmeasure_control<D>::apply_patch(const xeus::xjson& patch,
+    inline void xmeasure_control<D>::apply_patch(const nl::json& patch,
                                                  const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
@@ -131,9 +130,6 @@ namespace xlf
     extern template class xw::xmaterialize<xlf::xmeasure_control>;
     extern template xw::xmaterialize<xlf::xmeasure_control>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xmeasure_control>>;
-    extern template class xw::xgenerator<xlf::xmeasure_control>;
-    extern template xw::xgenerator<xlf::xmeasure_control>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xlf::xmeasure_control>>;
 #endif
 
 #endif

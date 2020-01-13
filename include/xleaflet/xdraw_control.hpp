@@ -10,8 +10,13 @@
 #ifndef XLEAFLET_DRAW_CONTROL_HPP
 #define XLEAFLET_DRAW_CONTROL_HPP
 
+#include <functional>
+#include <list>
 #include <string>
+#include <utility>
 #include <vector>
+
+#include "nlohmann/json.hpp"
 
 #include "xwidgets/xholder.hpp"
 #include "xwidgets/xmaterialize.hpp"
@@ -20,6 +25,8 @@
 #include "xcontrol.hpp"
 #include "xfeature_group.hpp"
 #include "xleaflet_config.hpp"
+
+namespace nl = nlohmann;
 
 namespace xlf
 {
@@ -32,29 +39,29 @@ namespace xlf
     {
     public:
 
-        using draw_callback_type = std::function<void(const std::string&, const xeus::xjson&)>;
+        using draw_callback_type = std::function<void(const std::string&, const nl::json&)>;
 
         using base_type = xcontrol<D>;
         using derived_type = D;
 
         using feature_group_type = xw::xholder<xfeature_group>;
 
-        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
-        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
+        void serialize_state(nl::json&, xeus::buffer_sequence&) const;
+        void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
         void on_draw(draw_callback_type);
 
-        void handle_custom_message(const xeus::xjson&);
+        void handle_custom_message(const nl::json&);
 
         XPROPERTY(feature_group_type, derived_type, layer);
-        XPROPERTY(xeus::xjson, derived_type, polyline);
-        XPROPERTY(xeus::xjson, derived_type, polygon);
-        XPROPERTY(xeus::xjson, derived_type, circle);
-        XPROPERTY(xeus::xjson, derived_type, rectangle);
-        XPROPERTY(xeus::xjson, derived_type, marker);
+        XPROPERTY(nl::json, derived_type, polyline);
+        XPROPERTY(nl::json, derived_type, polygon);
+        XPROPERTY(nl::json, derived_type, circle);
+        XPROPERTY(nl::json, derived_type, rectangle);
+        XPROPERTY(nl::json, derived_type, marker);
         XPROPERTY(bool, derived_type, edit, true);
         XPROPERTY(bool, derived_type, remove, true);
-        XPROPERTY(xeus::xjson, derived_type, last_draw, {});
+        XPROPERTY(nl::json, derived_type, last_draw, {});
         XPROPERTY(std::string, derived_type, last_action, "");
 
     protected:
@@ -71,34 +78,32 @@ namespace xlf
 
     using draw_control = xw::xmaterialize<xdraw_control>;
 
-    using draw_control_generator = xw::xgenerator<xdraw_control>;
-
     /********************************
      * xdraw_control implementation *
      ********************************/
 
     template <class D>
-    inline void xdraw_control<D>::serialize_state(xeus::xjson& state,
+    inline void xdraw_control<D>::serialize_state(nl::json& state,
                                                   xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        using xw::set_patch_from_property;
+        using xw::xwidgets_serialize;
 
-        set_patch_from_property(layer, state, buffers);
-        set_patch_from_property(polyline, state, buffers);
-        set_patch_from_property(polygon, state, buffers);
-        set_patch_from_property(circle, state, buffers);
-        set_patch_from_property(rectangle, state, buffers);
-        set_patch_from_property(marker, state, buffers);
-        set_patch_from_property(edit, state, buffers);
-        set_patch_from_property(remove, state, buffers);
-        set_patch_from_property(last_draw, state, buffers);
-        set_patch_from_property(last_action, state, buffers);
+        xwidgets_serialize(layer(), state["layer"], buffers);
+        xwidgets_serialize(polyline(), state["polyline"], buffers);
+        xwidgets_serialize(polygon(), state["polygon"], buffers);
+        xwidgets_serialize(circle(), state["circle"], buffers);
+        xwidgets_serialize(rectangle(), state["rectangle"], buffers);
+        xwidgets_serialize(marker(), state["marker"], buffers);
+        xwidgets_serialize(edit(), state["edit"], buffers);
+        xwidgets_serialize(remove(), state["remove"], buffers);
+        xwidgets_serialize(last_draw(), state["last_draw"], buffers);
+        xwidgets_serialize(last_action(), state["last_action"], buffers);
     }
 
     template <class D>
-    inline void xdraw_control<D>::apply_patch(const xeus::xjson& patch,
+    inline void xdraw_control<D>::apply_patch(const nl::json& patch,
                                               const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
@@ -142,14 +147,14 @@ namespace xlf
     }
 
     template <class D>
-    inline void xdraw_control<D>::handle_custom_message(const xeus::xjson& content)
+    inline void xdraw_control<D>::handle_custom_message(const nl::json& content)
     {
         auto it = content.find("event");
         if (it != content.end() && it.value().get<std::string>().find("draw") == 0)
         {
             std::string value = it.value().get<std::string>();
             std::string action = value.substr(value.find(":") + 1, std::string::npos);
-            xeus::xjson geo_json_content = content["geo_json"];
+            nl::json geo_json_content = content["geo_json"];
 
             this->last_action() = action;
             this->last_draw() = geo_json_content;
@@ -170,9 +175,6 @@ namespace xlf
     extern template class xw::xmaterialize<xlf::xdraw_control>;
     extern template xw::xmaterialize<xlf::xdraw_control>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xdraw_control>>;
-    extern template class xw::xgenerator<xlf::xdraw_control>;
-    extern template xw::xgenerator<xlf::xdraw_control>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xlf::xdraw_control>>;
 #endif
 
 #endif

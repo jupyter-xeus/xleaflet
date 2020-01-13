@@ -12,20 +12,23 @@
 
 #include <fstream>
 #include <iostream>
+#include <stdexcept>
 #include <vector>
 
-#include "xeus/xjson.hpp"
+#include "nlohmann/json.hpp"
 
 #include "xget_basemaps_path.hpp"
 #include "xtile_layer.hpp"
 
+namespace nl = nlohmann;
+
 namespace detail
 {
-    inline xeus::xjson load_basemaps()
+    inline nl::json load_basemaps()
     {
         std::ifstream maps_json(xlf::get_basemaps_path());
 
-        xeus::xjson maps;
+        nl::json maps;
         maps_json >> maps;
 
         return maps;
@@ -34,9 +37,9 @@ namespace detail
 
 namespace xlf
 {
-    inline const xeus::xjson& basemaps()
+    inline const nl::json& basemaps()
     {
-        static xeus::xjson maps = detail::load_basemaps();
+        static nl::json maps = detail::load_basemaps();
 
         return maps;
     }
@@ -44,9 +47,9 @@ namespace xlf
     inline tile_layer basemap(const std::vector<std::string>& path,
                               const std::string& day = "2018-01-01")
     {
-        const xeus::xjson& maps = basemaps();
+        const nl::json& maps = basemaps();
 
-        const xeus::xjson* node = &maps;
+        const nl::json* node = &maps;
         try
         {
             for (const auto& level : path)
@@ -60,7 +63,7 @@ namespace xlf
             return tile_layer();
         }
 
-        const xeus::xjson& mapspec = *node;
+        const nl::json& mapspec = *node;
         if (mapspec.find("url") == mapspec.end())
         {
             std::cerr << "Invalid map spec" << std::endl;
@@ -99,7 +102,7 @@ namespace xlf
             min_zoom = mapspec["min_zoom"].get<int>();
         }
 
-        return tile_layer_generator()
+        return tile_layer::initialize()
             .url(url)
             .attribution(attribution)
             .name(name)

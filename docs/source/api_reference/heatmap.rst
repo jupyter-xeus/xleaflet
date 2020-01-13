@@ -13,7 +13,7 @@ Example
     #include "xleaflet/xmap.hpp"
     #include "xleaflet/xheatmap.hpp"
 
-    auto map = xlf::map_generator()
+    auto map = xlf::map::initialize()
         .center({37.58, 261.65})
         .zoom(5)
         .finalize();
@@ -31,7 +31,7 @@ Example
         heatmap_points.push_back({rd_latitude(mt), rd_longitude(mt), rd_intensity(mt)});
     }
 
-    auto heatmap = xlf::heatmap_generator()
+    auto heatmap = xlf::heatmap::initialize()
         .locations(heatmap_points)
         .finalize();
 

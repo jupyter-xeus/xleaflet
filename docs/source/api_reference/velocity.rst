@@ -16,7 +16,7 @@ Example
     #include "xleaflet/xmap.hpp"
     #include "xleaflet/xvelocity.hpp"
 
-    auto map = xlf::map_generator()
+    auto map = xlf::map::initialize()
         .center({0, 0})
         .zoom(1)
         .finalize();
@@ -28,7 +28,7 @@ Example
     nlohmann::json data;
     file >> data;
 
-    auto velocity = xlf::velocity_generator()
+    auto velocity = xlf::velocity::initialize()
         .data(data)
         .velocity_scale(0.01)
         .max_velocity(20)

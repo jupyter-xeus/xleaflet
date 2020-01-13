@@ -10,11 +10,18 @@
 #ifndef XLEAFLET_GEO_JSON_HPP
 #define XLEAFLET_GEO_JSON_HPP
 
+#include <functional>
+#include <list>
+
+#include "nlohmann/json.hpp"
+
 #include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xwidget.hpp"
 
 #include "xfeature_group.hpp"
 #include "xleaflet_config.hpp"
+
+namespace nl = nlohmann;
 
 namespace xlf
 {
@@ -27,22 +34,22 @@ namespace xlf
     {
     public:
 
-        using callback_type = std::function<void(const xeus::xjson&)>;
+        using callback_type = std::function<void(const nl::json&)>;
 
         using base_type = xfeature_group<D>;
         using derived_type = D;
 
-        void serialize_state(xeus::xjson&, xeus::buffer_sequence&) const;
-        void apply_patch(const xeus::xjson&, const xeus::buffer_sequence&);
+        void serialize_state(nl::json&, xeus::buffer_sequence&) const;
+        void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
         void on_click(callback_type);
         void on_hover(callback_type);
 
-        void handle_custom_message(const xeus::xjson&);
+        void handle_custom_message(const nl::json&);
 
-        XPROPERTY(xeus::xjson, derived_type, data);
-        XPROPERTY(xeus::xjson, derived_type, style);
-        XPROPERTY(xeus::xjson, derived_type, hover_style);
+        XPROPERTY(nl::json, derived_type, data);
+        XPROPERTY(nl::json, derived_type, style);
+        XPROPERTY(nl::json, derived_type, hover_style);
 
     protected:
 
@@ -58,27 +65,25 @@ namespace xlf
 
     using geo_json = xw::xmaterialize<xgeo_json>;
 
-    using geo_json_generator = xw::xgenerator<xgeo_json>;
-
     /****************************
      * xgeo_json implementation *
      ****************************/
 
     template <class D>
-    inline void xgeo_json<D>::serialize_state(xeus::xjson& state,
+    inline void xgeo_json<D>::serialize_state(nl::json& state,
                                               xeus::buffer_sequence& buffers) const
     {
         base_type::serialize_state(state, buffers);
 
-        using xw::set_patch_from_property;
+        using xw::xwidgets_serialize;
 
-        set_patch_from_property(data, state, buffers);
-        set_patch_from_property(style, state, buffers);
-        set_patch_from_property(hover_style, state, buffers);
+        xwidgets_serialize(data(), state["data"], buffers);
+        xwidgets_serialize(style(), state["style"], buffers);
+        xwidgets_serialize(hover_style(), state["hover_style"], buffers);
     }
 
     template <class D>
-    inline void xgeo_json<D>::apply_patch(const xeus::xjson& patch,
+    inline void xgeo_json<D>::apply_patch(const nl::json& patch,
                                           const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
@@ -117,7 +122,7 @@ namespace xlf
     }
 
     template <class D>
-    inline void xgeo_json<D>::handle_custom_message(const xeus::xjson& content)
+    inline void xgeo_json<D>::handle_custom_message(const nl::json& content)
     {
         auto it = content.find("event");
         if (it != content.end() && it.value() == "click")
@@ -146,9 +151,6 @@ namespace xlf
     extern template class xw::xmaterialize<xlf::xgeo_json>;
     extern template xw::xmaterialize<xlf::xgeo_json>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xgeo_json>>;
-    extern template class xw::xgenerator<xlf::xgeo_json>;
-    extern template xw::xgenerator<xlf::xgeo_json>::xgenerator();
-    extern template class xw::xtransport<xw::xgenerator<xlf::xgeo_json>>;
 #endif
 
 #endif
