@@ -1,6 +1,5 @@
 #include "gtest/gtest.h"
-#include <fstream>
-#include <iostream>
+
 #include "xleaflet/xcircle.hpp"
 #include "xleaflet/xcircle_marker.hpp"
 #include "xleaflet/xdraw_control.hpp"
@@ -28,43 +27,141 @@
 #include "xleaflet/xvideo_overlay.hpp"
 #include "xleaflet/xwms_layer.hpp"
 #include "xleaflet/xfeature_group.hpp"
-#include "xleaflet/test_xleaflet.hpp"
 
-//MISSING WIDGET IN XLEAFLET
-//chloropleth
-//feature_group
-//fullscreencotnrol
-//localtilelayer
+#include "check_attributes.hpp"
 
-TEST(power, test)
+// MISSING WIDGETS IN XLEAFLET
+// chloropleth
+// feature_group
+// fullscreencotnrol
+// localtilelayer
+
+TEST(attributes, Circle)
 {
-    py::scoped_interpreter guard{};
+    check_attributes<xlf::circle_marker>("ipyleaflet", "Circle");
+}
 
-    xlf::test_xleaflet<xlf::circle_marker>("Circle");
-    xlf::test_xleaflet<xlf::draw_control>("DrawControl");
-    xlf::test_xleaflet<xlf::circle_marker>("CircleMarker");
-    xlf::test_xleaflet<xlf::control>("Control");
-    xlf::test_xleaflet<xlf::geo_json>("GeoJSON");
-    xlf::test_xleaflet<xlf::icon>("Icon");
-    xlf::test_xleaflet<xlf::image_overlay>("ImageOverlay");
-    xlf::test_xleaflet<xlf::layer>("Layer");
-    xlf::test_xleaflet<xlf::layer_group>("LayerGroup");
-    xlf::test_xleaflet<xlf::map>("Map");
-    xlf::test_xleaflet<xlf::marker>("Marker");
-    xlf::test_xleaflet<xlf::marker_cluster>("MarkerCluster");
-    xlf::test_xleaflet<xlf::measure_control>("MeasureControl");
-    xlf::test_xleaflet<xlf::path>("Path");
-    xlf::test_xleaflet<xlf::popup>("Popup");
-    xlf::test_xleaflet<xlf::raster_layer>("RasterLayer");
-    xlf::test_xleaflet<xlf::tile_layer>("TileLayer");
-    xlf::test_xleaflet<xlf::ui_layer>("UILayer");
-    xlf::test_xleaflet<xlf::vector_layer>("VectorLayer");
-    xlf::test_xleaflet<xlf::video_overlay>("VideoOverlay");
-    xlf::test_xleaflet<xlf::wms_layer>("WMSLayer");
-    xlf::test_xleaflet<xlf::rectangle>("Rectangle");
-    xlf::test_xleaflet<xlf::polygon>("Polygon");
-    xlf::test_xleaflet<xlf::polyline>("Polyline");
-    xlf::test_xleaflet<xlf::split_map_control>("SplitMapControl");
-    xlf::test_xleaflet<xlf::heatmap>("Heatmap");
+TEST(attributes, DrawControl)
+{
+    check_attributes<xlf::draw_control>("ipyleaflet", "DrawControl");
+}
 
+TEST(attributes, CircleMarker)
+{
+    check_attributes<xlf::circle_marker>("ipyleaflet", "CircleMarker");
+}
+
+TEST(attributes, Control)
+{
+    check_attributes<xlf::control>("ipyleaflet", "Control");
+}
+
+TEST(attributes, GeoJSON)
+{
+    check_attributes<xlf::geo_json>("ipyleaflet", "GeoJSON");
+}
+
+TEST(attributes, Icon)
+{
+    check_attributes<xlf::icon>("ipyleaflet", "Icon");
+}
+
+TEST(attributes, ImageOverlay)
+{
+    check_attributes<xlf::image_overlay>("ipyleaflet", "ImageOverlay");
+}
+
+TEST(attributes, Layer)
+{
+    check_attributes<xlf::layer>("ipyleaflet", "Layer");
+}
+
+TEST(attributes, LayerGroup)
+{
+    check_attributes<xlf::layer_group>("ipyleaflet", "LayerGroup");
+}
+
+TEST(attributes, Map)
+{
+    check_attributes<xlf::map>("ipyleaflet", "Map");
+}
+
+TEST(attributes, Marker)
+{
+    check_attributes<xlf::marker>("ipyleaflet", "Marker");
+}
+
+TEST(attributes, MarkerCluster)
+{
+    check_attributes<xlf::marker_cluster>("ipyleaflet", "MarkerCluster");
+}
+
+TEST(attributes, MeasureControl)
+{
+    check_attributes<xlf::measure_control>("ipyleaflet", "MeasureControl");
+}
+
+TEST(attributes, Path)
+{
+    check_attributes<xlf::path>("ipyleaflet", "Path");
+}
+
+TEST(attributes, Popup)
+{
+    check_attributes<xlf::popup>("ipyleaflet", "Popup");
+}
+
+TEST(attributes, RasterLayer)
+{
+    check_attributes<xlf::raster_layer>("ipyleaflet", "RasterLayer");
+}
+
+TEST(attributes, TileLayer)
+{
+    check_attributes<xlf::tile_layer>("ipyleaflet", "TileLayer");
+}
+
+TEST(attributes, UILayer)
+{
+    check_attributes<xlf::ui_layer>("ipyleaflet", "UILayer");
+}
+
+TEST(attributes, VectorLayer)
+{
+    check_attributes<xlf::vector_layer>("ipyleaflet", "VectorLayer");
+}
+
+TEST(attributes, VideoOverlay)
+{
+    check_attributes<xlf::video_overlay>("ipyleaflet", "VideoOverlay");
+}
+
+TEST(attributes, WMSLayer)
+{
+    check_attributes<xlf::wms_layer>("ipyleaflet", "WMSLayer");
+}
+
+TEST(attributes, Rectangle)
+{
+    check_attributes<xlf::rectangle>("ipyleaflet", "Rectangle");
+}
+
+TEST(attributes, Polygon)
+{
+    check_attributes<xlf::polygon>("ipyleaflet", "Polygon");
+}
+
+TEST(attributes, Polyline)
+{
+    check_attributes<xlf::polyline>("ipyleaflet", "Polyline");
+}
+
+TEST(attributes, SplitMapControl)
+{
+    check_attributes<xlf::split_map_control>("ipyleaflet", "SplitMapControl");
+}
+
+TEST(attributes, Heatmap)
+{
+    check_attributes<xlf::heatmap>("ipyleaflet", "Heatmap");
 }

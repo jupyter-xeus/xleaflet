@@ -18,9 +18,11 @@ install:
     - conda config --set always_yes yes --set changeps1 no
     - conda update -q conda
     # Install host dependencies
+<<<<<<< HEAD
     - conda install xeus=0.23.3 cppzmq=4.3.0 xproperty=0.10.0 xwidgets=0.20.0 xtensor=0.20.8 -c conda-forge
-    # Install test dependencies
-    - conda install pybind11=2.4 pybind11_json=0.2.2 ipyleaflet=0.10.4 -c conda-forge
+=======
+    - conda install xeus=0.19.1 cppzmq=4.3.0 xproperty=0.8.1 xwidgets=0.17.0 xtensor=0.20.1 pybind11=2.3.0 ipyleaflet=0.10.4 -c conda-forge
+>>>>>>> Test xleaflet/ipyleaflet widget attribute
     # Install build dependencies
     - conda install cmake
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then

@@ -20,7 +20,7 @@ find_package(pybind11 REQUIRED)
 
 
 message(STATUS "Forcing tests build type to Release")
-set(CMAKE_BUILD_TYPE Debug CACHE STRING "Choose the type of build." FORCE)
+set(CMAKE_BUILD_TYPE Release CACHE STRING "Choose the type of build." FORCE)
 
 if (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
     project(xleaflet-test)
@@ -75,7 +75,6 @@ include_directories(${GTEST_INCLUDE_DIRS})
 
 set(XLEAFLET_TESTS
     main.cpp
-    test_xmap.cpp
     test_xleaflet.cpp
 )
 

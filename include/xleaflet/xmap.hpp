@@ -370,9 +370,8 @@ namespace xlf
             "zoom_animation_threshold",
         });
         this->center() = {0, 0};
-        this->bounds() = {{{0, 0}, {0, 0}}};
-        this->bounds_polygon() = {{{0, 0}, {0, 0}, {0, 0}, {0, 0}}};
-
+        this->bounds() = {{{{0, 0}}, {{0, 0}}}};
+        this->bounds_polygon() = {{{{0, 0}}, {{0, 0}}, {{0, 0}}, {{0, 0}}}};
         // Set default layer
         auto default_layer = xlf::basemap({"OpenStreetMap", "Mapnik"});
         this->add_layer(std::move(default_layer));
