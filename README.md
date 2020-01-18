@@ -1,9 +1,9 @@
 # ![xleaflet](docs/source/xleaflet.svg)
 
-[![Travis](https://travis-ci.org/QuantStack/xleaflet.svg?branch=master)](https://travis-ci.org/QuantStack/xleaflet)
-[![Appveyor](https://ci.appveyor.com/api/projects/status/gfiivu33g6hrv220?svg=true)](https://ci.appveyor.com/project/QuantStack/xleaflet)
+[![Travis](https://travis-ci.org/jupyter-xeus/xleaflet.svg?branch=master)](https://travis-ci.org/jupyter-xeus/xleaflet)
+[![Appveyor](https://ci.appveyor.com/api/projects/status/u3tf1pk8fw2nge7a?svg=true)](https://ci.appveyor.com/project/jupyter-xeus/xleaflet)
 [![Documentation](http://readthedocs.org/projects/xleaflet/badge/?version=latest)](https://xleaflet.readthedocs.io/en/latest/?badge=latest)
-[![Binder](https://img.shields.io/badge/launch-binder-brightgreen.svg)](https://mybinder.org/v2/gh/QuantStack/xleaflet/stable?filepath=notebooks)
+[![Binder](https://img.shields.io/badge/launch-binder-brightgreen.svg)](https://mybinder.org/v2/gh/jupyter-xeus/xleaflet/stable?filepath=notebooks)
 [![Join the Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/QuantStack/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 C++ backend for the jupyter-leaflet map visualization library
@@ -66,7 +66,7 @@ make install
 To try out xleaflet interactively in your web browser, just click on the binder
 link:
 
-[![Binder](docs/source/binder-logo.svg)](https://mybinder.org/v2/gh/QuantStack/xleaflet/stable?filepath=notebooks/)
+[![Binder](docs/source/binder-logo.svg)](https://mybinder.org/v2/gh/jupyter-xeus/xleaflet/stable?filepath=notebooks/)
 
 ## Documentation
 
@@ -80,7 +80,7 @@ All the dependencies of xleaflet are available for the conda package manager.
 
 | `xleaflet` | `xwidgets`  |  `xeus`         |  `xtensor`      |  
 |------------|-------------|-----------------|-----------------|
-|  master    |   ~0.19.0   |  >=0.21.1,<0.22 |  >=0.20.8,<0.21 |
+|  master    |   ~0.20.0   |  >=0.23.3,<0.24 |  >=0.20.8,<0.21 |
 |  0.10.0    |   ~0.19.0   |  >=0.21.1,<0.22 |  >=0.20.8,<0.21 |
 |  0.9.0     |   ~0.18.0   |  >=0.20.0,<0.21 |  >=0.20.8,<0.21 |
 |  0.8.0     |   ~0.18.0   |  >=0.20.0,<0.21 |  >=0.20.8,<0.21 |

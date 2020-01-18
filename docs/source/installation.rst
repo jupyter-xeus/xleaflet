@@ -34,7 +34,7 @@ The package will also pull all the dependencies.
 
 .. code::
 
-    conda install -c QuantStack xleaflet
+    conda install xleaflet -c conda-forge
 
 .. image:: cmake.svg
 

@@ -142,8 +142,8 @@ XProperty Events
     map.display();
 
 
-.. _xproperty: https://github.com/QuantStack/xproperty
-.. _documentation: https://github.com/QuantStack/xwidgets/blob/master/docs/source/usage.rst
-.. _xwidgets: https://github.com/QuantStack/xwidgets
+.. _xproperty: https://github.com/jupyter-xeus/xproperty
+.. _documentation: https://github.com/jupyter-xeus/xwidgets/blob/master/docs/source/usage.rst
+.. _xwidgets: https://github.com/jupyter-xeus/xwidgets
 .. _leaflet: http://leafletjs.com/
 .. _ipyleaflet: https://github.com/jupyter-widgets/ipyleaflet.git
