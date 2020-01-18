@@ -9,7 +9,7 @@ image:
 
 matrix:
   allow_failures:
-      - image: Visual Studio 2017
+    - image: Visual Studio 2017
 
 environment:
   matrix:
@@ -34,12 +34,16 @@ install:
   - conda info -a
   # Install host dependencies
   - conda install xeus=0.23.3 cppzmq=4.3.0 xproperty=0.10.0 xwidgets=0.20.0 xtensor=0.20.8 -c conda-forge
+  # Install test dependencies
+  - conda install pybind11=2.4 pybind11_json=0.2.2 ipyleaflet=0.10.4 -c conda-forge
   # Install build dependencies
   - conda install gtest cmake -c conda-forge
   - cmake -G "NMake Makefiles" -D CMAKE_INSTALL_PREFIX=%MINICONDA%\\LIBRARY -DBUILD_TESTS=ON .
   - nmake
+  - nmake install
   - nmake test_xleaflet
   - cd test
 
 build_script:
+  - ps: $env:PYTHONHOME = "C:\xwidgets-conda"
   - .\test_xleaflet

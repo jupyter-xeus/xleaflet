@@ -8,6 +8,17 @@
 
 cmake_minimum_required(VERSION 3.8)
 
+set(CMAKE_SKIP_BUILD_RPATH FALSE)
+set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
+set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}")
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+list(FIND CMAKE_PLATFORM_IMPLICIT_LINK_DIRECTORIES "${CMAKE_INSTALL_PREFIX}/lib" isSystemDir)
+if("${isSystemDir}" STREQUAL "-1")
+    set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
+endif("${isSystemDir}" STREQUAL "-1")
+find_package(pybind11 REQUIRED)
+
+
 message(STATUS "Forcing tests build type to Release")
 set(CMAKE_BUILD_TYPE Release CACHE STRING "Choose the type of build." FORCE)
 
@@ -64,26 +75,17 @@ include_directories(${GTEST_INCLUDE_DIRS})
 
 set(XLEAFLET_TESTS
     main.cpp
-    test_xmap.cpp
+    test_xleaflet.cpp
 )
 
 # Output
 # ======
 
-set(CMAKE_SKIP_BUILD_RPATH FALSE)
-set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
-set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}")
-set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-list(FIND CMAKE_PLATFORM_IMPLICIT_LINK_DIRECTORIES "${CMAKE_INSTALL_PREFIX}/lib" isSystemDir)
-if("${isSystemDir}" STREQUAL "-1")
-    set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
-endif("${isSystemDir}" STREQUAL "-1")
-
 add_executable(test_xleaflet ${XLEAFLET_TESTS} ${XLEAFLET_HEADERS})
 if(DOWNLOAD_GTEST OR GTEST_SRC_DIR)
     add_dependencies(test_xleaflet gtest_main)
 endif()
-
+include_directories(${pybind11_INCLUDE_DIRS})
 target_compile_features(test_xleaflet PRIVATE cxx_std_14)
 
 target_link_libraries(test_xleaflet
@@ -92,6 +94,6 @@ target_link_libraries(test_xleaflet
                       PUBLIC xwidgets
                       PUBLIC xleaflet
                       PRIVATE ${GTEST_BOTH_LIBRARIES}
-                      PRIVATE ${CMAKE_THREAD_LIBS_INIT})
+                      PRIVATE ${CMAKE_THREAD_LIBS_INIT}
+                      PRIVATE ${PYTHON_LIBRARIES} pybind11::embed    )
 target_include_directories(test_xleaflet PRIVATE ${XLEAFLET_INCLUDE_DIR} ${XWIDGETS_INCLUDE_DIR})
-
