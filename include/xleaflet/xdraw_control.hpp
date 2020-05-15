@@ -54,11 +54,11 @@ namespace xlf
         void handle_custom_message(const nl::json&);
 
         XPROPERTY(feature_group_type, derived_type, layer);
-        XPROPERTY(nl::json, derived_type, polyline);
-        XPROPERTY(nl::json, derived_type, polygon);
-        XPROPERTY(nl::json, derived_type, circle);
-        XPROPERTY(nl::json, derived_type, rectangle);
-        XPROPERTY(nl::json, derived_type, marker);
+        XPROPERTY(nl::json, derived_type, polyline, {});
+        XPROPERTY(nl::json, derived_type, polygon, {});
+        XPROPERTY(nl::json, derived_type, circle, {});
+        XPROPERTY(nl::json, derived_type, rectangle, {});
+        XPROPERTY(nl::json, derived_type, marker, {});
         XPROPERTY(bool, derived_type, edit, true);
         XPROPERTY(bool, derived_type, remove, true);
         XPROPERTY(nl::json, derived_type, last_draw, {});
