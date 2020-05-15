@@ -31,6 +31,7 @@
 #include "xlayer.hpp"
 #include "xleaflet_config.hpp"
 #include "xtile_layer.hpp"
+#include "xzoom_control.hpp"
 
 namespace nl = nlohmann;
 
@@ -373,8 +374,14 @@ namespace xlf
         this->bounds() = {{{{0, 0}}, {{0, 0}}}};
         this->bounds_polygon() = {{{{0, 0}}, {{0, 0}}, {{0, 0}}, {{0, 0}}}};
         // Set default layer
-        auto default_layer = xlf::basemap({"OpenStreetMap", "Mapnik"});
-        this->add_layer(std::move(default_layer));
+        auto base_layer = xlf::basemap({"OpenStreetMap", "Mapnik"});
+        this->add_layer(std::move(base_layer));
+        // Include zoom control
+        if (this->zoom_control())
+        {
+            auto zoom = xlf::zoom_control();
+            this->add_control(std::move(zoom));
+        } 
     }
 
     template <class D>
