@@ -100,10 +100,7 @@ namespace xlf
  * precompiled types *
  *********************/
 
-#ifndef _WIN32
     extern template class xw::xmaterialize<xlf::xmarker_cluster>;
-    extern template xw::xmaterialize<xlf::xmarker_cluster>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xmarker_cluster>>;
-#endif
 
 #endif

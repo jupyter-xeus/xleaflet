@@ -161,10 +161,7 @@ namespace xlf
  * precompiled types *
  *********************/
 
-#ifndef _WIN32
     extern template class xw::xmaterialize<xlf::xpopup>;
-    extern template xw::xmaterialize<xlf::xpopup>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xpopup>>;
-#endif
 
 #endif

@@ -147,10 +147,7 @@ namespace xlf
  * precompiled types *
  *********************/
 
-#ifndef _WIN32
     extern template class xw::xmaterialize<xlf::xgeo_json>;
-    extern template xw::xmaterialize<xlf::xgeo_json>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xgeo_json>>;
-#endif
 
 #endif

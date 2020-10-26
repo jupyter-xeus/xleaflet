@@ -105,10 +105,7 @@ namespace xlf
  * precompiled types *
  *********************/
 
-#ifndef _WIN32
     extern template class xw::xmaterialize<xlf::xsplit_map_control>;
-    extern template xw::xmaterialize<xlf::xsplit_map_control>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xsplit_map_control>>;
-#endif
 
 #endif

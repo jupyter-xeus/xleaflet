@@ -402,10 +402,7 @@ namespace xlf
  * precompiled types *
  *********************/
 
-#ifndef _WIN32
     extern template class xw::xmaterialize<xlf::xmap>;
-    extern template xw::xmaterialize<xlf::xmap>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xmap>>;
-#endif
 
 #endif

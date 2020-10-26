@@ -108,10 +108,7 @@ namespace xlf
  * precompiled types *
  *********************/
 
-#ifndef _WIN32
     extern template class xw::xmaterialize<xlf::xzoom_control>;
-    extern template xw::xmaterialize<xlf::xzoom_control>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xzoom_control>>;
-#endif
 
 #endif

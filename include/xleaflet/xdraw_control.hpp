@@ -171,10 +171,7 @@ namespace xlf
  * precompiled types *
  *********************/
 
-#ifndef _WIN32
     extern template class xw::xmaterialize<xlf::xdraw_control>;
-    extern template xw::xmaterialize<xlf::xdraw_control>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xdraw_control>>;
-#endif
 
 #endif

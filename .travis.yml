@@ -18,20 +18,21 @@ install:
     - conda config --set always_yes yes --set changeps1 no
     - conda update -q conda
     # Install host dependencies
-    - conda install xeus=0.23.3 cppzmq=4.3.0 xproperty=0.10.0 xwidgets=0.20.0 xtensor=0.20.8 -c conda-forge
+    - conda install mamba -c conda-forge
+    - mamba install xeus=0.24.2 cppzmq xproperty xwidgets=0.22.0 xtensor -c conda-forge
     # Install test dependencies
-    - conda install pybind11=2.4 pybind11_json=0.2.2 ipyleaflet=0.10.4 -c conda-forge
+    - mamba install pybind11=2.4 pybind11_json=0.2.2 ipyleaflet=0.13.0 -c conda-forge
     # Install build dependencies
-    - conda install cmake
+    - mamba install cmake
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-        conda install gxx_linux-64 -c conda-forge;
+        mamba install gxx_linux-64 -c conda-forge;
       fi
     # Activate root environment
     - source activate root
     # Testing
     - mkdir build
     - cd build
-    - cmake -D CMAKE_INSTALL_PREFIX=$HOME/miniconda/ -D DOWNLOAD_GTEST=ON -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX ..
+    - cmake -D CMAKE_INSTALL_PREFIX=$HOME/miniconda/ -D DOWNLOAD_GTEST=ON -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX -D PYTHON_EXECUTABLE=`which python` ..
     - make -j2 install
     - make -j2 test_xleaflet
     - cd test
