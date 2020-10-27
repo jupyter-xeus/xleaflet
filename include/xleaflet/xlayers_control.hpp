@@ -66,10 +66,7 @@ namespace xlf
  * precompiled types *
  *********************/
 
-#ifndef _WIN32
     extern template class xw::xmaterialize<xlf::xlayers_control>;
-    extern template xw::xmaterialize<xlf::xlayers_control>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xlayers_control>>;
-#endif
 
 #endif

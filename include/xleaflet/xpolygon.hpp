@@ -83,10 +83,7 @@ namespace xlf
  * precompiled types *
  *********************/
 
-#ifndef _WIN32
     extern template class xw::xmaterialize<xlf::xpolygon>;
-    extern template xw::xmaterialize<xlf::xpolygon>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xpolygon>>;
-#endif
 
 #endif

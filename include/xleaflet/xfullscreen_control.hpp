@@ -65,10 +65,7 @@ namespace xlf
  * precompiled types *
  *********************/
 
-#ifndef _WIN32
     extern template class xw::xmaterialize<xlf::xfullscreen_control>;
-    extern template xw::xmaterialize<xlf::xfullscreen_control>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xfullscreen_control>>;
-#endif
 
 #endif

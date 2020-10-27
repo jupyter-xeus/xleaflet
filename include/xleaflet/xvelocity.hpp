@@ -159,10 +159,7 @@ namespace xlf
  * precompiled types *
  *********************/
 
-#ifndef _WIN32
     extern template class xw::xmaterialize<xlf::xvelocity>;
-    extern template xw::xmaterialize<xlf::xvelocity>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xvelocity>>;
-#endif
 
 #endif

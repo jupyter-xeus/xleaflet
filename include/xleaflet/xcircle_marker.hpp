@@ -102,10 +102,7 @@ namespace xlf
  * precompiled types *
  *********************/
 
-#ifndef _WIN32
     extern template class xw::xmaterialize<xlf::xcircle_marker>;
-    extern template xw::xmaterialize<xlf::xcircle_marker>::xmaterialize();
     extern template class xw::xtransport<xw::xmaterialize<xlf::xcircle_marker>>;
-#endif
 
 #endif

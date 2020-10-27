@@ -33,12 +33,13 @@ install:
   - conda update -q conda
   - conda info -a
   # Install host dependencies
-  - conda install xeus=0.23.3 cppzmq=4.3.0 xproperty=0.10.0 xwidgets=0.20.0 xtensor=0.20.8 -c conda-forge
+  - conda install mamba -c conda-forge
+  - mamba install xeus=0.24.2 cppzmq xproperty xwidgets=0.22.0 xtensor -c conda-forge
   # Install test dependencies
-  - conda install pybind11=2.4 pybind11_json=0.2.2 ipyleaflet=0.10.4 -c conda-forge
+  - mamba install pybind11=2.4 pybind11_json=0.2.2 ipyleaflet=0.13.0 -c conda-forge
   # Install build dependencies
-  - conda install gtest cmake -c conda-forge
-  - cmake -G "NMake Makefiles" -D CMAKE_INSTALL_PREFIX=%MINICONDA%\\LIBRARY -DBUILD_TESTS=ON .
+  - mamba install cmake -c conda-forge
+  - cmake -G "NMake Makefiles" -D CMAKE_INSTALL_PREFIX=%MINICONDA%\\LIBRARY -DDOWNLOAD_GTEST=ON .
   - nmake
   - nmake install
   - nmake test_xleaflet
