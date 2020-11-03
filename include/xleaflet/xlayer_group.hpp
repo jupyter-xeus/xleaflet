@@ -36,14 +36,7 @@ namespace xlf
         using base_type = xlayer<D>;
         using derived_type = D;
 
-#ifdef _MSC_VER
-        template <class T>
-        using layer_type = xlayer<T>;
-
-        using layer_list_type = std::vector<xw::xholder<layer_type>>;
-#else
-        using layer_list_type = std::vector<xw::xholder<xlayer>>;
-#endif
+        using layer_list_type = std::vector<xw::xholder>;
 
         void serialize_state(nl::json&, xeus::buffer_sequence&) const;
         void apply_patch(const nl::json&, const xeus::buffer_sequence&);
@@ -103,7 +96,7 @@ namespace xlf
     template <class T>
     inline void xlayer_group<D>::add_layer(const xlayer<T>& l)
     {
-        this->layers().emplace_back(xw::make_id_holder<xlayer>(l.id()));
+        this->layers().emplace_back(xw::make_id_holder(l.id()));
         nl::json state;
         xeus::buffer_sequence buffers;
         using xw::xwidgets_serialize;
@@ -130,7 +123,7 @@ namespace xlf
         this->layers().erase(
             std::remove_if(
                 this->layers().begin(), this->layers().end(),
-                [&l](const xw::xholder<xlayer>& element) {
+                [&l](const xw::xholder& element) {
                     return element.id() == l.id();
                 }
             ),

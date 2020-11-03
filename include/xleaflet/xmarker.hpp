@@ -39,7 +39,7 @@ namespace xlf
         using move_callback_type = std::function<void(const nl::json&)>;
 
         using point_type = std::array<double, 2>;
-        using icon_type = xw::xholder<xicon>;
+        using icon_type = xw::xholder;
 
         using base_type = xui_layer<D>;
         using derived_type = D;

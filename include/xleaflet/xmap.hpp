@@ -55,8 +55,8 @@ namespace xlf
         using base_type = xw::xwidget<D>;
         using derived_type = D;
 
-        using layer_list_type = std::vector<xw::xholder<xlayer>>;
-        using control_list_type = std::vector<xw::xholder<xcontrol>>;
+        using layer_list_type = std::vector<xw::xholder>;
+        using control_list_type = std::vector<xw::xholder>;
 
         void serialize_state(nl::json&, xeus::buffer_sequence&) const;
         void apply_patch(const nl::json&, const xeus::buffer_sequence&);
@@ -221,7 +221,7 @@ namespace xlf
     template <class T>
     inline void xmap<D>::add_layer(const xlayer<T>& l)
     {
-        this->layers().emplace_back(xw::make_id_holder<xlayer>(l.id()));
+        this->layers().emplace_back(xw::make_id_holder(l.id()));
         nl::json state;
         xeus::buffer_sequence buffers;
         using xw::xwidgets_serialize;
@@ -248,7 +248,7 @@ namespace xlf
         this->layers().erase(
             std::remove_if(
                 this->layers().begin(), this->layers().end(),
-                [&l](const xw::xholder<xlayer>& element) {
+                [&l](const xw::xholder& element) {
                     return element.id() == l.id();
                 }
             ),
@@ -276,7 +276,7 @@ namespace xlf
     template <class T>
     inline void xmap<D>::add_control(const xcontrol<T>& c)
     {
-        this->controls().emplace_back(xw::make_id_holder<xcontrol>(c.id()));
+        this->controls().emplace_back(xw::make_id_holder(c.id()));
         nl::json state;
         xeus::buffer_sequence buffers;
         using xw::xwidgets_serialize;
@@ -303,7 +303,7 @@ namespace xlf
         this->controls().erase(
             std::remove_if(
                 this->controls().begin(), this->controls().end(),
-                [&c](const xw::xholder<xcontrol>& element) {
+                [&c](const xw::xholder& element) {
                     return element.id() == c.id();
                 }
             ),

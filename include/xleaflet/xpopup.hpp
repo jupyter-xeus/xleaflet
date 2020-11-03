@@ -37,7 +37,7 @@ namespace xlf
         using base_type = xui_layer<D>;
         using derived_type = D;
 
-        using widget_type = xw::xholder<xw::xwidget>;
+        using widget_type = xw::xholder;
 
         void serialize_state(nl::json&, xeus::buffer_sequence&) const;
         void apply_patch(const nl::json&, const xeus::buffer_sequence&);

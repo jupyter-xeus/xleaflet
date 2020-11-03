@@ -36,12 +36,12 @@ namespace xlf
         using base_type = xlayer<D>;
         using derived_type = D;
 
-        using marker_list_type = std::vector<xw::xholder<xmarker>>;
+        using marker_list_type = std::vector<xw::xholder>;
 
         void serialize_state(nl::json&, xeus::buffer_sequence&) const;
         void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
-        XPROPERTY(std::vector<xw::xholder<xmarker>>, derived_type, markers);
+        XPROPERTY(std::vector<xw::xholder>, derived_type, markers);
 
     protected:
 
