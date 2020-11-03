@@ -3,8 +3,8 @@ channels:
   - conda-forge
 dependencies:
   - xtensor=0.21
-  - xwidgets=0.22.1
-  - xleaflet=0.12.0
+  - xwidgets=0.23.0
+  - xleaflet=0.13.0
   - xeus-cling=0.10.0
   - ipyleaflet>=0.13.0,<0.14
   - widgetsnbextension >=3.0.0
