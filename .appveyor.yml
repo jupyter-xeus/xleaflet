@@ -34,7 +34,7 @@ install:
   - conda info -a
   # Install host dependencies
   - conda install mamba -c conda-forge
-  - mamba install xeus=0.24.2 cppzmq xproperty xwidgets=0.22.0 xtensor -c conda-forge
+  - mamba install xeus=0.24.2 cppzmq xproperty xwidgets=0.23.0 xtensor -c conda-forge
   # Install test dependencies
   - mamba install pybind11=2.4 pybind11_json=0.2.2 ipyleaflet=0.13.0 -c conda-forge
   # Install build dependencies

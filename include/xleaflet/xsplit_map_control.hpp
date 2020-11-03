@@ -34,7 +34,7 @@ namespace xlf
         using base_type = xcontrol<D>;
         using derived_type = D;
 
-        using tile_layer_type = xw::xholder<xtile_layer>;
+        using tile_layer_type = xw::xholder;
 
         void serialize_state(nl::json&, xeus::buffer_sequence&) const;
         void apply_patch(const nl::json&, const xeus::buffer_sequence&);

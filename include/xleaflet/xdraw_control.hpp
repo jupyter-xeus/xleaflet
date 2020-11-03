@@ -44,7 +44,7 @@ namespace xlf
         using base_type = xcontrol<D>;
         using derived_type = D;
 
-        using feature_group_type = xw::xholder<xfeature_group>;
+        using feature_group_type = xw::xholder;
 
         void serialize_state(nl::json&, xeus::buffer_sequence&) const;
         void apply_patch(const nl::json&, const xeus::buffer_sequence&);
