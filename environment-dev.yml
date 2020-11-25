@@ -1,0 +1,17 @@
+name: xleaflet
+channels:
+  - conda-forge
+dependencies:
+  # Build dependencies
+  - cmake
+  # Host dependencies
+  - xeus=0.25.0
+  - cppzmq
+  - xproperty
+  - xwidgets=0.24.0
+  - xtensor
+  # Test dependencies
+  - pybind11=2.4
+  - pybind11_json=0.2.2
+  - ipyleaflet=0.13.0
+
