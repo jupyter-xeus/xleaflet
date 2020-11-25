@@ -1,6 +1,6 @@
 # ![xleaflet](docs/source/xleaflet.svg)
 
-[![Travis](https://travis-ci.org/jupyter-xeus/xleaflet.svg?branch=master)](https://travis-ci.org/jupyter-xeus/xleaflet)
+[![Azure Pipelines](https://dev.azure.com/jupyter-xeus/jupyter-xeus/_apis/build/status/jupyter-xeus.xleaflet?branchName=master)](https://dev.azure.com/jupyter-xeus/jupyter-xeus/_build/latest?definitionId=7&branchName=master)
 [![Appveyor](https://ci.appveyor.com/api/projects/status/u3tf1pk8fw2nge7a?svg=true)](https://ci.appveyor.com/project/jupyter-xeus/xleaflet)
 [![Documentation](http://readthedocs.org/projects/xleaflet/badge/?version=latest)](https://xleaflet.readthedocs.io/en/latest/?badge=latest)
 [![Binder](https://img.shields.io/badge/launch-binder-brightgreen.svg)](https://mybinder.org/v2/gh/jupyter-xeus/xleaflet/stable?filepath=notebooks)
