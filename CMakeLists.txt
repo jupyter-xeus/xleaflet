@@ -184,9 +184,7 @@ target_compile_features(xleaflet PRIVATE cxx_std_14)
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "Intel")
     target_compile_options(xleaflet PUBLIC -Wunused-parameter -Wextra -Wreorder)
-    if (DISABLE_ARCH_NATIVE)
-        target_compile_options(xleaflet PUBLIC -mtune=generic)
-    else()
+    if (NOT DISABLE_ARCH_NATIVE)
         target_compile_options(xleaflet PUBLIC -march=native)
     endif()
 
