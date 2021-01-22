@@ -67,10 +67,10 @@ message(STATUS "xleaflet binary version: v${XLEAFLET_BINARY_VERSION}")
 # Dependencies
 # ============
 
-find_package(xtl 0.6.5 REQUIRED)
-find_package(xtensor 0.20.8 REQUIRED)
-find_package(xeus 0.24.0 REQUIRED)
-find_package(xwidgets 0.23.0 REQUIRED)
+find_package(xtl 0.7.0 REQUIRED)
+find_package(xtensor 0.23.0 REQUIRED)
+find_package(xeus 1.0.0 REQUIRED)
+find_package(xwidgets 0.25.0 REQUIRED)
 
 # Source files
 # ============
