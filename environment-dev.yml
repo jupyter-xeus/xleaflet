@@ -5,11 +5,11 @@ dependencies:
   # Build dependencies
   - cmake
   # Host dependencies
-  - xeus=0.25.0
+  - xeus=1.0.0
   - cppzmq
-  - xproperty
-  - xwidgets=0.24.0
-  - xtensor
+  - xproperty=0.11.0
+  - xwidgets=0.25.0
+  - xtensor=0.23.0
   # Test dependencies
   - pybind11=2.4
   - pybind11_json=0.2.2
