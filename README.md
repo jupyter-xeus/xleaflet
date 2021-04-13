@@ -28,12 +28,12 @@ Displaying velocity data on the top of a map:
 
 ## Installation
 
-We provide a package for the conda package manager.
+We provide a package for the mamba (or conda) package manager.
 
 - Installing `xleaflet` and the C++ kernel
 
 ```bash
-conda install xeus-cling xleaflet -c conda-forge
+mamba install xeus-cling xleaflet -c conda-forge
 ```
 
 Then, the front-end extension must be installed for either the classic notebook or JupyterLab.
@@ -41,8 +41,8 @@ Then, the front-end extension must be installed for either the classic notebook 
 - Installing the extensions for the classic notebook
 
 ```
-conda install widgetsnbextension -c conda-forge
-conda install ipyleaflet -c conda-forge
+mamba install widgetsnbextension -c conda-forge
+mamba install ipyleaflet -c conda-forge
 ```
 
 - Installing the JupyterLab extension
@@ -76,7 +76,7 @@ http://xleaflet.readthedocs.io/
 
 ## Dependencies
 
-All the dependencies of xleaflet are available for the conda package manager.
+All the dependencies of xleaflet are available for the mamba package manager.
 
 | `xleaflet` | `xwidgets`  |  `xeus`         |  `xtensor`      |  
 |------------|-------------|-----------------|-----------------|
