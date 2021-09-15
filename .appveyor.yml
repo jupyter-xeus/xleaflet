@@ -34,9 +34,9 @@ install:
   - conda info -a
   # Install host dependencies
   - conda install mamba -c conda-forge
-  - mamba install xeus=1.0.0 cppzmq xproperty=0.11.0 xwidgets=0.25.0 xtensor=0.23.0 -c conda-forge
+  - mamba install xeus=2.0.0 cppzmq xproperty=0.11.0 xwidgets=0.26.0 xtensor=0.23.0 -c conda-forge
   # Install test dependencies
-  - mamba install pybind11=2.4 pybind11_json=0.2.2 ipyleaflet=0.13.0 -c conda-forge
+  - mamba install pybind11=2.7.1 pybind11_json=0.2.11 ipyleaflet=0.14.0 -c conda-forge
   # Install build dependencies
   - mamba install cmake -c conda-forge
   - cmake -G "NMake Makefiles" -D CMAKE_INSTALL_PREFIX=%MINICONDA%\\LIBRARY -DDOWNLOAD_GTEST=ON .
