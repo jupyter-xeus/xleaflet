@@ -67,11 +67,21 @@ message(STATUS "xleaflet binary version: v${XLEAFLET_BINARY_VERSION}")
 # Dependencies
 # ============
 
-find_package(xtl 0.7.0 REQUIRED)
-find_package(xtensor 0.23.0 REQUIRED)
-find_package(xeus 2.0.0 REQUIRED)
-find_package(xproperty 0.11.0 REQUIRED)
-find_package(xwidgets 0.26.0 REQUIRED)
+set(xtl_REQUIRED_VERSION 0.7.0)
+set(xproperty_REQUIRED_VERSION 0.11.0)
+set(xwidgets_REQUIRED_VERSION 0.27.0)
+
+if (NOT TARGET xtl)
+    find_package(xtl ${xtl_REQUIRED_VERSION} REQUIRED)
+endif ()
+
+if (NOT TARGET xproperty)
+    find_package(xproperty ${xproperty_REQUIRED_VERSION} REQUIRED)
+endif ()
+
+if (NOT TARGET xwidgets)
+    find_package(xwidgets ${xwidgets_REQUIRED_VERSION} REQUIRED)
+endif ()
 
 # Source files
 # ============
@@ -159,7 +169,7 @@ target_include_directories(xleaflet PUBLIC $<BUILD_INTERFACE:${XLEAFLET_INCLUDE_
 
 target_link_libraries(xleaflet
     PUBLIC xtl
-    PUBLIC xeus
+    PUBLIC xproperty
     PUBLIC xwidgets)
 
 set_target_properties(xleaflet PROPERTIES
@@ -255,6 +265,16 @@ install(TARGETS xleaflet
 export(EXPORT ${PROJECT_NAME}-targets
        FILE "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Targets.cmake")
 
+# Configure 'xleafletConfig.cmake' for a build tree
+set(XLEAFLET_CONFIG_CODE "####### Expanded from \@XLEAFLET_CONFIG_CODE\@ #######\n")
+set(XLEAFLET_CONFIG_CODE "${XLEAFLET_CONFIG_CODE}set(CMAKE_MODULE_PATH \"${CMAKE_CURRENT_SOURCE_DIR}/cmake;\${CMAKE_MODULE_PATH}\")\n")
+set(XLEAFLET_CONFIG_CODE "${XLEAFLET_CONFIG_CODE}##################################################")
+configure_package_config_file(${PROJECT_NAME}Config.cmake.in
+                              "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+                              INSTALL_DESTINATION ${PROJECT_BINARY_DIR})
+
+# Configure 'xleafletConfig.cmake' for an install tree
+set(XLEAFLET_CONFIG_CODE "")
 configure_package_config_file(${PROJECT_NAME}Config.cmake.in
                               "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
                               INSTALL_DESTINATION ${XLEAFLET_CMAKECONFIG_INSTALL_DIR})
