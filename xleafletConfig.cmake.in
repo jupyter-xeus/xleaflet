@@ -15,7 +15,19 @@
 
 @PACKAGE_INIT@
 
-set(PN xleaflet)
-set_and_check(${PN}_INCLUDE_DIRS "${PACKAGE_PREFIX_DIR}/@CMAKE_INSTALL_INCLUDEDIR@")
-set(${PN}_LIBRARY "")
-check_required_components(${PN})
+@XLEAFLET_CONFIG_CODE@
+
+include(CMakeFindDependencyMacro)
+find_dependency(xtl @xtl_REQUIRED_VERSION@)
+find_dependency(xproperty @xeus_REQUIRED_VERSION@)
+find_dependency(xwidgets @xeus_REQUIRED_VERSION@)
+
+if (NOT TARGET xleaflet)
+  include("${CMAKE_CURRENT_LIST_DIR}/@PROJECT_NAME@Targets.cmake")
+
+  if (TARGET xleaflet)
+    get_target_property(@PROJECT_NAME@_INCLUDE_DIR xleaflet INTERFACE_INCLUDE_DIRECTORIES)
+    get_target_property(@PROJECT_NAME@_LIBRARY xleaflet LOCATION)
+  endif ()
+endif ()
+
