@@ -1,0 +1,102 @@
+name: CI
+on:
+  workflow_dispatch:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+defaults:
+  run:
+    shell: bash -l {0}
+
+jobs:
+
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: pre-commit/action@v3.0.0
+
+  unix:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-20.04, ubuntu-22.04, macos-11, macos-12]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install mamba
+      uses: mamba-org/provision-with-micromamba@main
+      with:
+        environment-file: environment-dev.yml
+        environment-name: xleaflet
+
+    - name: CMake configure
+      shell: bash -l -eo pipefail {0}
+      run: |
+        cmake -B build
+        -D CMAKE_PREFIX_PATH=$CONDA_PREFIX
+        -D CMAKE_INSTALL_PREFIX=$CONDA_PREFIX
+        -D DOWNLOAD_GTEST=ON
+        -D CMAKE_INSTALL_LIBDIR=lib
+        -D CMAKE_C_COMPILER=$CC
+        -D CMAKE_CXX_COMPILER=$CXX
+        -D PYTHON_EXECUTABLE=`which python`
+
+    - name: Build
+      shell: bash -l -eo pipefail {0}
+      run: cmake --build build/ --parallel 2
+
+    - name: Test xleaflet
+      uses: nick-invision/retry@v2
+      with:
+        timeout_minutes: 4
+        max_attempts: 4
+        shell: bash
+        command: ctest --test-dir build/test --output-on-failure
+
+  win:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-2019, windows-2022]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: install mamba
+      uses: mamba-org/provision-with-micromamba@main
+      with:
+        environment-file: environment-dev.yml
+        environment-name: xwidgets
+
+    - name: micromamba shell hook
+      shell: powershell
+      run: |
+        micromamba shell hook -s cmd.exe -p C:\Users\runneradmin\micromamba-root
+
+    - name: Make build directory
+      run: mkdir build
+
+    - name: Cmake configure
+      shell: cmd /C call {0}
+      run: |
+        cmake -B build -Werror=dev ^
+         -G Ninja ^
+         -D CMAKE_BUILD_TYPE=Release ^
+         -D CMAKE_PREFIX_PATH="%CONDA_PREFIX%\Library" ^
+         -D CMAKE_INSTALL_PREFIX="%CONDA_PREFIX%"
+
+    - name: Build
+      shell: cmd /C call {0}
+      run: |
+        set CL=/MP
+        ninja
