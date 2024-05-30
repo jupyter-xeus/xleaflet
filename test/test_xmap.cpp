@@ -6,15 +6,17 @@
 * The full license is in the file LICENSE, distributed with this software. *
 ****************************************************************************/
 
-#include "gtest/gtest.h"
-
+#include <doctest/doctest.h>
 #include "xleaflet/xmap.hpp"
 
 namespace xleaflet
 {
-    TEST(xmap, map)
+    TEST_SUITE("xmap")
     {
-        int res = 64;
-        EXPECT_EQ(64, res);
+        TEST_CASE("map")
+        {
+            int res = 64;
+            CHECK_EQ(64, res);
+        }
     }
 }

@@ -6,15 +6,18 @@
 * The full license is in the file LICENSE, distributed with this software. *
 ****************************************************************************/
 
-#include "gtest/gtest.h"
+#define DOCTEST_CONFIG_IMPLEMENT
+#include <doctest/doctest.h>
 
 #include <pybind11/embed.h>
-
 namespace py = pybind11;
 
 int main(int argc, char* argv[])
 {
-    ::testing::InitGoogleTest(&argc, argv);
     py::scoped_interpreter guard{};
-    return RUN_ALL_TESTS();
+    doctest::Context context;
+    context.applyCommandLine(argc, argv);
+    int res = context.run();
+    return res;
 }
+

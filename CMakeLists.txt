@@ -64,6 +64,11 @@ set(XLEAFLET_BINARY_VERSION
     ${XLEAFLET_BINARY_CURRENT}.${XLEAFLET_BINARY_REVISION}.${XLEAFLET_BINARY_AGE})
 message(STATUS "xleaflet binary version: v${XLEAFLET_BINARY_VERSION}")
 
+# Build options
+# =============
+
+option(XLEAFLET_BUILD_TESTS "xleaflet test suite" OFF)
+
 # Dependencies
 # ============
 
@@ -185,7 +190,6 @@ set_target_properties(xleaflet PROPERTIES
 
 include(CheckCXXCompilerFlag)
 string(TOUPPER "${CMAKE_BUILD_TYPE}" U_CMAKE_BUILD_TYPE)
-OPTION(DISABLE_ARCH_NATIVE "disable -march=native flag" OFF)
 
 set_target_properties(xleaflet PROPERTIES
     CXX_EXTENSIONS OFF
@@ -195,9 +199,6 @@ target_compile_features(xleaflet PRIVATE cxx_std_14)
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "Intel")
     target_compile_options(xleaflet PUBLIC -Wunused-parameter -Wextra -Wreorder)
-    if (NOT DISABLE_ARCH_NATIVE)
-        target_compile_options(xleaflet PUBLIC -march=native)
-    endif()
 
     # Enable link time optimization and set the default symbol
     # visibility to hidden (very important to obtain small binaries)
@@ -235,14 +236,7 @@ endif()
 # Tests
 # =====
 
-OPTION(BUILD_TESTS "xleaflet test suite" OFF)
-OPTION(DOWNLOAD_GTEST "build gtest from downloaded sources" OFF)
-
-if(DOWNLOAD_GTEST OR GTEST_SRC_DIR)
-    set(BUILD_TESTS ON)
-endif()
-
-if(BUILD_TESTS)
+if(XLEAFLET_BUILD_TESTS)
     add_subdirectory(test)
 endif()
 
