@@ -12,6 +12,7 @@ dependencies:
   - xwidgets=0.27.1
   - xtensor=0.24.3
   # Test dependencies
+  - doctest
   - pybind11=2.7.1
   - pybind11_json=0.2.11
   - ipyleaflet=0.14.0
