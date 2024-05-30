@@ -18,7 +18,6 @@
 @XLEAFLET_CONFIG_CODE@
 
 include(CMakeFindDependencyMacro)
-find_dependency(xtl @xtl_REQUIRED_VERSION@)
 find_dependency(xproperty @xeus_REQUIRED_VERSION@)
 find_dependency(xwidgets @xeus_REQUIRED_VERSION@)
 

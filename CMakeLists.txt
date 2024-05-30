@@ -72,13 +72,8 @@ option(XLEAFLET_BUILD_TESTS "xleaflet test suite" OFF)
 # Dependencies
 # ============
 
-set(xtl_REQUIRED_VERSION 0.7.0)
 set(xproperty_REQUIRED_VERSION 0.11.0)
 set(xwidgets_REQUIRED_VERSION 0.27.0)
-
-if (NOT TARGET xtl)
-    find_package(xtl ${xtl_REQUIRED_VERSION} REQUIRED)
-endif ()
 
 if (NOT TARGET xproperty)
     find_package(xproperty ${xproperty_REQUIRED_VERSION} REQUIRED)
@@ -173,7 +168,6 @@ target_include_directories(xleaflet PUBLIC $<BUILD_INTERFACE:${XLEAFLET_INCLUDE_
                                            $<INSTALL_INTERFACE:include>)
 
 target_link_libraries(xleaflet
-    PUBLIC xtl
     PUBLIC xproperty
     PUBLIC xwidgets)
 

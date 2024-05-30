@@ -12,9 +12,8 @@
 #include <array>
 #include <functional>
 #include <list>
+#include <optional>
 #include <string>
-
-#include "xtl/xoptional.hpp"
 
 #include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xholder.hpp"
@@ -61,7 +60,7 @@ namespace xlf
         // TODO: bounded between 0.0 and 1.0
         XPROPERTY(double, derived_type, opacity, 1.0);
         XPROPERTY(bool, derived_type, visible, true);
-        XPROPERTY(xtl::xoptional<icon_type>, derived_type, icon);
+        XPROPERTY(std::optional<icon_type>, derived_type, icon);
         XPROPERTY(double, derived_type, rotation_angle, 0.);
         XPROPERTY(std::string, derived_type, rotation_origin, "");
         XPROPERTY(int, derived_type, rise_offset, 250);

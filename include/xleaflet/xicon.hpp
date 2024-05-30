@@ -10,9 +10,8 @@
 #define XLEAFLET_ICON_HPP
 
 #include <array>
+#include <optional>
 #include <string>
-
-#include "xtl/xoptional.hpp"
 
 #include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xwidget.hpp"
@@ -41,12 +40,12 @@ namespace xlf
         void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
         XPROPERTY(std::string, derived_type, icon_url, "");
-        XPROPERTY(xtl::xoptional<std::string>, derived_type, shadow_url);
-        XPROPERTY(xtl::xoptional<size_type>, derived_type, icon_size);
-        XPROPERTY(xtl::xoptional<size_type>, derived_type, shadow_size);
-        XPROPERTY(xtl::xoptional<size_type>, derived_type, icon_anchor);
-        XPROPERTY(xtl::xoptional<size_type>, derived_type, shadow_anchor);
-        XPROPERTY(xtl::xoptional<size_type>, derived_type, popup_anchor);
+        XPROPERTY(std::optional<std::string>, derived_type, shadow_url);
+        XPROPERTY(std::optional<size_type>, derived_type, icon_size);
+        XPROPERTY(std::optional<size_type>, derived_type, shadow_size);
+        XPROPERTY(std::optional<size_type>, derived_type, icon_anchor);
+        XPROPERTY(std::optional<size_type>, derived_type, shadow_anchor);
+        XPROPERTY(std::optional<size_type>, derived_type, popup_anchor);
 
     protected:
 
