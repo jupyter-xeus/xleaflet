@@ -9,6 +9,7 @@
 #ifndef XLEAFLET_LAYER_HPP
 #define XLEAFLET_LAYER_HPP
 
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -41,7 +42,7 @@ namespace xlf
         XPROPERTY(std::string, derived_type, name, "");
         XPROPERTY(bool, derived_type, base, true);
         XPROPERTY(bool, derived_type, bottom, true);
-        XPROPERTY(xtl::xoptional<widget_type>, derived_type, popup);
+        XPROPERTY(std::optional<widget_type>, derived_type, popup);
         XPROPERTY(std::vector<std::string>, derived_type, options);
 
     protected:

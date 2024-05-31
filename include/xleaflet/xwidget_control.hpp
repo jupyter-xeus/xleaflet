@@ -10,6 +10,7 @@
 #ifndef XLEAFLET_WIDGET_CONTROL_HPP
 #define XLEAFLET_WIDGET_CONTROL_HPP
 
+#include <optional>
 #include <string>
 
 #include "xwidgets/xholder.hpp"
@@ -40,10 +41,10 @@ namespace xlf
         void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
         XPROPERTY(widget_type, derived_type, widget);
-        XPROPERTY(xtl::xoptional<int>, derived_type, max_width);
-        XPROPERTY(xtl::xoptional<int>, derived_type, min_width);
-        XPROPERTY(xtl::xoptional<int>, derived_type, max_height);
-        XPROPERTY(xtl::xoptional<int>, derived_type, min_height);
+        XPROPERTY(std::optional<int>, derived_type, max_width);
+        XPROPERTY(std::optional<int>, derived_type, min_width);
+        XPROPERTY(std::optional<int>, derived_type, max_height);
+        XPROPERTY(std::optional<int>, derived_type, min_height);
 
     protected:
 

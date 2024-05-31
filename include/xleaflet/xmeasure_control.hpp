@@ -10,6 +10,7 @@
 #ifndef XLEAFLET_MEASURE_CONTROL_HPP
 #define XLEAFLET_MEASURE_CONTROL_HPP
 
+#include <optional>
 #include <string>
 
 #include "xwidgets/xcolor.hpp"
@@ -44,9 +45,9 @@ namespace xlf
 
         XPROPERTY(std::string, derived_type, position, "topright", XEITHER("topright", "topleft", "bottomright", "bottomleft"));
         XPROPERTY(std::string, derived_type, primary_length_unit, "feet", XEITHER("feet", "meters", "miles", "kilometers"));
-        XPROPERTY(xtl::xoptional<std::string>, derived_type, secondary_length_unit, {}, XEITHER_OPTIONAL("feet", "meters", "miles", "kilometers"));
+        XPROPERTY(std::optional<std::string>, derived_type, secondary_length_unit, {}, XEITHER_OPTIONAL("feet", "meters", "miles", "kilometers"));
         XPROPERTY(std::string, derived_type, primary_area_unit, "acres", XEITHER("acres", "hectares", "sqfeet", "sqmeters", "sqmiles"));
-        XPROPERTY(xtl::xoptional<std::string>, derived_type, secondary_area_unit, {}, XEITHER_OPTIONAL("acres", "hectares", "sqfeet", "sqmeters", "sqmiles"));
+        XPROPERTY(std::optional<std::string>, derived_type, secondary_area_unit, {}, XEITHER_OPTIONAL("acres", "hectares", "sqfeet", "sqmeters", "sqmiles"));
         XPROPERTY(xw::html_color, derived_type, active_color, "#ABE67E");
         XPROPERTY(xw::html_color, derived_type, completed_color, "#C8F2BE");
         XPROPERTY(nl::json, derived_type, popup_options, R"({

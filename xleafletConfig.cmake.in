@@ -18,9 +18,8 @@
 @XLEAFLET_CONFIG_CODE@
 
 include(CMakeFindDependencyMacro)
-find_dependency(xtl @xtl_REQUIRED_VERSION@)
-find_dependency(xproperty @xeus_REQUIRED_VERSION@)
-find_dependency(xwidgets @xeus_REQUIRED_VERSION@)
+find_dependency(xproperty @xproperty_REQUIRED_VERSION@)
+find_dependency(xwidgets @xwidgets_REQUIRED_VERSION@)
 
 if (NOT TARGET xleaflet)
   include("${CMAKE_CURRENT_LIST_DIR}/@PROJECT_NAME@Targets.cmake")

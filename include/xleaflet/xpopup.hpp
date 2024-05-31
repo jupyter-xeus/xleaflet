@@ -11,6 +11,7 @@
 #define XLEAFLET_POPUP_HPP
 
 #include <array>
+#include <optional>
 #include <string>
 
 #include "xwidgets/xholder.hpp"
@@ -43,7 +44,7 @@ namespace xlf
         void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
         XPROPERTY(point_type, derived_type, location);
-        XPROPERTY(xtl::xoptional<widget_type>, derived_type, child);
+        XPROPERTY(std::optional<widget_type>, derived_type, child);
         XPROPERTY(int, derived_type, max_width, 300);
         XPROPERTY(int, derived_type, min_width, 50);
         XPROPERTY(int, derived_type, max_height);

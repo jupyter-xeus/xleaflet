@@ -16,8 +16,6 @@
 #include <utility>
 #include <vector>
 
-#include "xtl/xoptional.hpp"
-
 #include "xwidgets/xcolor.hpp"
 #include "xwidgets/xeither.hpp"
 #include "xwidgets/xholder.hpp"

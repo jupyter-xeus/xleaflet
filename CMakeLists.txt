@@ -72,13 +72,8 @@ option(XLEAFLET_BUILD_TESTS "xleaflet test suite" OFF)
 # Dependencies
 # ============
 
-set(xtl_REQUIRED_VERSION 0.7.0)
-set(xproperty_REQUIRED_VERSION 0.11.0)
-set(xwidgets_REQUIRED_VERSION 0.27.0)
-
-if (NOT TARGET xtl)
-    find_package(xtl ${xtl_REQUIRED_VERSION} REQUIRED)
-endif ()
+set(xproperty_REQUIRED_VERSION 0.12.0)
+set(xwidgets_REQUIRED_VERSION 0.29.0)
 
 if (NOT TARGET xproperty)
     find_package(xproperty ${xproperty_REQUIRED_VERSION} REQUIRED)
@@ -173,7 +168,6 @@ target_include_directories(xleaflet PUBLIC $<BUILD_INTERFACE:${XLEAFLET_INCLUDE_
                                            $<INSTALL_INTERFACE:include>)
 
 target_link_libraries(xleaflet
-    PUBLIC xtl
     PUBLIC xproperty
     PUBLIC xwidgets)
 
@@ -195,7 +189,7 @@ set_target_properties(xleaflet PROPERTIES
     CXX_EXTENSIONS OFF
     CXX_STANDARD_REQUIRED 14)
 
-target_compile_features(xleaflet PRIVATE cxx_std_14)
+target_compile_features(xleaflet PRIVATE cxx_std_17)
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "Intel")
     target_compile_options(xleaflet PUBLIC -Wunused-parameter -Wextra -Wreorder)

@@ -45,7 +45,6 @@ include_directories(${pybind11_INCLUDE_DIRS})
 target_compile_features(test_xleaflet PRIVATE cxx_std_14)
 
 target_link_libraries(test_xleaflet
-                      PUBLIC xtl
                       PUBLIC xeus
                       PUBLIC xwidgets
                       PUBLIC xleaflet

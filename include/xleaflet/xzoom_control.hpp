@@ -10,6 +10,7 @@
 #ifndef XLEAFLET_ZOOM_CONTROL_HPP
 #define XLEAFLET_ZOOM_CONTROL_HPP
 
+#include <optional>
 #include <string>
 
 #include "xwidgets/xcolor.hpp"
@@ -41,7 +42,7 @@ namespace xlf
 
         XPROPERTY(std::string, derived_type, zoom_in_text, "+");
         XPROPERTY(std::string, derived_type, zoom_in_title, "Zoom in");
-        XPROPERTY(xtl::xoptional<std::string>, derived_type, zoom_out_text, "-");
+        XPROPERTY(std::optional<std::string>, derived_type, zoom_out_text, "-");
         XPROPERTY(std::string, derived_type, zoom_out_title, "Zoom out");
 
     protected:
