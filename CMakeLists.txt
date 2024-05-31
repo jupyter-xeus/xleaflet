@@ -189,7 +189,7 @@ set_target_properties(xleaflet PROPERTIES
     CXX_EXTENSIONS OFF
     CXX_STANDARD_REQUIRED 14)
 
-target_compile_features(xleaflet PRIVATE cxx_std_14)
+target_compile_features(xleaflet PRIVATE cxx_std_17)
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "Intel")
     target_compile_options(xleaflet PUBLIC -Wunused-parameter -Wextra -Wreorder)
