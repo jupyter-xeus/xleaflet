@@ -24,13 +24,13 @@
 
 // Project version
 #define XLEAFLET_VERSION_MAJOR 0
-#define XLEAFLET_VERSION_MINOR 17
+#define XLEAFLET_VERSION_MINOR 18
 #define XLEAFLET_VERSION_PATCH 0
 
 // Binary version
-#define XLEAFLET_BINARY_CURRENT 1
+#define XLEAFLET_BINARY_CURRENT 2
 #define XLEAFLET_BINARY_REVISION 0
-#define XLEAFLET_BINARY_AGE 1
+#define XLEAFLET_BINARY_AGE 0
 
 // Semver requirement for jupyter-leaflet
 #define XJUPYTER_LEAFLET_VERSION_MAJOR 0
