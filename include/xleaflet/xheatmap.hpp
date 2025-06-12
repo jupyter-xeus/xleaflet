@@ -10,7 +10,7 @@
 #ifndef XLEAFLET_HEATMAP_HPP
 #define XLEAFLET_HEATMAP_HPP
 
-#include "xtensor/xexpression_holder.hpp"
+#include "xtensor/misc/xexpression_holder.hpp"
 
 #include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xwidget.hpp"
