@@ -10,7 +10,7 @@
 #ifndef XLEAFLET_POLYLINE_HPP
 #define XLEAFLET_POLYLINE_HPP
 
-#include "xtensor/xexpression_holder.hpp"
+#include "xtensor/misc/xexpression_holder.hpp"
 
 #include "xwidgets/xmaterialize.hpp"
 #include "xwidgets/xwidget.hpp"
