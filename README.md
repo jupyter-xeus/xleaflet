@@ -1,7 +1,7 @@
 # ![xleaflet](docs/source/xleaflet.svg)
 
-[![Azure Pipelines](https://dev.azure.com/jupyter-xeus/jupyter-xeus/_apis/build/status/jupyter-xeus.xleaflet?branchName=master)](https://dev.azure.com/jupyter-xeus/jupyter-xeus/_build/latest?definitionId=7&branchName=master)
-[![Appveyor](https://ci.appveyor.com/api/projects/status/u3tf1pk8fw2nge7a?svg=true)](https://ci.appveyor.com/project/jupyter-xeus/xleaflet)
+[![GithubActions](https://github.com/jupyter-xeus/xleaflet/actions/workflows/main.yml/badge.svg)](https://github.com/jupyter-xeus/xleaflet/actions/workflows/main.yml)
+
 [![Documentation](http://readthedocs.org/projects/xleaflet/badge/?version=latest)](https://xleaflet.readthedocs.io/en/latest/?badge=latest)
 [![Binder](https://img.shields.io/badge/launch-binder-brightgreen.svg)](https://mybinder.org/v2/gh/jupyter-xeus/xleaflet/stable?filepath=notebooks)
 [![Join the Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/QuantStack/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -73,21 +73,6 @@ link:
 To get started with using `xleaflet`, check out the full documentation
 
 http://xleaflet.readthedocs.io/
-
-## Dependencies
-
-All the dependencies of xleaflet are available for the mamba package manager.
-
-| `xleaflet` | `xwidgets`  |  `xeus`         |  `xtensor`      |  
-|------------|-------------|-----------------|-----------------|
-|  master    |   ~0.27.0   |  >=3.0.0,<4.0.0 |  >=0.23.0,<0.24 |
-|  0.17.0    |   ~0.27.0   |  >=3.0.0,<4.0.0 |  >=0.23.0,<0.24 |
-|  0.16.0    |   ~0.26.0   |  >=2.0.0,<3.0.0 |  >=0.23.0,<0.24 |
-|  0.15.0    |   ~0.25.0   |  >=1.0.0,<2.0.0 |  >=0.23.0,<0.24 |
-|  0.14.0    |   ~0.25.0   |  >=1.0.0,<2.0.0 |  >=0.23.0,<0.24 |
-|  0.13.1    |   ~0.22.0   |  >=0.24.0,<0.26 |  >=0.20.8,<0.22 |
-|  0.13.0    |   ~0.22.0   |  >=0.24.0,<0.26 |  >=0.20.8,<0.22 |
-|  0.12.0    |   ~0.22.0   |  >=0.24.0,<0.25 |  >=0.20.8,<0.22 |
 
 ## License
 
