@@ -3,7 +3,7 @@
 [![GithubActions](https://github.com/jupyter-xeus/xleaflet/actions/workflows/main.yml/badge.svg)](https://github.com/jupyter-xeus/xleaflet/actions/workflows/main.yml)
 [![Documentation](http://readthedocs.org/projects/xleaflet/badge/?version=latest)](https://xleaflet.readthedocs.io/en/latest/?badge=latest)
 [![Binder](https://img.shields.io/badge/launch-binder-brightgreen.svg)](https://mybinder.org/v2/gh/jupyter-xeus/xleaflet/stable?filepath=notebooks)
-[![Join the Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/QuantStack/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Zulip](https://img.shields.io/badge/social_chat-zulip-blue.svg)](https://jupyter.zulipchat.com/#narrow/channel/539737-Jupyter-Kernels)
 
 C++ backend for the jupyter-leaflet map visualization library
 
