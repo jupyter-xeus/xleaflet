@@ -74,6 +74,7 @@ option(XLEAFLET_BUILD_TESTS "xleaflet test suite" OFF)
 
 set(xproperty_REQUIRED_VERSION 0.12.1)
 set(xwidgets_REQUIRED_VERSION 0.29.2)
+set(xtensor_REQUIRED_VERSION 0.27.1)
 
 if (NOT TARGET xproperty)
     find_package(xproperty ${xproperty_REQUIRED_VERSION} REQUIRED)
@@ -81,6 +82,10 @@ endif ()
 
 if (NOT TARGET xwidgets)
     find_package(xwidgets ${xwidgets_REQUIRED_VERSION} REQUIRED)
+endif ()
+
+if (NOT TARGET xtensor)
+    find_package(xtensor ${xtensor_REQUIRED_VERSION} REQUIRED)
 endif ()
 
 # Source files
@@ -187,7 +192,7 @@ string(TOUPPER "${CMAKE_BUILD_TYPE}" U_CMAKE_BUILD_TYPE)
 
 set_target_properties(xleaflet PROPERTIES
     CXX_EXTENSIONS OFF
-    CXX_STANDARD_REQUIRED 14)
+    CXX_STANDARD_REQUIRED 20)
 
 target_compile_features(xleaflet PRIVATE cxx_std_20)
 

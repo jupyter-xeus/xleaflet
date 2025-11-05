@@ -10,7 +10,7 @@ dependencies:
   - cppzmq
   - xproperty
   - xwidgets>=0.29.2
-  - xtensor=0.26.0
+  - xtensor>=0.27,<0.28
   # Test dependencies
   - doctest
   - pybind11=2.7.1
