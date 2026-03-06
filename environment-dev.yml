@@ -9,7 +9,8 @@ dependencies:
   # Host dependencies
   - cppzmq
   - xproperty
-  - xwidgets>=0.29.2,<0.30
+  - nlohmann_json
+  - xwidgets>=0.30,<0.31
   - xtensor>=0.27,<0.28
   # Test dependencies
   - doctest
