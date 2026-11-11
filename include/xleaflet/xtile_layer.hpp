@@ -46,15 +46,15 @@ namespace xlf
         void handle_custom_message(const nl::json&);
 
         XPROPERTY(
-            std::string, derived_type, url,
+            std::string, xw::xcommon, url,
             "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png");
-        XPROPERTY(int, derived_type, min_zoom, 0);
-        XPROPERTY(int, derived_type, max_zoom, 18);
-        XPROPERTY(int, derived_type, tile_size, 256);
+        XPROPERTY(int, xw::xcommon, min_zoom, 0);
+        XPROPERTY(int, xw::xcommon, max_zoom, 18);
+        XPROPERTY(int, xw::xcommon, tile_size, 256);
         XPROPERTY(
-            std::string, derived_type, attribution,
+            std::string, xw::xcommon, attribution,
             "Map data (c) <a href=\"https://openstreetmap.org\">OpenStreetMap</a> contributors");
-        XPROPERTY(bool, derived_type, detect_retina, false);
+        XPROPERTY(bool, xw::xcommon, detect_retina, false);
 
     protected:
 
@@ -95,15 +95,6 @@ namespace xlf
                                             const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
-
-        using xw::set_property_from_patch;
-
-        set_property_from_patch(url, patch, buffers);
-        set_property_from_patch(min_zoom, patch, buffers);
-        set_property_from_patch(max_zoom, patch, buffers);
-        set_property_from_patch(tile_size, patch, buffers);
-        set_property_from_patch(attribution, patch, buffers);
-        set_property_from_patch(detect_retina, patch, buffers);
     }
 
     template <class D>

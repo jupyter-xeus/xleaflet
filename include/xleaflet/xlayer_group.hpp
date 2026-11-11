@@ -52,7 +52,7 @@ namespace xlf
 
         void clear_layers();
 
-        XPROPERTY(layer_list_type, derived_type, layers);
+        XPROPERTY(layer_list_type, xw::xcommon, layers);
 
     protected:
 
@@ -86,10 +86,6 @@ namespace xlf
                                              const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
-
-        using xw::set_property_from_patch;
-
-        set_property_from_patch(layers, patch, buffers);
     }
 
     template <class D>

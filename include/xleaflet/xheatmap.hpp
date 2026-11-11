@@ -40,13 +40,13 @@ namespace xlf
         void serialize_state(nl::json&, xeus::buffer_sequence&) const;
         void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
-        XPROPERTY(locations_type, derived_type, locations);
-        XPROPERTY(double, derived_type, min_opacity, 0.05);
-        XPROPERTY(int, derived_type, max_zoom, 18);
-        XPROPERTY(double, derived_type, max, 1.0);
-        XPROPERTY(double, derived_type, radius, 25.0);
-        XPROPERTY(double, derived_type, blur, 15.0);
-        XPROPERTY(nl::json, derived_type, gradient);
+        XPROPERTY(locations_type, xw::xcommon, locations);
+        XPROPERTY(double, xw::xcommon, min_opacity, 0.05);
+        XPROPERTY(int, xw::xcommon, max_zoom, 18);
+        XPROPERTY(double, xw::xcommon, max, 1.0);
+        XPROPERTY(double, xw::xcommon, radius, 25.0);
+        XPROPERTY(double, xw::xcommon, blur, 15.0);
+        XPROPERTY(nl::json, xw::xcommon, gradient);
 
     protected:
 
@@ -86,16 +86,6 @@ namespace xlf
                                          const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
-
-        using xw::set_property_from_patch;
-
-        set_property_from_patch(locations, patch, buffers);
-        set_property_from_patch(min_opacity, patch, buffers);
-        set_property_from_patch(max_zoom, patch, buffers);
-        set_property_from_patch(max, patch, buffers);
-        set_property_from_patch(radius, patch, buffers);
-        set_property_from_patch(blur, patch, buffers);
-        set_property_from_patch(gradient, patch, buffers);
     }
 
     template <class D>

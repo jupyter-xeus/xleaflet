@@ -25,23 +25,23 @@ Example
 
     std::array<double, 2> center({52.204793, 360.121558});
 
-    auto map = xlf::map::initialize()
-        .center(center)
-        .zoom(10)
-        .finalize();
+    auto map = xlf::map::initialize();
+    map.center = center;
+    map.zoom = 10;
+    map.finalize();
 
-    auto icon = xlf::icon::initialize()
-        .icon_url("https://leafletjs.com/examples/custom-icons/leaf-red.png")
-        .icon_size(size_type({38, 95}))
-        .icon_anchor(size_type({22, 94}))
-        .finalize();
+    auto icon = xlf::icon::initialize();
+    icon.icon_url = "https://leafletjs.com/examples/custom-icons/leaf-red.png";
+    icon.icon_size = size_type({38, 95});
+    icon.icon_anchor = size_type({22, 94});
+    icon.finalize();
 
-    auto marker = xlf::marker::initialize()
-        .location(center)
-        .icon(icon)
-        .rotation_angle(0)
-        .rotation_origin("22px 94px")
-        .finalize();
+    auto marker = xlf::marker::initialize();
+    marker.location = center;
+    marker.icon = icon;
+    marker.rotation_angle = 0;
+    marker.rotation_origin = "22px 94px";
+    marker.finalize();
 
     map.add_layer(marker);
 

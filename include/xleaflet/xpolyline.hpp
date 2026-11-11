@@ -38,9 +38,11 @@ namespace xlf
         void serialize_state(nl::json&, xeus::buffer_sequence&) const;
         void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
+        // Owned by derived_type (not xw::xcommon) so that users can register typed
+        // observers, e.g. observe<decltype(w)>(...), on properties synced from the frontend.
         XPROPERTY(locations_type, derived_type, locations);
-        XPROPERTY(double, derived_type, smooth_factor, 1.0);
-        XPROPERTY(bool, derived_type, no_clip, false);
+        XPROPERTY(double, xw::xcommon, smooth_factor, 1.0);
+        XPROPERTY(bool, xw::xcommon, no_clip, false);
 
     protected:
 
@@ -76,12 +78,6 @@ namespace xlf
                                           const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
-
-        using xw::set_property_from_patch;
-
-        set_property_from_patch(locations, patch, buffers);
-        set_property_from_patch(smooth_factor, patch, buffers);
-        set_property_from_patch(no_clip, patch, buffers);
     }
 
     template <class D>

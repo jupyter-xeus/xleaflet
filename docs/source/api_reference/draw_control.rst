@@ -20,11 +20,11 @@ The ``draw_control`` allows one to draw shapes on the map such as ``rectangle`` 
 
     auto water_color = xlf::basemap({"Stamen", "Watercolor"});
 
-    auto map = xlf::map::initialize()
-        .layers({water_color})
-        .center({50, 354})
-        .zoom(5)
-        .finalize();
+    auto map = xlf::map::initialize();
+    map.layers = xlf::map::layer_list_type{water_color};
+    map.center = xlf::map::point_type{50, 354};
+    map.zoom = 5;
+    map.finalize();
 
         xeus::xjson polyline_options = {
         {"shapeOptions", {
@@ -64,12 +64,12 @@ The ``draw_control`` allows one to draw shapes on the map such as ``rectangle`` 
         }}
     };
 
-    auto draw_control = xlf::draw_control::initialize()
-        .polyline(polyline_options)
-        .polygon(polygon_options)
-        .circle(circle_options)
-        .rectangle(rectangle_options)
-        .finalize();
+    auto draw_control = xlf::draw_control::initialize();
+    draw_control.polyline = polyline_options;
+    draw_control.polygon = polygon_options;
+    draw_control.circle = circle_options;
+    draw_control.rectangle = rectangle_options;
+    draw_control.finalize();
     map.add_control(draw_control);
 
     map

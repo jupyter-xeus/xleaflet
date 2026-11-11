@@ -24,31 +24,31 @@ Example
 
     std::array<double, 2> center = {52.204793, 360.121558};
 
-    auto map = xlf::map::initialize()
-        .center(center)
-        .zoom(4)
-        .close_popup_on_click(false)
-        .finalize();
+    auto map = xlf::map::initialize();
+    map.center = center;
+    map.zoom = 4;
+    map.close_popup_on_click = false;
+    map.finalize();
     map.display();
 
-    auto button1 = xw::slider<double>::initialize()
-        .min(1.0)
-        .max(9.0)
-        .value(4.0)
-        .orientation("horizontal")
-        .finalize();
+    auto button1 = xw::slider<double>::initialize();
+    button1.min = 1.0;
+    button1.max = 9.0;
+    button1.value = 4.0;
+    button1.orientation = "horizontal";
+    button1.finalize();
 
-    auto popup2 = xlf::widget_control::initialize()
-        .widget(button1)
-        .position("bottomright")
-        .finalize();
+    auto popup2 = xlf::widget_control::initialize();
+    popup2.widget = button1;
+    popup2.position = "bottomright";
+    popup2.finalize();
     map.add_control(popup2);
 
     xw::numeral<double> numeral;
-    auto popup4 = xlf::widget_control::initialize()
-        .widget(numeral)
-        .position("topright")
-        .finalize();
+    auto popup4 = xlf::widget_control::initialize();
+    popup4.widget = numeral;
+    popup4.position = "topright";
+    popup4.finalize();
     map.add_control(popup4);
 
 

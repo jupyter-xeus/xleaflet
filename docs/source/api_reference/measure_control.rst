@@ -18,14 +18,14 @@ Example
 
 	auto water_color = xlf::basemap({"Stamen", "Watercolor"});
 
-	auto map = xlf::map::initialize()
-	    .layers({water_color})
-	    .center({50, 354})
-	    .zoom(5)
-	    .finalize();
+	auto map = xlf::map::initialize();
+	map.layers = xlf::map::layer_list_type{water_color};
+	map.center = xlf::map::point_type{50, 354};
+	map.zoom = 5;
+	map.finalize();
 
-	auto measure_control = xlf::measure_control::initialize()
-	    .finalize();
+	auto measure_control = xlf::measure_control::initialize();
+	measure_control.finalize();
 
 	map.add_control(measure_control);
 

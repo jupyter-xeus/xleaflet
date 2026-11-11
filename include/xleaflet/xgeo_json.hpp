@@ -47,9 +47,9 @@ namespace xlf
 
         void handle_custom_message(const nl::json&);
 
-        XPROPERTY(nl::json, derived_type, data);
-        XPROPERTY(nl::json, derived_type, style);
-        XPROPERTY(nl::json, derived_type, hover_style);
+        XPROPERTY(nl::json, xw::xcommon, data);
+        XPROPERTY(nl::json, xw::xcommon, style);
+        XPROPERTY(nl::json, xw::xcommon, hover_style);
 
     protected:
 
@@ -87,12 +87,6 @@ namespace xlf
                                           const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
-
-        using xw::set_property_from_patch;
-
-        set_property_from_patch(data, patch, buffers);
-        set_property_from_patch(style, patch, buffers);
-        set_property_from_patch(hover_style, patch, buffers);
     }
 
     template <class D>

@@ -10,8 +10,8 @@ dependencies:
   - cppzmq
   - xproperty
   - nlohmann_json
-  - xwidgets>=0.30,<0.31
-  - xtensor>=0.27,<0.28
+  - xwidgets>=0.31.1,<0.32
+  - xtensor>=0.27.2,<0.28
   # Test dependencies
   - doctest
   - pybind11=2.7.1

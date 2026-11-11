@@ -17,24 +17,24 @@ Example
     #include "xleaflet/xmarker.hpp"
     #include "xleaflet/xmarker_cluster.hpp"
 
-    auto map = xlf::map::initialize()
-        .center({50, 354})
-        .zoom(5)
-        .finalize();
+    auto map = xlf::map::initialize();
+    map.center = xlf::map::point_type{50, 354};
+    map.zoom = 5;
+    map.finalize();
 
-    auto marker1 = xlf::marker::initialize()
-        .location({50, 354})
-        .finalize();
-    auto marker2 = xlf::marker::initialize()
-        .location({52, 356})
-        .finalize();
-    auto marker3 = xlf::marker::initialize()
-        .location({48, 352})
-        .finalize();
+    auto marker1 = xlf::marker::initialize();
+    marker1.location = xlf::marker::point_type{50, 354};
+    marker1.finalize();
+    auto marker2 = xlf::marker::initialize();
+    marker2.location = xlf::marker::point_type{52, 356};
+    marker2.finalize();
+    auto marker3 = xlf::marker::initialize();
+    marker3.location = xlf::marker::point_type{48, 352};
+    marker3.finalize();
 
-    auto marker_cluster = xlf::marker_cluster::initialize()
-        .markers({marker1, marker2, marker3})
-        .finalize();
+    auto marker_cluster = xlf::marker_cluster::initialize();
+    marker_cluster.markers = xlf::marker_cluster::marker_list_type{marker1, marker2, marker3};
+    marker_cluster.finalize();
 
     map.add_layer(marker_cluster);
 

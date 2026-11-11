@@ -24,16 +24,16 @@ Example
 
     std::array<double, 2> center = {52.204793, 360.121558};
 
-    auto map = xlf::map::initialize()
-        .center(center)
-        .zoom(9)
-        .close_popup_on_click(false)
-        .finalize();
+    auto map = xlf::map::initialize();
+    map.center = center;
+    map.zoom = 9;
+    map.close_popup_on_click = false;
+    map.finalize();
     map.display();
 
-    auto marker = xlf::marker::initialize()
-        .location({52.1, 359.9})
-        .finalize();
+    auto marker = xlf::marker::initialize();
+    marker.location = xlf::marker::point_type{52.1, 359.9};
+    marker.finalize();
     map.add_layer(marker);
 
     xw::html message1, message2;
@@ -43,13 +43,13 @@ Example
     message2.description = "Some HTML";
 
     // Popup with a given location on the map:
-    auto popup = xlf::popup::initialize()
-        .location(center)
-        .child(message1)
-        .close_button(false)
-        .auto_close(false)
-        .close_on_escape_key(false)
-        .finalize();
+    auto popup = xlf::popup::initialize();
+    popup.location = center;
+    popup.child = message1;
+    popup.close_button = false;
+    popup.auto_close = false;
+    popup.close_on_escape_key = false;
+    popup.finalize();
     map.add_layer(popup);
 
     // Popup associated to a layer

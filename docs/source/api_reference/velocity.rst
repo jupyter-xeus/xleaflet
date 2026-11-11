@@ -16,10 +16,10 @@ Example
     #include "xleaflet/xmap.hpp"
     #include "xleaflet/xvelocity.hpp"
 
-    auto map = xlf::map::initialize()
-        .center({0, 0})
-        .zoom(1)
-        .finalize();
+    auto map = xlf::map::initialize();
+    map.center = xlf::map::point_type{0, 0};
+    map.zoom = 1;
+    map.finalize();
 
     auto base_layer = xlf::basemap({"CartoDB", "DarkMatter"});
     map.add_layer(base_layer);
@@ -28,16 +28,16 @@ Example
     nlohmann::json data;
     file >> data;
 
-    auto velocity = xlf::velocity::initialize()
-        .data(data)
-        .velocity_scale(0.01)
-        .max_velocity(20)
-        .display_options(R"({
-            "velocityType": "Global Wind",
-            "displayPosition": "bottomleft",
-            "displayEmptyString": "No wind data"
-        })")
-        .finalize();
+    auto velocity = xlf::velocity::initialize();
+    velocity.data = data;
+    velocity.velocity_scale = 0.01;
+    velocity.max_velocity = 20;
+    velocity.display_options = R"({
+        "velocityType": "Global Wind",
+        "displayPosition": "bottomleft",
+        "displayEmptyString": "No wind data"
+    })";
+    velocity.finalize();
 
     map.add_layer(velocity);
 

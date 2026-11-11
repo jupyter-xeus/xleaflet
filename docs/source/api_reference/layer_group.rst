@@ -21,32 +21,32 @@ Example
 
     auto toner = xlf::basemap({"Stamen", "Toner"});
 
-    auto map = xlf::map::initialize()
-        .layers({toner})
-        .center({50, 354})
-        .zoom(5)
-        .finalize();
+    auto map = xlf::map::initialize();
+    map.layers = xlf::map::layer_list_type{toner};
+    map.center = xlf::map::point_type{50, 354};
+    map.zoom = 5;
+    map.finalize();
 
     // Create some layers
-    auto marker = xlf::marker::initialize()
-        .location({50, 354})
-        .finalize();
-    auto circle = xlf::circle::initialize()
-        .location({50, 370})
-        .radius(50000)
-        .color("yellow")
-        .fill_color("yellow")
-        .finalize();
-    auto rectangle = xlf::rectangle::initialize()
-        .bounds({{{54, 354}, {55, 360}}})
-        .color("orange")
-        .fill_color("orange")
-        .finalize();
+    auto marker = xlf::marker::initialize();
+    marker.location = xlf::marker::point_type{50, 354};
+    marker.finalize();
+    auto circle = xlf::circle::initialize();
+    circle.location = xlf::circle::point_type{50, 370};
+    circle.radius = 50000;
+    circle.color = "yellow";
+    circle.fill_color = "yellow";
+    circle.finalize();
+    auto rectangle = xlf::rectangle::initialize();
+    rectangle.bounds = xlf::rectangle::bounds_type{{{54, 354}, {55, 360}}};
+    rectangle.color = "orange";
+    rectangle.fill_color = "orange";
+    rectangle.finalize();
 
     // Create layer group
-    auto layer_group = xlf::layer_group::initialize()
-        .layers({marker, circle})
-        .finalize();
+    auto layer_group = xlf::layer_group::initialize();
+    layer_group.layers = xlf::layer_group::layer_list_type{marker, circle};
+    layer_group.finalize();
 
     map.add_layer(layer_group);
 

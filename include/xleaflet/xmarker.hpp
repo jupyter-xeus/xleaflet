@@ -50,20 +50,22 @@ namespace xlf
 
         void handle_custom_message(const nl::json&);
 
+        // Owned by derived_type (not xw::xcommon) so that users can register typed
+        // observers, e.g. observe<decltype(w)>(...), on properties synced from the frontend.
         XPROPERTY(point_type, derived_type, location);
-        XPROPERTY(int, derived_type, z_index_offset, 0.0);
-        XPROPERTY(bool, derived_type, draggable, true);
-        XPROPERTY(bool, derived_type, keyboard, true);
-        XPROPERTY(std::string, derived_type, title, "");
-        XPROPERTY(std::string, derived_type, alt, "");
-        XPROPERTY(bool, derived_type, rise_on_hover, false);
+        XPROPERTY(int, xw::xcommon, z_index_offset, 0.0);
+        XPROPERTY(bool, xw::xcommon, draggable, true);
+        XPROPERTY(bool, xw::xcommon, keyboard, true);
+        XPROPERTY(std::string, xw::xcommon, title, "");
+        XPROPERTY(std::string, xw::xcommon, alt, "");
+        XPROPERTY(bool, xw::xcommon, rise_on_hover, false);
         // TODO: bounded between 0.0 and 1.0
-        XPROPERTY(double, derived_type, opacity, 1.0);
-        XPROPERTY(bool, derived_type, visible, true);
-        XPROPERTY(std::optional<icon_type>, derived_type, icon);
-        XPROPERTY(double, derived_type, rotation_angle, 0.);
-        XPROPERTY(std::string, derived_type, rotation_origin, "");
-        XPROPERTY(int, derived_type, rise_offset, 250);
+        XPROPERTY(double, xw::xcommon, opacity, 1.0);
+        XPROPERTY(bool, xw::xcommon, visible, true);
+        XPROPERTY(std::optional<icon_type>, xw::xcommon, icon);
+        XPROPERTY(double, xw::xcommon, rotation_angle, 0.);
+        XPROPERTY(std::string, xw::xcommon, rotation_origin, "");
+        XPROPERTY(int, xw::xcommon, rise_offset, 250);
 
     protected:
 
@@ -111,22 +113,6 @@ namespace xlf
                                         const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
-
-        using xw::set_property_from_patch;
-
-        set_property_from_patch(location, patch, buffers);
-        set_property_from_patch(z_index_offset, patch, buffers);
-        set_property_from_patch(draggable, patch, buffers);
-        set_property_from_patch(keyboard, patch, buffers);
-        set_property_from_patch(title, patch, buffers);
-        set_property_from_patch(alt, patch, buffers);
-        set_property_from_patch(rise_on_hover, patch, buffers);
-        set_property_from_patch(opacity, patch, buffers);
-        set_property_from_patch(visible, patch, buffers);
-        set_property_from_patch(icon, patch, buffers);
-        set_property_from_patch(rotation_angle, patch, buffers);
-        set_property_from_patch(rotation_origin, patch, buffers);
-        set_property_from_patch(rise_offset, patch, buffers);
     }
 
     template <class D>

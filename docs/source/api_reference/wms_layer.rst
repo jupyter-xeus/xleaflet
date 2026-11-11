@@ -18,16 +18,16 @@ Example
     #include "xleaflet/xmap.hpp"
     #include "xleaflet/xwms_layer.hpp"
 
-    auto wms = xlf::wms_layer::initialize()
-        .url("https://demo.boundlessgeo.com/geoserver/ows?")
-        .layers("nasa:bluemarble")
-        .finalize();
+    auto wms = xlf::wms_layer::initialize();
+    wms.url = "https://demo.boundlessgeo.com/geoserver/ows?";
+    wms.layers = "nasa:bluemarble";
+    wms.finalize();
 
-    auto map = xlf::map::initialize()
-        .layers({wms})
-        .center({42.5531, -48.6914})
-        .zoom(3)
-        .finalize();
+    auto map = xlf::map::initialize();
+    map.layers = xlf::map::layer_list_type{wms};
+    map.center = xlf::map::point_type{42.5531, -48.6914};
+    map.zoom = 3;
+    map.finalize();
 
     map
 

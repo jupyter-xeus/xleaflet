@@ -39,8 +39,8 @@ namespace xlf
         void serialize_state(nl::json&, xeus::buffer_sequence&) const;
         void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
-        XPROPERTY(std::vector<std::string>, derived_type, options);
-        XPROPERTY(std::string, derived_type, position, "topleft", XEITHER("topright", "topleft", "bottomright", "bottomleft"));
+        XPROPERTY(std::vector<std::string>, xw::xcommon, options);
+        XPROPERTY(std::string, xw::xcommon, position, "topleft", XEITHER("topright", "topleft", "bottomright", "bottomleft"));
 
     protected:
 
@@ -75,11 +75,6 @@ namespace xlf
                                          const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
-
-        using xw::set_property_from_patch;
-
-        set_property_from_patch(options, patch, buffers);
-        set_property_from_patch(position, patch, buffers);
     }
 
     template <class D>

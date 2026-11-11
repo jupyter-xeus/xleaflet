@@ -20,15 +20,15 @@ Example
 
     std::array<double, 2> center = {52.204793, 360.121558};
 
-    auto map = xlf::map::initialize()
-        .center(center)
-        .zoom(15)
-        .finalize();
+    auto map = xlf::map::initialize();
+    map.center = center;
+    map.zoom = 15;
+    map.finalize();
 
-    auto marker = xlf::marker::initialize()
-        .location(center)
-        .draggable(false)
-        .finalize();
+    auto marker = xlf::marker::initialize();
+    marker.location = center;
+    marker.draggable = false;
+    marker.finalize();
     map.add_layer(marker);
 
     map

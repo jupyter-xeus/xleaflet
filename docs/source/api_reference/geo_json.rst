@@ -20,20 +20,20 @@ Example
 
     auto black_and_white = xlf::basemap({"OpenStreetMap", "BlackAndWhite"});
 
-    auto map = xlf::map::initialize()
-        .layers({black_and_white})
-        .center({34.6252978589571, -77.34580993652344})
-        .zoom(10)
-        .finalize();
+    auto map = xlf::map::initialize();
+    map.layers = xlf::map::layer_list_type{black_and_white};
+    map.center = xlf::map::point_type{34.6252978589571, -77.34580993652344};
+    map.zoom = 10;
+    map.finalize();
 
     // Load a local file
     std::ifstream file("geo.json");
     xeus::xjson geo_data;
     file >> geo_data;
 
-    auto geo_json = xlf::geo_json::initialize()
-        .data(geo_data)
-        .finalize();
+    auto geo_json = xlf::geo_json::initialize();
+    geo_json.data = geo_data;
+    geo_json.finalize();
     map.add_layer(geo_json);
 
     map
