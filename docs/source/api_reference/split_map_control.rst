@@ -19,18 +19,18 @@ Example
     #include "xleaflet/xbasemaps.hpp"
     #include "xleaflet/xsplit_map_control.hpp"
 
-    auto map = xlf::map::initialize()
-        .center({42.6824, 365.581})
-        .zoom(5)
-        .finalize();
+    auto map = xlf::map::initialize();
+    map.center = xlf::map::point_type{42.6824, 365.581};
+    map.zoom = 5;
+    map.finalize();
 
     auto right_layer = xlf::basemap({"NASAGIBS", "ModisTerraTrueColorCR"}, "2017-11-11");
     auto left_layer = xlf::basemap({"NASAGIBS", "ModisAquaBands721CR"}, "2017-11-11");
 
-    auto control = xlf::split_map_control::initialize()
-        .left_layer(left_layer)
-        .right_layer(right_layer)
-        .finalize();
+    auto control = xlf::split_map_control::initialize();
+    control.left_layer = left_layer;
+    control.right_layer = right_layer;
+    control.finalize();
     map.add_control(control);
 
     map

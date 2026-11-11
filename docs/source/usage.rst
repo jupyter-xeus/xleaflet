@@ -75,18 +75,22 @@ Generator classes
 
 Widgets such as ``map`` may have a large number of attributes that can be set by the user, such as ``center``, ``zoom``, ``min_zoom``, ``max_zoom``, ``scroll_wheel_zoom``, ``bounce_at_zoom_limits``, ``inertia``.
 
-Providing a constructor for ``map`` with a large number of such attributes would make the use of ``xleaflet`` very cumbersome, because users would need to know all the positional arguments to modify only one value. Instead, we mimick a keyword argument initialization with a method-chaining mechanism.
+By default, creating a widget immediately opens a communication channel with the front-end, and every subsequent property assignment sends a separate update message. To avoid this, ``initialize()`` creates the widget in a *generator* state where the channel is not open yet: property assignments only update the local C++ state. Calling ``finalize()`` then opens the channel and sends the whole state in a single message.
+
+.. note::
+
+    Property assignment is a template, so a braced initializer list cannot be assigned directly. Spell out the value type instead, for instance ``map.center = xlf::map::point_type{52.2, 0.12};``.
 
 .. code::
 
     #include "xleaflet/xmap.hpp"
 
-    auto map = xlf::map::initialize()
-        .center({52.204793, 360.121558})
-        .zoom(15)
-        .scroll_wheel_zoom(true)
-        .inertia(false)
-        .finalize();
+    auto map = xlf::map::initialize();
+    map.center = xlf::map::point_type{52.204793, 360.121558};
+    map.zoom = 15;
+    map.scroll_wheel_zoom = true;
+    map.inertia = false;
+    map.finalize();
 
 Special Events
 ==============
@@ -120,7 +124,7 @@ One could want to react on special map events like ``mousemove``, this can be ac
 XProperty Events
 ================
 
-``xleaflet`` relies on the xproperty_ library, so that one could use the ``XOBSERVE`` function to react on model changes:
+``xleaflet`` relies on the xproperty_ library, so that one could use the ``observe`` method to react on model changes:
 
 .. code::
 
@@ -138,8 +142,15 @@ XProperty Events
 
     xlf::map map;
 
-    XOBSERVE(map, center, print_lat_lng);
+    map.observe<xlf::map>(map.center.name(), print_lat_lng);
     map.display();
+
+.. note::
+
+    Typed observers such as the one above are supported on the properties that the front-end
+    updates: ``center``, ``zoom``, ``bounds`` and ``bounds_polygon`` for ``map``, ``location`` for
+    ``marker`` and ``locations`` for ``polyline`` and ``polygon``. Other properties are owned by
+    ``xw::xcommon`` and must be observed with ``observe<xw::xcommon>``.
 
 
 .. _xproperty: https://github.com/jupyter-xeus/xproperty

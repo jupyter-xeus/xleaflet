@@ -102,13 +102,14 @@ namespace xlf
             min_zoom = mapspec["min_zoom"].get<int>();
         }
 
-        return tile_layer::initialize()
-            .url(url)
-            .attribution(attribution)
-            .name(name)
-            .max_zoom(max_zoom)
-            .min_zoom(min_zoom)
-            .finalize();
+        auto layer = tile_layer::initialize();
+        layer.url = url;
+        layer.attribution = attribution;
+        layer.name = name;
+        layer.max_zoom = max_zoom;
+        layer.min_zoom = min_zoom;
+        layer.finalize();
+        return layer;
     }
 }
 

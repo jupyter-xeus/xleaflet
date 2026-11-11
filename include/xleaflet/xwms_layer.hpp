@@ -36,15 +36,15 @@ namespace xlf
         void serialize_state(nl::json&, xeus::buffer_sequence&) const;
         void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
-        XPROPERTY(std::string, derived_type, service, "WMS");
-        XPROPERTY(std::string, derived_type, request, "GetMap");
-        XPROPERTY(std::string, derived_type, layers, "");
-        XPROPERTY(std::string, derived_type, styles, "");
-        XPROPERTY(std::string, derived_type, format, "image/jpeg");
-        XPROPERTY(bool, derived_type, transparent);
-        XPROPERTY(std::string, derived_type, version, "1.1.1");
-        XPROPERTY(std::string, derived_type, crs, "");
-        XPROPERTY(bool, derived_type, uppercase);
+        XPROPERTY(std::string, xw::xcommon, service, "WMS");
+        XPROPERTY(std::string, xw::xcommon, request, "GetMap");
+        XPROPERTY(std::string, xw::xcommon, layers, "");
+        XPROPERTY(std::string, xw::xcommon, styles, "");
+        XPROPERTY(std::string, xw::xcommon, format, "image/jpeg");
+        XPROPERTY(bool, xw::xcommon, transparent);
+        XPROPERTY(std::string, xw::xcommon, version, "1.1.1");
+        XPROPERTY(std::string, xw::xcommon, crs, "");
+        XPROPERTY(bool, xw::xcommon, uppercase);
 
     protected:
 
@@ -86,18 +86,6 @@ namespace xlf
                                            const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
-
-        using xw::set_property_from_patch;
-
-        set_property_from_patch(service, patch, buffers);
-        set_property_from_patch(request, patch, buffers);
-        set_property_from_patch(layers, patch, buffers);
-        set_property_from_patch(styles, patch, buffers);
-        set_property_from_patch(format, patch, buffers);
-        set_property_from_patch(transparent, patch, buffers);
-        set_property_from_patch(version, patch, buffers);
-        set_property_from_patch(crs, patch, buffers);
-        set_property_from_patch(uppercase, patch, buffers);
     }
 
     template <class D>

@@ -6,7 +6,7 @@
 # The full license is in the file LICENSE, distributed with this software. #
 ############################################################################
 
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.24)
 project(xleaflet)
 
 message(STATUS "Forcing tests build type to Release")
@@ -72,9 +72,9 @@ option(XLEAFLET_BUILD_TESTS "xleaflet test suite" OFF)
 # Dependencies
 # ============
 
-set(xproperty_REQUIRED_VERSION 0.12.1)
-set(xwidgets_REQUIRED_VERSION 0.29.2)
-set(xtensor_REQUIRED_VERSION 0.27.1)
+set(xproperty_REQUIRED_VERSION 0.13.1)
+set(xwidgets_REQUIRED_VERSION 0.31.1)
+set(xtensor_REQUIRED_VERSION 0.27.2)
 
 if (NOT TARGET xproperty)
     find_package(xproperty ${xproperty_REQUIRED_VERSION} REQUIRED)
@@ -174,7 +174,8 @@ target_include_directories(xleaflet PUBLIC $<BUILD_INTERFACE:${XLEAFLET_INCLUDE_
 
 target_link_libraries(xleaflet
     PUBLIC xproperty
-    PUBLIC xwidgets)
+    PUBLIC xwidgets
+    PUBLIC xtensor)
 
 set_target_properties(xleaflet PROPERTIES
                       PUBLIC_HEADER "${XLEAFLET_HEADERS}"

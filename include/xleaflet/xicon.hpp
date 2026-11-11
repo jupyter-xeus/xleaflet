@@ -39,13 +39,13 @@ namespace xlf
         void serialize_state(nl::json&, xeus::buffer_sequence&) const;
         void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
-        XPROPERTY(std::string, derived_type, icon_url, "");
-        XPROPERTY(std::optional<std::string>, derived_type, shadow_url);
-        XPROPERTY(std::optional<size_type>, derived_type, icon_size);
-        XPROPERTY(std::optional<size_type>, derived_type, shadow_size);
-        XPROPERTY(std::optional<size_type>, derived_type, icon_anchor);
-        XPROPERTY(std::optional<size_type>, derived_type, shadow_anchor);
-        XPROPERTY(std::optional<size_type>, derived_type, popup_anchor);
+        XPROPERTY(std::string, xw::xcommon, icon_url, "");
+        XPROPERTY(std::optional<std::string>, xw::xcommon, shadow_url);
+        XPROPERTY(std::optional<size_type>, xw::xcommon, icon_size);
+        XPROPERTY(std::optional<size_type>, xw::xcommon, shadow_size);
+        XPROPERTY(std::optional<size_type>, xw::xcommon, icon_anchor);
+        XPROPERTY(std::optional<size_type>, xw::xcommon, shadow_anchor);
+        XPROPERTY(std::optional<size_type>, xw::xcommon, popup_anchor);
 
     protected:
 
@@ -85,16 +85,6 @@ namespace xlf
                                         const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
-
-        using xw::set_property_from_patch;
-
-        set_property_from_patch(icon_url, patch, buffers);
-        set_property_from_patch(shadow_url, patch, buffers);
-        set_property_from_patch(icon_size, patch, buffers);
-        set_property_from_patch(shadow_size, patch, buffers);
-        set_property_from_patch(icon_anchor, patch, buffers);
-        set_property_from_patch(shadow_anchor, patch, buffers);
-        set_property_from_patch(popup_anchor, patch, buffers);
     }
 
     template <class D>

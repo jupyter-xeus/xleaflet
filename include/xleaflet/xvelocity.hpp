@@ -39,10 +39,10 @@ namespace xlf
         void serialize_state(nl::json&, xeus::buffer_sequence&) const;
         void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
-        XPROPERTY(nl::json, derived_type, data);
-        XPROPERTY(std::string, derived_type, units);
-        XPROPERTY(bool, derived_type, display_values, true);
-        XPROPERTY(nl::json, derived_type, display_options, R"({
+        XPROPERTY(nl::json, xw::xcommon, data);
+        XPROPERTY(std::string, xw::xcommon, units);
+        XPROPERTY(bool, xw::xcommon, display_values, true);
+        XPROPERTY(nl::json, xw::xcommon, display_options, R"({
             "velocityType": "Global Wind",
             "position": "bottomleft",
             "emptyString": "No velocity data",
@@ -51,10 +51,10 @@ namespace xlf
             "displayEmptyString": "No velocity data",
             "speedUnit": "kt"
         })"_json);
-        XPROPERTY(double, derived_type, min_velocity, 0);
-        XPROPERTY(double, derived_type, max_velocity, 10);
-        XPROPERTY(double, derived_type, velocity_scale, 0.005);
-        XPROPERTY(std::vector<xw::html_color>, derived_type, color_scale);
+        XPROPERTY(double, xw::xcommon, min_velocity, 0);
+        XPROPERTY(double, xw::xcommon, max_velocity, 10);
+        XPROPERTY(double, xw::xcommon, velocity_scale, 0.005);
+        XPROPERTY(std::vector<xw::html_color>, xw::xcommon, color_scale);
 
     protected:
 
@@ -95,17 +95,6 @@ namespace xlf
                                           const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
-
-        using xw::set_property_from_patch;
-
-        set_property_from_patch(data, patch, buffers);
-        set_property_from_patch(units, patch, buffers);
-        set_property_from_patch(display_values, patch, buffers);
-        set_property_from_patch(display_options, patch, buffers);
-        set_property_from_patch(min_velocity, patch, buffers);
-        set_property_from_patch(max_velocity, patch, buffers);
-        set_property_from_patch(velocity_scale, patch, buffers);
-        set_property_from_patch(color_scale, patch, buffers);
     }
 
     template <class D>

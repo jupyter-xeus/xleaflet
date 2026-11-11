@@ -18,15 +18,15 @@ Example
 
     auto terrain = xlf::basemap({"Stamen", "Watercolor"});
 
-    auto map = xlf::map::initialize()
-        .layers({terrain})
-        .center({53, 354})
-        .zoom(5)
-        .finalize();
+    auto map = xlf::map::initialize();
+    map.layers = xlf::map::layer_list_type{terrain};
+    map.center = xlf::map::point_type{53, 354};
+    map.zoom = 5;
+    map.finalize();
 
-    auto rectangle = xlf::rectangle::initialize()
-        .bounds({{{52, 354}, {53, 360}}})
-        .finalize();
+    auto rectangle = xlf::rectangle::initialize();
+    rectangle.bounds = xlf::rectangle::bounds_type{{{52, 354}, {53, 360}}};
+    rectangle.finalize();
 
     map.add_layer(rectangle);
 

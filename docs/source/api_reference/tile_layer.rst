@@ -18,10 +18,10 @@ Example
     #include "xleaflet/xmap.hpp"
     #include "xleaflet/xbasemaps.hpp"
 
-    auto map = xlf::map::initialize()
-        .center({52.204793, 360.121558})
-        .zoom(9)
-        .finalize();
+    auto map = xlf::map::initialize();
+    map.center = xlf::map::point_type{52.204793, 360.121558};
+    map.zoom = 9;
+    map.finalize();
 
     auto dark_matter_layer = xlf::basemap({"CartoDB", "DarkMatter"});
     map.add_layer(dark_matter_layer);

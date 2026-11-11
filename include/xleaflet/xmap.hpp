@@ -85,37 +85,40 @@ namespace xlf
 
         void handle_custom_message(const nl::json&);
 
+        // Owned by derived_type (not xw::xcommon) so that users can register typed
+        // observers, e.g. observe<decltype(w)>(...), on properties synced from the frontend.
         XPROPERTY(point_type, derived_type, center);
-        XPROPERTY(int, derived_type, zoom_start, 12);
+        XPROPERTY(int, xw::xcommon, zoom_start, 12);
         XPROPERTY(int, derived_type, zoom, 12);
-        XPROPERTY(int, derived_type, max_zoom, 18);
-        XPROPERTY(int, derived_type, min_zoom, 1);
-        XPROPERTY(bool, derived_type, dragging, true);
-        XPROPERTY(bool, derived_type, touch_zoom, true);
-        XPROPERTY(bool, derived_type, scroll_wheel_zoom, false);
-        XPROPERTY(bool, derived_type, double_click_zoom, true);
-        XPROPERTY(bool, derived_type, box_zoom, true);
-        XPROPERTY(bool, derived_type, tap, true);
-        XPROPERTY(int, derived_type, tap_tolerance, 15);
-        XPROPERTY(bool, derived_type, world_copy_jump, false);
-        XPROPERTY(bool, derived_type, close_popup_on_click, true);
-        XPROPERTY(bool, derived_type, bounce_at_zoom_limits, true);
-        XPROPERTY(bool, derived_type, keyboard, true);
-        XPROPERTY(int, derived_type, keyboard_pan_offset, 80);
-        XPROPERTY(int, derived_type, keyboard_zoom_offset, 1);
-        XPROPERTY(bool, derived_type, inertia, true);
-        XPROPERTY(int, derived_type, inertia_deceleration, 3000);
-        XPROPERTY(int, derived_type, inertia_max_speed, 1500);
-        XPROPERTY(bool, derived_type, zoom_control, true);
-        XPROPERTY(bool, derived_type, attribution_control, true);
-        XPROPERTY(int, derived_type, zoom_animation_threshold, 4);
+        XPROPERTY(int, xw::xcommon, max_zoom, 18);
+        XPROPERTY(int, xw::xcommon, min_zoom, 1);
+        XPROPERTY(bool, xw::xcommon, dragging, true);
+        XPROPERTY(bool, xw::xcommon, touch_zoom, true);
+        XPROPERTY(bool, xw::xcommon, scroll_wheel_zoom, false);
+        XPROPERTY(bool, xw::xcommon, double_click_zoom, true);
+        XPROPERTY(bool, xw::xcommon, box_zoom, true);
+        XPROPERTY(bool, xw::xcommon, tap, true);
+        XPROPERTY(int, xw::xcommon, tap_tolerance, 15);
+        XPROPERTY(bool, xw::xcommon, world_copy_jump, false);
+        XPROPERTY(bool, xw::xcommon, close_popup_on_click, true);
+        XPROPERTY(bool, xw::xcommon, bounce_at_zoom_limits, true);
+        XPROPERTY(bool, xw::xcommon, keyboard, true);
+        XPROPERTY(int, xw::xcommon, keyboard_pan_offset, 80);
+        XPROPERTY(int, xw::xcommon, keyboard_zoom_offset, 1);
+        XPROPERTY(bool, xw::xcommon, inertia, true);
+        XPROPERTY(int, xw::xcommon, inertia_deceleration, 3000);
+        XPROPERTY(int, xw::xcommon, inertia_max_speed, 1500);
+        XPROPERTY(bool, xw::xcommon, zoom_control, true);
+        XPROPERTY(bool, xw::xcommon, attribution_control, true);
+        XPROPERTY(int, xw::xcommon, zoom_animation_threshold, 4);
 
-        XPROPERTY(std::vector<std::string>, derived_type, options);
+        XPROPERTY(std::vector<std::string>, xw::xcommon, options);
 
+        // Owned by derived_type, see center.
         XPROPERTY(bounds_type, derived_type, bounds)
         XPROPERTY(bounds_polygon_type, derived_type, bounds_polygon)
-        XPROPERTY(layer_list_type, derived_type, layers);
-        XPROPERTY(control_list_type, derived_type, controls);
+        XPROPERTY(layer_list_type, xw::xcommon, layers);
+        XPROPERTY(control_list_type, xw::xcommon, controls);
 
     protected:
 
@@ -176,37 +179,6 @@ namespace xlf
     inline void xmap<D>::apply_patch(const nl::json& patch, const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
-
-        using xw::set_property_from_patch;
-
-        set_property_from_patch(center, patch, buffers);
-        set_property_from_patch(zoom_start, patch, buffers);
-        set_property_from_patch(zoom, patch, buffers);
-        set_property_from_patch(max_zoom, patch, buffers);
-        set_property_from_patch(min_zoom, patch, buffers);
-        set_property_from_patch(dragging, patch, buffers);
-        set_property_from_patch(touch_zoom, patch, buffers);
-        set_property_from_patch(scroll_wheel_zoom, patch, buffers);
-        set_property_from_patch(double_click_zoom, patch, buffers);
-        set_property_from_patch(box_zoom, patch, buffers);
-        set_property_from_patch(tap, patch, buffers);
-        set_property_from_patch(tap_tolerance, patch, buffers);
-        set_property_from_patch(world_copy_jump, patch, buffers);
-        set_property_from_patch(close_popup_on_click, patch, buffers);
-        set_property_from_patch(keyboard, patch, buffers);
-        set_property_from_patch(keyboard_pan_offset, patch, buffers);
-        set_property_from_patch(keyboard_zoom_offset, patch, buffers);
-        set_property_from_patch(inertia, patch, buffers);
-        set_property_from_patch(inertia_deceleration, patch, buffers);
-        set_property_from_patch(inertia_max_speed, patch, buffers);
-        set_property_from_patch(zoom_control, patch, buffers);
-        set_property_from_patch(attribution_control, patch, buffers);
-        set_property_from_patch(zoom_animation_threshold, patch, buffers);
-        set_property_from_patch(options, patch, buffers);
-        set_property_from_patch(bounds, patch, buffers);
-        set_property_from_patch(bounds_polygon, patch, buffers);
-        set_property_from_patch(layers, patch, buffers);
-        set_property_from_patch(controls, patch, buffers);
     }
 
     template <class D>

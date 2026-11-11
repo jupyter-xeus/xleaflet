@@ -40,10 +40,10 @@ namespace xlf
         void serialize_state(nl::json&, xeus::buffer_sequence&) const;
         void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
-        XPROPERTY(std::string, derived_type, zoom_in_text, "+");
-        XPROPERTY(std::string, derived_type, zoom_in_title, "Zoom in");
-        XPROPERTY(std::optional<std::string>, derived_type, zoom_out_text, "-");
-        XPROPERTY(std::string, derived_type, zoom_out_title, "Zoom out");
+        XPROPERTY(std::string, xw::xcommon, zoom_in_text, "+");
+        XPROPERTY(std::string, xw::xcommon, zoom_in_title, "Zoom in");
+        XPROPERTY(std::optional<std::string>, xw::xcommon, zoom_out_text, "-");
+        XPROPERTY(std::string, xw::xcommon, zoom_out_title, "Zoom out");
 
     protected:
 
@@ -80,13 +80,6 @@ namespace xlf
                                               const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
-
-        using xw::set_property_from_patch;
-
-        set_property_from_patch(zoom_in_text, patch, buffers);
-        set_property_from_patch(zoom_in_title, patch, buffers);
-        set_property_from_patch(zoom_out_text, patch, buffers);
-        set_property_from_patch(zoom_out_title, patch, buffers);
     }
 
     template <class D>

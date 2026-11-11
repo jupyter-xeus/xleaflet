@@ -37,18 +37,18 @@ namespace xlf
         void serialize_state(nl::json&, xeus::buffer_sequence&) const;
         void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
-        XPROPERTY(bool, derived_type, stroke, true);
-        XPROPERTY(xw::html_color, derived_type, color, "#0033FF");
-        XPROPERTY(int, derived_type, weight, 5);
-        XPROPERTY(bool, derived_type, fill, true);
-        XPROPERTY(xw::html_color, derived_type, fill_color, "#0033FF");
-        XPROPERTY(double, derived_type, fill_opacity, 0.2);
-        XPROPERTY(std::string, derived_type, dash_array, "");
-        XPROPERTY(std::string, derived_type, line_cap, "");
-        XPROPERTY(std::string, derived_type, line_join, "");
-        XPROPERTY(std::string, derived_type, pointer_events, "");
-        XPROPERTY(std::string, derived_type, class_name, "");
-        XPROPERTY(double, derived_type, opacity, 1.0);
+        XPROPERTY(bool, xw::xcommon, stroke, true);
+        XPROPERTY(xw::html_color, xw::xcommon, color, "#0033FF");
+        XPROPERTY(int, xw::xcommon, weight, 5);
+        XPROPERTY(bool, xw::xcommon, fill, true);
+        XPROPERTY(xw::html_color, xw::xcommon, fill_color, "#0033FF");
+        XPROPERTY(double, xw::xcommon, fill_opacity, 0.2);
+        XPROPERTY(std::string, xw::xcommon, dash_array, "");
+        XPROPERTY(std::string, xw::xcommon, line_cap, "");
+        XPROPERTY(std::string, xw::xcommon, line_join, "");
+        XPROPERTY(std::string, xw::xcommon, pointer_events, "");
+        XPROPERTY(std::string, xw::xcommon, class_name, "");
+        XPROPERTY(double, xw::xcommon, opacity, 1.0);
 
     protected:
 
@@ -92,21 +92,6 @@ namespace xlf
                                       const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
-
-        using xw::set_property_from_patch;
-
-        set_property_from_patch(stroke, patch, buffers);
-        set_property_from_patch(color, patch, buffers);
-        set_property_from_patch(weight, patch, buffers);
-        set_property_from_patch(fill, patch, buffers);
-        set_property_from_patch(fill_color, patch, buffers);
-        set_property_from_patch(fill_opacity, patch, buffers);
-        set_property_from_patch(dash_array, patch, buffers);
-        set_property_from_patch(line_cap, patch, buffers);
-        set_property_from_patch(line_join, patch, buffers);
-        set_property_from_patch(pointer_events, patch, buffers);
-        set_property_from_patch(class_name, patch, buffers);
-        set_property_from_patch(opacity, patch, buffers);
     }
 
     template <class D>

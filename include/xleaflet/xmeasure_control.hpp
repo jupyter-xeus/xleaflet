@@ -43,18 +43,18 @@ namespace xlf
         void serialize_state(nl::json&, xeus::buffer_sequence&) const;
         void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
-        XPROPERTY(std::string, derived_type, position, "topright", XEITHER("topright", "topleft", "bottomright", "bottomleft"));
-        XPROPERTY(std::string, derived_type, primary_length_unit, "feet", XEITHER("feet", "meters", "miles", "kilometers"));
-        XPROPERTY(std::optional<std::string>, derived_type, secondary_length_unit, {}, XEITHER_OPTIONAL("feet", "meters", "miles", "kilometers"));
-        XPROPERTY(std::string, derived_type, primary_area_unit, "acres", XEITHER("acres", "hectares", "sqfeet", "sqmeters", "sqmiles"));
-        XPROPERTY(std::optional<std::string>, derived_type, secondary_area_unit, {}, XEITHER_OPTIONAL("acres", "hectares", "sqfeet", "sqmeters", "sqmiles"));
-        XPROPERTY(xw::html_color, derived_type, active_color, "#ABE67E");
-        XPROPERTY(xw::html_color, derived_type, completed_color, "#C8F2BE");
-        XPROPERTY(nl::json, derived_type, popup_options, R"({
+        XPROPERTY(std::string, xw::xcommon, position, "topright", XEITHER("topright", "topleft", "bottomright", "bottomleft"));
+        XPROPERTY(std::string, xw::xcommon, primary_length_unit, "feet", XEITHER("feet", "meters", "miles", "kilometers"));
+        XPROPERTY(std::optional<std::string>, xw::xcommon, secondary_length_unit, {}, XEITHER_OPTIONAL("feet", "meters", "miles", "kilometers"));
+        XPROPERTY(std::string, xw::xcommon, primary_area_unit, "acres", XEITHER("acres", "hectares", "sqfeet", "sqmeters", "sqmiles"));
+        XPROPERTY(std::optional<std::string>, xw::xcommon, secondary_area_unit, {}, XEITHER_OPTIONAL("acres", "hectares", "sqfeet", "sqmeters", "sqmiles"));
+        XPROPERTY(xw::html_color, xw::xcommon, active_color, "#ABE67E");
+        XPROPERTY(xw::html_color, xw::xcommon, completed_color, "#C8F2BE");
+        XPROPERTY(nl::json, xw::xcommon, popup_options, R"({
             "className": "leaflet-measure-resultpopup",
             "autoPanPadding": [10, 10]
         })"_json);
-        XPROPERTY(int, derived_type, capture_z_index, 10000);
+        XPROPERTY(int, xw::xcommon, capture_z_index, 10000);
 
     protected:
 
@@ -95,17 +95,6 @@ namespace xlf
                                                  const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
-
-        using xw::set_property_from_patch;
-
-        set_property_from_patch(primary_length_unit, patch, buffers);
-        set_property_from_patch(secondary_length_unit, patch, buffers);
-        set_property_from_patch(primary_area_unit, patch, buffers);
-        set_property_from_patch(secondary_area_unit, patch, buffers);
-        set_property_from_patch(active_color, patch, buffers);
-        set_property_from_patch(completed_color, patch, buffers);
-        set_property_from_patch(popup_options, patch, buffers);
-        set_property_from_patch(capture_z_index, patch, buffers);
     }
 
     template <class D>

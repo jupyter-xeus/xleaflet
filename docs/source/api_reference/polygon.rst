@@ -12,19 +12,23 @@ Example
 
 .. code::
 
+    #include "xtensor/containers/xarray.hpp"
+
     #include "xleaflet/xmap.hpp"
     #include "xleaflet/xpolygon.hpp"
 
-    auto polygon = xlf::polygon::initialize()
-        .locations({{{42, -49}, {43, -49}, {43, -48}}})
-        .color("green")
-        .fill_color("green")
-        .finalize();
+    xt::xarray<double> locations = {{42, -49}, {43, -49}, {43, -48}};
 
-    auto map = xlf::map::initialize()
-        .center({42.5531, -48.6914})
-        .zoom(6)
-        .finalize();
+    auto polygon = xlf::polygon::initialize();
+    polygon.locations = locations;
+    polygon.color = "green";
+    polygon.fill_color = "green";
+    polygon.finalize();
+
+    auto map = xlf::map::initialize();
+    map.center = xlf::map::point_type{42.5531, -48.6914};
+    map.zoom = 6;
+    map.finalize();
     map.add_layer(polygon);
 
     map

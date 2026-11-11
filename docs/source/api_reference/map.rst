@@ -18,11 +18,11 @@ Example
     #include "xleaflet/xmap.hpp"
     #include "xleaflet/xbasemaps.hpp"
 
-    auto map = xlf::map::initialize()
-        .layers({xlf::basemap({"NASAGIBS", "ModisTerraTrueColorCR"}, "2017-04-08")})
-        .center({52.204793, 360.121558})
-        .zoom(4)
-        .finalize();
+    auto map = xlf::map::initialize();
+    map.layers = xlf::map::layer_list_type{xlf::basemap({"NASAGIBS", "ModisTerraTrueColorCR"}, "2017-04-08")};
+    map.center = xlf::map::point_type{52.204793, 360.121558};
+    map.zoom = 4;
+    map.finalize();
     map
 
 .. raw:: html

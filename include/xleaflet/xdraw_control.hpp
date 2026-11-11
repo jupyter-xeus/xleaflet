@@ -53,16 +53,16 @@ namespace xlf
 
         void handle_custom_message(const nl::json&);
 
-        XPROPERTY(feature_group_type, derived_type, layer);
-        XPROPERTY(nl::json, derived_type, polyline, {});
-        XPROPERTY(nl::json, derived_type, polygon, {});
-        XPROPERTY(nl::json, derived_type, circle, {});
-        XPROPERTY(nl::json, derived_type, rectangle, {});
-        XPROPERTY(nl::json, derived_type, marker, {});
-        XPROPERTY(bool, derived_type, edit, true);
-        XPROPERTY(bool, derived_type, remove, true);
-        XPROPERTY(nl::json, derived_type, last_draw, {});
-        XPROPERTY(std::string, derived_type, last_action, "");
+        XPROPERTY(feature_group_type, xw::xcommon, layer);
+        XPROPERTY(nl::json, xw::xcommon, polyline, {});
+        XPROPERTY(nl::json, xw::xcommon, polygon, {});
+        XPROPERTY(nl::json, xw::xcommon, circle, {});
+        XPROPERTY(nl::json, xw::xcommon, rectangle, {});
+        XPROPERTY(nl::json, xw::xcommon, marker, {});
+        XPROPERTY(bool, xw::xcommon, edit, true);
+        XPROPERTY(bool, xw::xcommon, remove, true);
+        XPROPERTY(nl::json, xw::xcommon, last_draw, {});
+        XPROPERTY(std::string, xw::xcommon, last_action, "");
 
     protected:
 
@@ -107,19 +107,6 @@ namespace xlf
                                               const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
-
-        using xw::set_property_from_patch;
-
-        set_property_from_patch(layer, patch, buffers);
-        set_property_from_patch(polyline, patch, buffers);
-        set_property_from_patch(polygon, patch, buffers);
-        set_property_from_patch(circle, patch, buffers);
-        set_property_from_patch(rectangle, patch, buffers);
-        set_property_from_patch(marker, patch, buffers);
-        set_property_from_patch(edit, patch, buffers);
-        set_property_from_patch(remove, patch, buffers);
-        set_property_from_patch(last_draw, patch, buffers);
-        set_property_from_patch(last_action, patch, buffers);
     }
 
     template <class D>

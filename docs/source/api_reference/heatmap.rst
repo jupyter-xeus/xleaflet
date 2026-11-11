@@ -13,10 +13,10 @@ Example
     #include "xleaflet/xmap.hpp"
     #include "xleaflet/xheatmap.hpp"
 
-    auto map = xlf::map::initialize()
-        .center({37.58, 261.65})
-        .zoom(5)
-        .finalize();
+    auto map = xlf::map::initialize();
+    map.center = xlf::map::point_type{37.58, 261.65};
+    map.zoom = 5;
+    map.finalize();
 
     std::random_device rd;
     std::mt19937 mt(rd());
@@ -31,9 +31,9 @@ Example
         heatmap_points.push_back({rd_latitude(mt), rd_longitude(mt), rd_intensity(mt)});
     }
 
-    auto heatmap = xlf::heatmap::initialize()
-        .locations(heatmap_points)
-        .finalize();
+    auto heatmap = xlf::heatmap::initialize();
+    heatmap.locations = heatmap_points;
+    heatmap.finalize();
 
     map.add_layer(heatmap);
 

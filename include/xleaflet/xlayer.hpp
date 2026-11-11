@@ -39,11 +39,11 @@ namespace xlf
         void serialize_state(nl::json&, xeus::buffer_sequence&) const;
         void apply_patch(const nl::json&, const xeus::buffer_sequence&);
 
-        XPROPERTY(std::string, derived_type, name, "");
-        XPROPERTY(bool, derived_type, base, true);
-        XPROPERTY(bool, derived_type, bottom, true);
-        XPROPERTY(std::optional<widget_type>, derived_type, popup);
-        XPROPERTY(std::vector<std::string>, derived_type, options);
+        XPROPERTY(std::string, xw::xcommon, name, "");
+        XPROPERTY(bool, xw::xcommon, base, true);
+        XPROPERTY(bool, xw::xcommon, bottom, true);
+        XPROPERTY(std::optional<widget_type>, xw::xcommon, popup);
+        XPROPERTY(std::vector<std::string>, xw::xcommon, options);
 
     protected:
 
@@ -81,14 +81,6 @@ namespace xlf
                                        const xeus::buffer_sequence& buffers)
     {
         base_type::apply_patch(patch, buffers);
-
-        using xw::set_property_from_patch;
-
-        set_property_from_patch(name, patch, buffers);
-        set_property_from_patch(base, patch, buffers);
-        set_property_from_patch(bottom, patch, buffers);
-        set_property_from_patch(popup, patch, buffers);
-        set_property_from_patch(options, patch, buffers);
     }
 
     template <class D>
