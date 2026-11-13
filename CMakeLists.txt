@@ -177,13 +177,35 @@ target_link_libraries(xleaflet
     PUBLIC xwidgets
     PUBLIC xtensor)
 
-set_target_properties(xleaflet PROPERTIES
-                      PUBLIC_HEADER "${XLEAFLET_HEADERS}"
-                      COMPILE_DEFINITIONS "XLEAFLET_EXPORTS"
-                      PREFIX ""
-                      VERSION ${XLEAFLET_BINARY_VERSION}
-                      SOVERSION ${XLEAFLET_BINARY_CURRENT}
-                      OUTPUT_NAME "libxleaflet")
+if(UNIX)
+    # CMake does not compute the version number of so files as libtool
+    # does on Linux. Strictly speaking, we should exclude FreeBSD and
+    # Apple from this, but that would require having different version
+    # numbers depending on the platform. We prefer to follow the
+    # libtool pattern everywhere.
+    math(EXPR XLEAFLET_BINARY_COMPATIBLE "${XLEAFLET_BINARY_CURRENT} - ${XLEAFLET_BINARY_AGE}")
+    set_target_properties(
+        xleaflet
+        PROPERTIES
+            PUBLIC_HEADER "${XLEAFLET_HEADERS}"
+            COMPILE_DEFINITIONS "XLEAFLET_EXPORTS"
+            PREFIX ""
+            VERSION "${XLEAFLET_BINARY_COMPATIBLE}.${XLEAFLET_BINARY_AGE}.${XLEAFLET_BINARY_REVISION}"
+            SOVERSION ${XLEAFLET_BINARY_COMPATIBLE}
+            OUTPUT_NAME "libxleaflet"
+    )
+else()
+    set_target_properties(
+        xleaflet
+        PROPERTIES
+            PUBLIC_HEADER "${XLEAFLET_HEADERS}"
+            COMPILE_DEFINITIONS "XLEAFLET_EXPORTS"
+            PREFIX ""
+            VERSION ${XLEAFLET_BINARY_VERSION}
+            SOVERSION ${XLEAFLET_BINARY_CURRENT}
+            OUTPUT_NAME "libxleaflet"
+    )
+endif()
 
 # Compilation flags
 # =================
