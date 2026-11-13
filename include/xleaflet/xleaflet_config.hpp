@@ -25,7 +25,7 @@
 // Project version
 #define XLEAFLET_VERSION_MAJOR 0
 #define XLEAFLET_VERSION_MINOR 22
-#define XLEAFLET_VERSION_PATCH 0
+#define XLEAFLET_VERSION_PATCH 1
 
 // Binary version
 // See the following URL for explanations about the binary versionning
